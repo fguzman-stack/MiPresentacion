@@ -38,7 +38,6 @@
   --nebula-purple-1: #6f4cff;
   --nebula-purple-2: #b76bff;
   --nebula-magenta: #ff63b8;
-  --perspective: 900px;
   --deep-shadow: 0 28px 80px rgba(3, 2, 18, 0.7);
 }
 
@@ -197,6 +196,12 @@ button:focus-visible,
   border: 1px solid rgba(167, 137, 255, 0.24);
   border-radius: 999px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: labelShine 3.6s ease-in-out infinite;
+}
+
+@keyframes labelShine {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 .section-title {
@@ -204,6 +209,13 @@ button:focus-visible,
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 800;
   letter-spacing: -0.04em;
+  font-family: "Orbitron", monospace;
+  animation: titlePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.92; }
 }
 
 .section-desc {
@@ -248,13 +260,19 @@ button:focus-visible,
   font-family: "Orbitron", monospace;
   color: var(--text-primary);
   font-size: 1.28rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  font-weight: 900;
+  letter-spacing: -0.05em;
   text-decoration: none;
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: logoPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(142, 108, 255, 0.2)); }
+  50% { filter: drop-shadow(0 0 20px rgba(142, 108, 255, 0.4)); }
 }
 
 .nav-links {
@@ -492,68 +510,39 @@ button:focus-visible,
   border-radius: 50%;
   background: radial-gradient(circle at 30% 25%, #ffe6fb 0%, rgba(255,255,255,0.06) 6%, var(--nebula-purple-1) 25%, var(--nebula-purple-2) 60%, transparent 100%);
   box-shadow: 0 30px 80px rgba(111, 76, 255, 0.18), inset -10px -6px 30px rgba(0,0,0,0.35);
-  transform-origin: 50% 50%;
-  animation: spinPlanet 36s linear infinite, float3D 6.5s ease-in-out infinite;
+  animation: rotatePlanet 45s linear infinite, floatPlanet 7s ease-in-out infinite;
   filter: drop-shadow(0 16px 40px rgba(127, 93, 255, 0.12));
   mix-blend-mode: screen;
 }
 
-@keyframes spinPlanet {
-  from { transform: rotateY(0deg) rotateX(0deg); }
-  to { transform: rotateY(360deg) rotateX(8deg); }
+@keyframes rotatePlanet {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes float3D {
-  0% { transform: translateY(0) translateZ(0); }
-  50% { transform: translateY(-10px) translateZ(8px); }
-  100% { transform: translateY(0) translateZ(0); }
+@keyframes floatPlanet {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
-/* Profundidad y perspectiva para hero y tarjetas */
-.hero {
-  perspective: var(--perspective);
-  transform-style: preserve-3d;
-}
-
-.hero-content {
-  transform-style: preserve-3d;
-}
-
+/* Mejoras de profundidad con sombras y animaciones */
 .app-card,
 .project-card,
 .skill-category,
 .contacto-card {
   will-change: transform, box-shadow;
-  transform-style: preserve-3d;
-  transition: transform 420ms cubic-bezier(.2,.9,.25,1), box-shadow 420ms ease, border-color 420ms ease;
+  transition: transform 400ms cubic-bezier(.2,.9,.25,1), box-shadow 400ms ease, border-color 400ms ease;
 }
 
 .app-card:hover,
 .project-card:hover,
 .skill-category:hover,
 .contacto-card:hover {
-  transform: translateY(-10px) translateZ(22px) rotateX(2deg);
+  transform: translateY(-12px);
   box-shadow: var(--deep-shadow), 0 0 48px rgba(164, 118, 255, 0.08);
 }
 
-/* Elementos flotantes 3D y parallax ligero */
-.float-3d {
-  position: absolute;
-  pointer-events: none;
-  transform: translateZ(0);
-  animation: float3D 8s ease-in-out infinite;
-}
 
-/* Sutil pulso para llamar la atención sin saturar */
-.glow-pulse {
-  animation: pulse 3.6s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(155, 123, 255, 0.06); }
-  50% { box-shadow: 0 0 40px 6px rgba(155, 123, 255, 0.06); }
-  100% { box-shadow: 0 0 0 0 rgba(155, 123, 255, 0.06); }
-}
 
 .shooting-stars {
   position: absolute;
@@ -637,6 +626,12 @@ button:focus-visible,
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   font-size: 0.88rem;
   font-weight: 600;
+  animation: badgeFloat 2.8s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 
 .hero-title {
@@ -654,13 +649,18 @@ button:focus-visible,
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  transform: translateZ(0);
-  transition: transform 420ms cubic-bezier(.2,.9,.25,1), text-shadow 420ms ease;
+  animation: titleGlow 3.2s ease-in-out infinite;
+  transition: transform 350ms ease, text-shadow 350ms ease;
 }
 
 .hero-title:hover {
-  transform: translateZ(18px) translateY(-6px) rotateX(1deg);
+  transform: scale(1.02) translateY(-4px);
   text-shadow: 0 30px 60px rgba(110, 70, 200, 0.36), 0 1px 0 rgba(255,255,255,0.02);
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 6px 30px rgba(80, 32, 140, 0.36), 0 1px 0 rgba(255,255,255,0.02); }
+  50% { text-shadow: 0 12px 40px rgba(110, 70, 200, 0.42), 0 1px 0 rgba(255,255,255,0.05); }
 }
 
 .hero-subtitle {
@@ -669,6 +669,18 @@ button:focus-visible,
   color: var(--text-secondary);
   font-size: clamp(1rem, 2vw, 1.22rem);
   line-height: 1.75;
+  animation: subtitleFade 0.8s ease-out backwards 0.4s;
+}
+
+@keyframes subtitleFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-subtitle strong {
@@ -694,7 +706,8 @@ button:focus-visible,
   font-size: 0.96rem;
   font-weight: 700;
   text-decoration: none;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+  transition: transform 300ms cubic-bezier(.2,.9,.25,1), box-shadow 300ms ease, border-color 300ms ease;
+  position: relative;
 }
 
 .btn-primary {
@@ -708,7 +721,12 @@ button:focus-visible,
   box-shadow:
     0 8px 24px rgba(126, 91, 255, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  transition: transform var(--transition), box-shadow var(--transition), background-position 500ms ease;
+  animation: buttonGlow 3s ease-in-out infinite;
+}
+
+@keyframes buttonGlow {
+  0%, 100% { box-shadow: 0 8px 24px rgba(126, 91, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24); }
+  50% { box-shadow: 0 12px 32px rgba(126, 91, 255, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.24); }
 }
 
 .btn-primary::before {
@@ -731,7 +749,7 @@ button:focus-visible,
   box-shadow:
     0 14px 36px rgba(126, 91, 255, 0.42),
     0 0 30px rgba(255, 100, 190, 0.16);
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .btn-primary:hover::before {
@@ -760,17 +778,29 @@ button:focus-visible,
 
 .stat {
   text-align: center;
+  animation: statBounce 2.2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.stat:nth-child(1) { --delay: 0s; }
+.stat:nth-child(2) { --delay: 0.2s; }
+.stat:nth-child(3) { --delay: 0.4s; }
+
+@keyframes statBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .stat-number {
   display: block;
   font-size: 2.5rem;
-  font-weight: 850;
+  font-weight: 900;
   line-height: 1;
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: "Orbitron", monospace;
 }
 
 .stat-label {
@@ -809,7 +839,23 @@ button:focus-visible,
   overflow: hidden;
   cursor: pointer;
   border-radius: var(--radius);
-  transition: transform 400ms cubic-bezier(.2, .8, .2, 1);
+  transition: transform 400ms cubic-bezier(.2,.9,.25,1);
+  animation: cardSlideUp 0.6s cubic-bezier(.2,.9,.25,1) backwards;
+}
+
+.main-card:nth-child(1) { animation-delay: 0s; }
+.main-card:nth-child(2) { animation-delay: 0.15s; }
+.main-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .app-card:hover {
@@ -893,6 +939,12 @@ button:focus-visible,
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
+  animation: chipPulse 2s ease-in-out infinite;
+}
+
+@keyframes chipPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
 .app-chip.secondary {
@@ -905,7 +957,12 @@ button:focus-visible,
   margin-bottom: 12px;
   font-family: "Orbitron", monospace;
   font-size: 1.45rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .app-card-desc {
@@ -974,7 +1031,29 @@ button:focus-visible,
     0 14px 35px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  transition: transform 400ms ease, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  animation: projectCardFade 0.7s ease-out backwards;
+}
+
+.project-card:nth-child(1) { animation-delay: 0s; }
+.project-card:nth-child(2) { animation-delay: 0.1s; }
+.project-card:nth-child(3) { animation-delay: 0.2s; }
+.project-card:nth-child(4) { animation-delay: 0.3s; }
+.project-card:nth-child(5) { animation-delay: 0.4s; }
+.project-card:nth-child(6) { animation-delay: 0.5s; }
+.project-card:nth-child(7) { animation-delay: 0.6s; }
+.project-card:nth-child(8) { animation-delay: 0.7s; }
+.project-card:nth-child(9) { animation-delay: 0.8s; }
+
+@keyframes projectCardFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-card:hover {
@@ -1038,7 +1117,13 @@ button:focus-visible,
 .project-card-body h3 {
   margin-bottom: 8px;
   font-size: 1.08rem;
-  font-weight: 750;
+  font-weight: 800;
+  font-family: "Orbitron", monospace;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #b37aff, #ff88c0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .project-card-body p {
@@ -1083,7 +1168,23 @@ button:focus-visible,
     0 14px 35px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  transition: transform 400ms ease, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  animation: skillCategorySlide 0.6s cubic-bezier(.2,.9,.25,1) backwards;
+}
+
+.skill-category:nth-child(1) { animation-delay: 0s; }
+.skill-category:nth-child(2) { animation-delay: 0.15s; }
+.skill-category:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes skillCategorySlide {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .skill-category:hover {
@@ -1104,6 +1205,15 @@ button:focus-visible,
   margin-bottom: 20px;
   color: var(--text-primary);
   font-size: 1.13rem;
+  font-weight: 800;
+  font-family: "Orbitron", monospace;
+  letter-spacing: -0.02em;
+  animation: skillTitleGlow 2s ease-in-out infinite;
+}
+
+@keyframes skillTitleGlow {
+  0%, 100% { color: var(--text-primary); }
+  50% { color: var(--accent-soft); }
 }
 
 .skill-category h3 i {
@@ -1124,7 +1234,28 @@ button:focus-visible,
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  transition: background 300ms ease, border-color 300ms ease, transform 300ms ease;
+  animation: skillItemSlide 0.6s ease-out backwards;
+}
+
+.skill-item:nth-child(1) { animation-delay: 0s; }
+.skill-item:nth-child(2) { animation-delay: 0.08s; }
+.skill-item:nth-child(3) { animation-delay: 0.16s; }
+.skill-item:nth-child(4) { animation-delay: 0.24s; }
+.skill-item:nth-child(5) { animation-delay: 0.32s; }
+.skill-item:nth-child(6) { animation-delay: 0.4s; }
+.skill-item:nth-child(7) { animation-delay: 0.48s; }
+.skill-item:nth-child(8) { animation-delay: 0.56s; }
+
+@keyframes skillItemSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .skill-item:hover {
@@ -1201,7 +1332,24 @@ button:focus-visible,
     0 14px 35px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  transition: transform 400ms ease, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  animation: contactCardPop 0.5s cubic-bezier(.2,.9,.25,1) backwards;
+}
+
+.contacto-card:nth-child(1) { animation-delay: 0s; }
+.contacto-card:nth-child(2) { animation-delay: 0.1s; }
+.contacto-card:nth-child(3) { animation-delay: 0.2s; }
+.contacto-card:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes contactCardPop {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .contacto-card:hover {
@@ -1212,7 +1360,7 @@ button:focus-visible,
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.42),
     0 0 32px rgba(140, 103, 255, 0.13);
-  transform: translateY(-6px);
+  transform: translateY(-10px);
 }
 
 .contacto-card a {
@@ -1229,6 +1377,12 @@ button:focus-visible,
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .contacto-card h3 {
@@ -1258,11 +1412,18 @@ button:focus-visible,
   margin-bottom: 8px;
   font-family: "Orbitron", monospace;
   font-size: 1.28rem;
-  font-weight: 800;
+  font-weight: 900;
+  letter-spacing: -0.05em;
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: brandPulse 3s ease-in-out infinite;
+}
+
+@keyframes brandPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
 .footer-text {
