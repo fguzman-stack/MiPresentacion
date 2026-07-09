@@ -6,7 +6,7 @@ const translations = {
     nav_habilidades: "Habilidades", nav_contacto: "Contacto",
     hero_badge: "Desarrollador Android",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Creo <strong>apps móviles nativas</strong> con Kotlin y Jetpack Compose. Convertir ideas en <span class='gradient-text'>experiencias</span> que caben en tu bolsillo.",
+    hero_sub: "Desarrollador con 3 años de experiencia creando <strong>apps móviles nativas</strong> con Kotlin y Jetpack Compose. Domino las tecnologías que ves a continuación y convierto ideas en <span class='gradient-text'>experiencias</span> digitales.",
     hero_btn_apps: "Ver mis Apps", hero_btn_contacto: "Contáctame",
     stat_apps: "Apps Nativas", stat_proyectos: "+ Proyectos", stat_web: "+ Apps Web",
     apps_label: "Apps Móviles Nativas", apps_title: "Hechas con <span class='gradient-text'>Kotlin</span> desde cero",
@@ -23,7 +23,6 @@ const translations = {
     p2_desc: "Sistema dermatológico veterinario con mapa corporal interactivo, wizard de 11 pasos y dermograma con índices CADESI.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Backend de chatbot para WhatsApp Cloud API con FastAPI, validación Pydantic y manejo de mensajes multimedia.",
     p4_tit: "Lenguaje de Señas", p4_desc: "App de visión artificial que reconoce gestos de lenguaje de señas en tiempo real usando MediaPipe y OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Servidor multijugador inspirado en Overwatch con WebSocket, matchmaking y API REST en C++17 con framework Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Juego 3D endless jumper con temática medieval, física realista, modelo 3D de caballero y modo PWA instalable.",
     p7_tit: "Felycan Veterinaria", p7_desc: "Sistema de gestión veterinaria en Java Swing con CRUD de pacientes, exportación Excel y backup automático con auditoría.",
     p8_tit: "Dust Reminders", p8_desc: "App de recordatorios con temática gótica en Flutter con SQLite, notificaciones locales y categorías personalizadas.",
@@ -34,8 +33,7 @@ const translations = {
     cont_label: "Contacto", cont_title: "Trabajemos <span class='gradient-text'>juntos</span>",
     cont_desc: "¿Tienes una idea para una app? Hablemos y la hacemos realidad.",
     cont_email_tit: "Email", cont_copiar: "Copiar Email",
-    footer_text: "Construyendo apps que marcan la diferencia",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Hecho con <i class='fa-solid fa-heart'></i> desde cero"
+    footer_text: "Construyendo apps que marcan la diferencia"
   },
   en: {
     titulo: "Francisco Guzmán | Mobile App Developer",
@@ -44,7 +42,7 @@ const translations = {
     nav_habilidades: "Skills", nav_contacto: "Contact",
     hero_badge: "Android Developer",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "I build <strong>native mobile apps</strong> with Kotlin and Jetpack Compose. Turning ideas into <span class='gradient-text'>experiences</span> that fit in your pocket.",
+    hero_sub: "Developer with 3 years of experience building <strong>native mobile apps</strong> with Kotlin and Jetpack Compose. I master the technologies below and turn ideas into <span class='gradient-text'>digital experiences</span>.",
     hero_btn_apps: "View My Apps", hero_btn_contacto: "Contact Me",
     stat_apps: "Native Apps", stat_proyectos: "+ Projects", stat_web: "+ Web Apps",
     apps_label: "Native Mobile Apps", apps_title: "Built with <span class='gradient-text'>Kotlin</span> from scratch",
@@ -61,7 +59,6 @@ const translations = {
     p2_desc: "Veterinary dermatology system with interactive body map, 11-step wizard and dermogram with CADESI indexes.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Chatbot backend for WhatsApp Cloud API with FastAPI, Pydantic validation and multimedia message handling.",
     p4_tit: "Sign Language", p4_desc: "Computer vision app that recognizes sign language gestures in real-time using MediaPipe and OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Multiplayer game server inspired by Overwatch with WebSocket, matchmaking and REST API in C++17 with Drogon framework.",
     p6_tit: "Medieval Jump", p6_desc: "Endless 3D jumper game with medieval theme, realistic physics, 3D knight model and installable PWA mode.",
     p7_tit: "Felycan Veterinary", p7_desc: "Veterinary management system in Java Swing with patient CRUD, Excel export and automatic backup with auditing.",
     p8_tit: "Dust Reminders", p8_desc: "Gothic-themed reminder app in Flutter with SQLite, local notifications and custom categories.",
@@ -72,8 +69,7 @@ const translations = {
     cont_label: "Contact", cont_title: "Let's Work <span class='gradient-text'>Together</span>",
     cont_desc: "Have an idea for an app? Let's talk and make it happen.",
     cont_email_tit: "Email", cont_copiar: "Copy Email",
-    footer_text: "Building apps that make a difference",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Made with <i class='fa-solid fa-heart'></i> from scratch"
+    footer_text: "Building apps that make a difference"
   },
   fr: {
     titulo: "Francisco Guzmán | Développeur d'Apps Mobiles",
@@ -82,7 +78,7 @@ const translations = {
     nav_habilidades: "Compétences", nav_contacto: "Contact",
     hero_badge: "Développeur Android",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Je crée des <strong>apps mobiles natives</strong> avec Kotlin et Jetpack Compose. Transformer des idées en <span class='gradient-text'>expériences</span> qui tiennent dans votre poche.",
+    hero_sub: "Développeur avec 3 ans d'expérience à créer des <strong>apps mobiles natives</strong> avec Kotlin et Jetpack Compose. Je maîtrise les technologies ci-dessous et transforme les idées en <span class='gradient-text'>expériences numériques</span>.",
     hero_btn_apps: "Voir mes Apps", hero_btn_contacto: "Contactez-moi",
     stat_apps: "Apps Natives", stat_proyectos: "+ Projets", stat_web: "+ Sites Web",
     apps_label: "Apps Mobiles Natives", apps_title: "Créées avec <span class='gradient-text'>Kotlin</span> from scratch",
@@ -99,7 +95,6 @@ const translations = {
     p2_desc: "Système dermatologique vétérinaire avec carte corporelle interactive, assistant 11 étapes et dermogramme.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Backend chatbot pour WhatsApp Cloud API avec FastAPI, validation Pydantic.",
     p4_tit: "Langue des Signes", p4_desc: "App de vision par ordinateur reconnaissant la langue des signes en temps réel avec MediaPipe et OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Serveur multijoueur inspiré d'Overwatch avec WebSocket, matchmaking et API REST en C++17 avec Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Jeu 3D endless jumper médiéval avec physique réaliste, modèle de chevalier 3D et mode PWA.",
     p7_tit: "Felycan Vétérinaire", p7_desc: "Système de gestion vétérinaire en Java Swing avec CRUD patients, export Excel et sauvegarde automatique.",
     p8_tit: "Dust Reminders", p8_desc: "App de rappels gothiques en Flutter avec SQLite, notifications locales et catégories personnalisées.",
@@ -110,8 +105,7 @@ const translations = {
     cont_label: "Contact", cont_title: "Travaillons <span class='gradient-text'>Ensemble</span>",
     cont_desc: "Vous avez une idée d'app ? Parlons-en et réalisons-la.",
     cont_email_tit: "Email", cont_copiar: "Copier l'Email",
-    footer_text: "Créer des apps qui font la différence",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Fait avec <i class='fa-solid fa-heart'></i> from scratch"
+    footer_text: "Créer des apps qui font la différence"
   },
   de: {
     titulo: "Francisco Guzmán | Mobile App Entwickler",
@@ -120,7 +114,7 @@ const translations = {
     nav_habilidades: "Fähigkeiten", nav_contacto: "Kontakt",
     hero_badge: "Android-Entwickler",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Ich entwickle <strong>native mobile Apps</strong> mit Kotlin und Jetpack Compose. Ideen in <span class='gradient-text'>Erlebnisse</span> verwandeln, die in Ihre Tasche passen.",
+    hero_sub: "Entwickler mit 3 Jahren Erfahrung in der Entwicklung <strong>nativer mobiler Apps</strong> mit Kotlin und Jetpack Compose. Ich beherrsche die unten aufgeführten Technologien und verwandle Ideen in <span class='gradient-text'>digitale Erlebnisse</span>.",
     hero_btn_apps: "Meine Apps ansehen", hero_btn_contacto: "Kontaktieren Sie mich",
     stat_apps: "Native Apps", stat_proyectos: "+ Projekte", stat_web: "+ Web-Apps",
     apps_label: "Native Mobile Apps", apps_title: "Mit <span class='gradient-text'>Kotlin</span> von Grund auf entwickelt",
@@ -137,7 +131,6 @@ const translations = {
     p2_desc: "Veterinärdermatologie-System mit interaktiver Körperkarte, 11-Schritte-Assistent und Dermogramm.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Chatbot-Backend für WhatsApp Cloud API mit FastAPI und Pydantic-Validierung.",
     p4_tit: "Gebärdensprache", p4_desc: "Computer-Vision-App zur Echtzeit-Gebärdenspracherkennung mit MediaPipe und OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Multiplayer-Spielserver inspiriert von Overwatch mit WebSocket, Matchmaking und REST API in C++17 mit Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Endless 3D Jumper mit Mittelalter-Thema, realistischer Physik, 3D-Ritter und PWA-Modus.",
     p7_tit: "Felycan Tierarzt", p7_desc: "Veterinärverwaltungssystem in Java Swing mit Patienten-CRUD, Excel-Export und automatischem Backup.",
     p8_tit: "Dust Reminders", p8_desc: "Gothische Erinnerungs-App in Flutter mit SQLite, lokalen Benachrichtigungen und Kategorien.",
@@ -148,8 +141,7 @@ const translations = {
     cont_label: "Kontakt", cont_title: "Lass uns <span class='gradient-text'>zusammen</span> arbeiten",
     cont_desc: "Hast du eine Idee für eine App? Lass uns reden und sie verwirklichen.",
     cont_email_tit: "Email", cont_copiar: "Email kopieren",
-    footer_text: "Apps entwickeln, die einen Unterschied machen",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Mit <i class='fa-solid fa-heart'></i> von Grund auf gemacht"
+    footer_text: "Apps entwickeln, die einen Unterschied machen"
   },
   it: {
     titulo: "Francisco Guzmán | Sviluppatore di App Mobili",
@@ -158,7 +150,7 @@ const translations = {
     nav_habilidades: "Competenze", nav_contacto: "Contatti",
     hero_badge: "Sviluppatore Android",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Creo <strong>app mobili native</strong> con Kotlin e Jetpack Compose. Trasformo idee in <span class='gradient-text'>esperienze</span> che stanno in tasca.",
+    hero_sub: "Sviluppatore con 3 anni di esperienza nella creazione di <strong>app mobili native</strong> con Kotlin e Jetpack Compose. Padroneggio le tecnologie qui sotto e trasformo le idee in <span class='gradient-text'>esperienze digitali</span>.",
     hero_btn_apps: "Vedi le mie App", hero_btn_contacto: "Contattami",
     stat_apps: "App Native", stat_proyectos: "+ Progetti", stat_web: "+ App Web",
     apps_label: "App Mobili Native", apps_title: "Create con <span class='gradient-text'>Kotlin</span> da zero",
@@ -175,7 +167,6 @@ const translations = {
     p2_desc: "Sistema dermatologico veterinario con mappa corporea interattiva, procedura guidata 11 passi e dermogramma.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Backend chatbot per WhatsApp Cloud API con FastAPI e validazione Pydantic.",
     p4_tit: "Lingua dei Segni", p4_desc: "App di visione artificiale che riconosce la lingua dei segni in tempo reale con MediaPipe e OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Server di gioco multiplayer ispirato a Overwatch con WebSocket, matchmaking e API REST in C++17 con Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Gioco 3D endless jumper medievale con fisica realistica, modello 3D cavaliere e modalità PWA.",
     p7_tit: "Felycan Veterinaria", p7_desc: "Sistema di gestione veterinaria in Java Swing con CRUD pazienti, export Excel e backup automatico.",
     p8_tit: "Dust Reminders", p8_desc: "App promemoria gotica in Flutter con SQLite, notifiche locali e categorie personalizzate.",
@@ -186,8 +177,7 @@ const translations = {
     cont_label: "Contatti", cont_title: "Lavoriamo <span class='gradient-text'>Insieme</span>",
     cont_desc: "Hai un'idea per un'app? Parliamone e realizziamola.",
     cont_email_tit: "Email", cont_copiar: "Copia Email",
-    footer_text: "Creare app che fanno la differenza",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Fatto con <i class='fa-solid fa-heart'></i> da zero"
+    footer_text: "Creare app che fanno la differenza"
   },
   pt: {
     titulo: "Francisco Guzmán | Desenvolvedor de Apps Mobile",
@@ -196,7 +186,7 @@ const translations = {
     nav_habilidades: "Habilidades", nav_contacto: "Contato",
     hero_badge: "Desenvolvedor Android",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Crio <strong>apps móveis nativas</strong> com Kotlin e Jetpack Compose. Transformar ideias em <span class='gradient-text'>experiências</span> que cabem no seu bolso.",
+    hero_sub: "Desenvolvedor com 3 anos de experiência criando <strong>apps móveis nativas</strong> com Kotlin e Jetpack Compose. Domino as tecnologias abaixo e transformo ideias em <span class='gradient-text'>experiências digitais</span>.",
     hero_btn_apps: "Ver minhas Apps", hero_btn_contacto: "Fale Comigo",
     stat_apps: "Apps Nativas", stat_proyectos: "+ Projetos", stat_web: "+ Apps Web",
     apps_label: "Apps Mobile Nativas", apps_title: "Feitas com <span class='gradient-text'>Kotlin</span> do zero",
@@ -213,7 +203,6 @@ const translations = {
     p2_desc: "Sistema dermatológico veterinário com mapa corporal interativo, assistente de 11 etapas e dermograma.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Backend de chatbot para WhatsApp Cloud API com FastAPI e validação Pydantic.",
     p4_tit: "Língua de Sinais", p4_desc: "App de visão computacional que reconhece libras em tempo real com MediaPipe e OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Servidor multijogador inspirado em Overwatch com WebSocket, matchmaking e API REST em C++17 com Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Jogo 3D endless jumper medieval com física realista, modelo 3D de cavaleiro e modo PWA.",
     p7_tit: "Felycan Veterinária", p7_desc: "Sistema de gestão veterinária em Java Swing com CRUD pacientes, exportação Excel e backup automático.",
     p8_tit: "Dust Reminders", p8_desc: "App de lembretes gótica em Flutter com SQLite, notificações locais e categorias personalizadas.",
@@ -224,8 +213,7 @@ const translations = {
     cont_label: "Contato", cont_title: "Vamos Trabalhar <span class='gradient-text'>Juntos</span>",
     cont_desc: "Tem uma ideia para um app? Vamos conversar e realizá-la.",
     cont_email_tit: "Email", cont_copiar: "Copiar Email",
-    footer_text: "Construindo apps que fazem a diferença",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Feito com <i class='fa-solid fa-heart'></i> do zero"
+    footer_text: "Construindo apps que fazem a diferença"
   },
   ja: {
     titulo: "フランシスコ・グスマン | モバイルアプリ開発者",
@@ -234,7 +222,7 @@ const translations = {
     nav_habilidades: "スキル", nav_contacto: "お問い合わせ",
     hero_badge: "Android開発者",
     hero_nombre: "フランシスコ", hero_apellido: "・グスマン",
-    hero_sub: "KotlinとJetpack Composeで<strong>ネイティブモバイルアプリ</strong>を開発。アイデアをポケットに入る<span class='gradient-text'>体験</span>に変えます。",
+    hero_sub: "KotlinとJetpack Composeで<strong>ネイティブモバイルアプリ</strong>を構築して3年の経験を持つ開発者です。以下の技術を習得しており、アイデアを<span class='gradient-text'>デジタル体験</span>に変えます。",
     hero_btn_apps: "アプリを見る", hero_btn_contacto: "お問い合わせ",
     stat_apps: "ネイティブアプリ", stat_proyectos: "+ プロジェクト", stat_web: "+ Webアプリ",
     apps_label: "ネイティブモバイルアプリ", apps_title: "<span class='gradient-text'>Kotlin</span>でゼロから構築",
@@ -251,7 +239,6 @@ const translations = {
     p2_desc: "インタラクティブボディマップ、11ステップウィザード、ダーモグラム対応の獣医皮膚科システム。",
     p3_tit: "WhatsAppチャットボット", p3_desc: "FastAPIとPydantic検証を使用したWhatsApp Cloud API用チャットボットバックエンド。",
     p4_tit: "手話認識", p4_desc: "MediaPipeとOpenCVを使用してリアルタイムで手話ジェスチャーを認識するコンピュータビジョンアプリ。",
-    p5_tit: "オーバーウォッチサーバー", p5_desc: "WebSocket、マッチメイキング、REST APIを備えたOverwatch風マルチプレイヤーゲームサーバー（C++17 + Drogon）。",
     p6_tit: " Medieval Jump", p6_desc: "中世テーマのエンドレス3Dジャンパーゲーム。リアルな物理演算、3D騎士モデル、PWA対応。",
     p7_tit: "Felycan獣医", p7_desc: "Java Swing製の獣医管理システム。患者CRUD、Excel出力、自動バックアップ機能。",
     p8_tit: "Dust Reminders", p8_desc: "Flutter製ゴシック調リマインダーアプリ。SQLite、ローカル通知、カスタムカテゴリ対応。",
@@ -262,8 +249,7 @@ const translations = {
     cont_label: "お問い合わせ", cont_title: "<span class='gradient-text'>一緒に</span>仕事をしませんか",
     cont_desc: "アプリのアイデアがありますか？話し合って実現しましょう。",
     cont_email_tit: "メール", cont_copiar: "メールをコピー",
-    footer_text: "違いを生み出すアプリを構築する",
-    footer_copy: "&copy; 2026 フランシスコ・グスマン <i class='fa-solid fa-heart'></i> を込めてゼロから作成"
+    footer_text: "違いを生み出すアプリを構築する"
   },
   zh: {
     titulo: "弗朗西斯科·古兹曼 | 移动应用开发者",
@@ -272,7 +258,7 @@ const translations = {
     nav_habilidades: "技能", nav_contacto: "联系",
     hero_badge: "Android开发者",
     hero_nombre: "弗朗西斯科", hero_apellido: "·古兹曼",
-    hero_sub: "我用Kotlin和Jetpack Compose构建<strong>原生移动应用</strong>。将想法转化为可放入口袋的<span class='gradient-text'>体验</span>。",
+    hero_sub: "拥有3年使用Kotlin和Jetpack Compose构建<strong>原生移动应用</strong>经验的开发者。我精通以下技术，将想法转化为<span class='gradient-text'>数字体验</span>。",
     hero_btn_apps: "查看我的应用", hero_btn_contacto: "联系我",
     stat_apps: "原生应用", stat_proyectos: "+ 项目", stat_web: "+ 网络应用",
     apps_label: "原生移动应用", apps_title: "用<span class='gradient-text'>Kotlin</span>从零构建",
@@ -289,7 +275,6 @@ const translations = {
     p2_desc: "具有交互式身体地图、11步向导和皮肤图的兽医皮肤科系统。",
     p3_tit: "WhatsApp聊天机器人", p3_desc: "使用FastAPI和Pydantic验证的WhatsApp Cloud API聊天机器人后端。",
     p4_tit: "手语识别", p4_desc: "使用MediaPipe和OpenCV实时识别手语手势的计算机视觉应用。",
-    p5_tit: "守望先锋服务器", p5_desc: "受守望先锋启发的多人在线游戏服务器，支持WebSocket、匹配系统和REST API（C++17 + Drogon）。",
     p6_tit: "中世纪跳跃", p6_desc: "中世纪主题的无尽3D跳跃游戏，具有逼真物理、3D骑士模型和PWA模式。",
     p7_tit: "Felycan兽医", p7_desc: "Java Swing开发的兽医管理系统，支持患者CRUD、Excel导出和自动备份。",
     p8_tit: "Dust Reminders", p8_desc: "Flutter开发的哥特风格提醒应用，支持SQLite、本地通知和自定义分类。",
@@ -300,8 +285,7 @@ const translations = {
     cont_label: "联系方式", cont_title: "让我们<span class='gradient-text'>一起</span>合作",
     cont_desc: "有一个应用的想法？让我们谈谈并实现它。",
     cont_email_tit: "邮箱", cont_copiar: "复制邮箱",
-    footer_text: "构建改变世界的应用",
-    footer_copy: "&copy; 2026 弗朗西斯科·古兹曼 用心从零制作"
+    footer_text: "构建改变世界的应用"
   },
   ko: {
     titulo: "프란시스코 구즈만 | 모바일 앱 개발자",
@@ -310,7 +294,7 @@ const translations = {
     nav_habilidades: "스킬", nav_contacto: "연락처",
     hero_badge: "Android 개발자",
     hero_nombre: "프란시스코", hero_apellido: " 구즈만",
-    hero_sub: "Kotlin과 Jetpack Compose로 <strong>네이티브 모바일 앱</strong>을 만듭니다. 아이디어를 주머니에 쏙 들어가는 <span class='gradient-text'>경험</span>으로 바꿉니다.",
+    hero_sub: "Kotlin과 Jetpack Compose로 <strong>네이티브 모바일 앱</strong>을 개발한 3년 경력의 개발자입니다. 아래 기술들을 숙달하고 있으며 아이디어를 <span class='gradient-text'>디지털 경험</span>으로 전환합니다.",
     hero_btn_apps: "내 앱 보기", hero_btn_contacto: "연락하기",
     stat_apps: "네이티브 앱", stat_proyectos: "+ 프로젝트", stat_web: "+ 웹 앱",
     apps_label: "네이티브 모바일 앱", apps_title: "<span class='gradient-text'>Kotlin</span>으로 처음부터 제작",
@@ -327,7 +311,6 @@ const translations = {
     p2_desc: "대화형 신체 지도, 11단계 마법사 및 피부도를 갖춘 동물 피부과 시스템.",
     p3_tit: "WhatsApp 챗봇", p3_desc: "FastAPI 및 Pydantic 검증을 사용한 WhatsApp Cloud API용 챗봇 백엔드.",
     p4_tit: "수화 인식", p4_desc: "MediaPipe와 OpenCV를 사용하여 실시간으로 수화 제스처를 인식하는 컴퓨터 비전 앱.",
-    p5_tit: "Overwatch 서버", p5_desc: "WebSocket, 매치메이킹 및 REST API를 갖춘 Overwatch 스타일 멀티플레이어 게임 서버 (C++17 + Drogon).",
     p6_tit: "Medieval Jump", p6_desc: "중세 테마의 끝없는 3D 점프 게임. 사실적인 물리, 3D 기사 모델 및 PWA 모드.",
     p7_tit: "Felycan 동물병원", p7_desc: "Java Swing 기반 동물병원 관리 시스템. 환자 CRUD, Excel 내보내기 및 자동 백업.",
     p8_tit: "Dust Reminders", p8_desc: "Flutter로 개발된 고딕 테마 알림 앱. SQLite, 로컬 알림 및 맞춤 카테고리.",
@@ -338,8 +321,7 @@ const translations = {
     cont_label: "연락처", cont_title: "<span class='gradient-text'>함께</span> 일해요",
     cont_desc: "앱에 대한 아이디어가 있나요? 이야기하고 실현해 봅시다.",
     cont_email_tit: "이메일", cont_copiar: "이메일 복사",
-    footer_text: "변화를 만드는 앱 구축",
-    footer_copy: "&copy; 2026 프란시스코 구즈만 <i class='fa-solid fa-heart'></i> 담아 처음부터 제작"
+    footer_text: "변화를 만드는 앱 구축"
   },
   ru: {
     titulo: "Франсиско Гусман | Разработчик мобильных приложений",
@@ -348,7 +330,7 @@ const translations = {
     nav_habilidades: "Навыки", nav_contacto: "Контакты",
     hero_badge: "Android-разработчик",
     hero_nombre: "Франсиско", hero_apellido: " Гусман",
-    hero_sub: "Создаю <strong>нативные мобильные приложения</strong> на Kotlin и Jetpack Compose. Превращаю идеи в <span class='gradient-text'>опыт</span>, который помещается в кармане.",
+    hero_sub: "Разработчик с 3-летним опытом создания <strong>нативных мобильных приложений</strong> на Kotlin и Jetpack Compose. Я владею технологиями, перечисленными ниже, и превращаю идеи в <span class='gradient-text'>цифровые впечатления</span>.",
     hero_btn_apps: "Мои приложения", hero_btn_contacto: "Свяжитесь со мной",
     stat_apps: "Нативных приложений", stat_proyectos: "+ Проектов", stat_web: "+ Веб-приложений",
     apps_label: "Нативные мобильные приложения", apps_title: "Созданы на <span class='gradient-text'>Kotlin</span> с нуля",
@@ -365,7 +347,6 @@ const translations = {
     p2_desc: "Ветеринарная дерматологическая система с интерактивной картой тела, 11-шаговым мастером и дермограммой.",
     p3_tit: "WhatsApp чат-бот", p3_desc: "Бэкенд чат-бота для WhatsApp Cloud API на FastAPI с валидацией Pydantic.",
     p4_tit: "Язык жестов", p4_desc: "Приложение компьютерного зрения для распознавания языка жестов в реальном времени с MediaPipe и OpenCV.",
-    p5_tit: "Overwatch сервер", p5_desc: "Многопользовательский игровой сервер в стиле Overwatch с WebSocket, подбором игроков и REST API на C++17 с Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Бесконечный 3D-прыгалка со средневековой тематикой, реалистичной физикой, 3D-рыцарем и PWA-режимом.",
     p7_tit: "Felycan Ветеринария", p7_desc: "Система управления ветеринарной клиникой на Java Swing с CRUD пациентами, экспортом в Excel и автобэкапом.",
     p8_tit: "Dust Reminders", p8_desc: "Готическое приложение-напоминание на Flutter с SQLite, локальными уведомлениями и пользовательскими категориями.",
@@ -376,8 +357,7 @@ const translations = {
     cont_label: "Контакты", cont_title: "Давайте работать <span class='gradient-text'>вместе</span>",
     cont_desc: "Есть идея для приложения? Давайте обсудим и реализуем её.",
     cont_email_tit: "Email", cont_copiar: "Копировать email",
-    footer_text: "Создаю приложения, которые меняют жизнь",
-    footer_copy: "&copy; 2026 Франсиско Гусман. Сделано с <i class='fa-solid fa-heart'></i> с нуля"
+    footer_text: "Создаю приложения, которые меняют жизнь"
   },
   ar: {
     titulo: "فرانسيسكو غوزمان | مطور تطبيقات الجوال",
@@ -386,7 +366,7 @@ const translations = {
     nav_habilidades: "المهارات", nav_contacto: "اتصل بي",
     hero_badge: "مطور Android",
     hero_nombre: "فرانسيسكو", hero_apellido: " غوزمان",
-    hero_sub: "أصنع <strong>تطبيقات جوال أصلية</strong> باستخدام Kotlin وJetpack Compose. أحول الأفكار إلى <span class='gradient-text'>تجارب</span> تناسب جيبك.",
+    hero_sub: "مطور لديه 3 سنوات من الخبرة في بناء <strong>تطبيقات جوال أصلية</strong> باستخدام Kotlin وJetpack Compose. أتقن التقنيات أدناه وأحول الأفكار إلى <span class='gradient-text'>تجارب رقمية</span>.",
     hero_btn_apps: "شاهد تطبيقاتي", hero_btn_contacto: "اتصل بي",
     stat_apps: "تطبيقات أصلية", stat_proyectos: "+ مشروع", stat_web: "+ تطبيق ويب",
     apps_label: "تطبيقات الجوال الأصلية", apps_title: "مبنية بـ <span class='gradient-text'>Kotlin</span> من الصفر",
@@ -403,7 +383,6 @@ const translations = {
     p2_desc: "نظام أمراض جلدية بيطري مع خريطة جسم تفاعلية، معالج 11 خطوة ومخطط جلدي.",
     p3_tit: "WhatsApp chatbot", p3_desc: "الخلفية البرمجية لـ chatbot لواجهة WhatsApp Cloud API باستخدام FastAPI والتحقق Pydantic.",
     p4_tit: "لغة الإشارة", p4_desc: "تطبيق رؤية حاسوبية يتعرف على إيماءات لغة الإشارة في الوقت الفعلي باستخدام MediaPipe وOpenCV.",
-    p5_tit: "خادم Overwatch", p5_desc: "خادم ألعاب متعدد اللاعبين مستوحى من Overwatch مع WebSocket، مطابقة اللاعبين وREST API بلغة C++17 مع Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "لعبة قفز ثلاثية الأبعاد لا نهائية بطابع العصور الوسطى، فيزياء واقعية، نموذج فارس ثلاثي الأبعاد ووضع PWA.",
     p7_tit: "Felycan البيطري", p7_desc: "نظام إدارة بيطري بلغة Java Swing مع CRUD للمرضى، تصدير Excel ونسخ احتياطي تلقائي.",
     p8_tit: "Dust Reminders", p8_desc: "تطبيق تذكيرات قوطي بلغة Flutter مع SQLite، إشعارات محلية وفئات مخصصة.",
@@ -414,8 +393,7 @@ const translations = {
     cont_label: "اتصل بي", cont_title: "لنعمل <span class='gradient-text'>معاً</span>",
     cont_desc: "هل لديك فكرة لتطبيق؟ دعنا نتحدث ونحققها.",
     cont_email_tit: "البريد", cont_copiar: "نسخ البريد",
-    footer_text: "بناء تطبيقات تصنع الفرق",
-    footer_copy: "&copy; 2026 فرانسيسكو غوزمان. صنع بـ <i class='fa-solid fa-heart'></i> من الصفر"
+    footer_text: "بناء تطبيقات تصنع الفرق"
   },
   hi: {
     titulo: "फ्रांसिस्को गुज़मैन | मोबाइल ऐप डेवलपर",
@@ -424,7 +402,7 @@ const translations = {
     nav_habilidades: "कौशल", nav_contacto: "संपर्क",
     hero_badge: "Android डेवलपर",
     hero_nombre: "फ्रांसिस्को", hero_apellido: " गुज़मैन",
-    hero_sub: "मैं Kotlin और Jetpack Compose के साथ <strong>नेटिव मोबाइल ऐप्स</strong> बनाता हूं। विचारों को <span class='gradient-text'>अनुभवों</span> में बदलता हूं जो आपकी जेब में समा जाएं।",
+    hero_sub: "Kotlin और Jetpack Compose के साथ <strong>नेटिव मोबाइल ऐप्स</strong> बनाने का 3 साल का अनुभव रखने वाला डेवलपर। मैं नीचे दी गई तकनीकों में माहिर हूं और विचारों को <span class='gradient-text'>डिजिटल अनुभवों</span> में बदलता हूं।",
     hero_btn_apps: "मेरे ऐप्स देखें", hero_btn_contacto: "संपर्क करें",
     stat_apps: "नेटिव ऐप्स", stat_proyectos: "+ प्रोजेक्ट", stat_web: "+ वेब ऐप्स",
     apps_label: "नेटिव मोबाइल ऐप्स", apps_title: "<span class='gradient-text'>Kotlin</span> के साथ शुरू से बनाए गए",
@@ -441,7 +419,6 @@ const translations = {
     p2_desc: "इंटरैक्टिव बॉडी मैप, 11-चरणीय विजार्ड और डर्मोग्राम के साथ पशु चिकित्सा त्वचाविज्ञान प्रणाली।",
     p3_tit: "WhatsApp चैटबॉट", p3_desc: "FastAPI और Pydantic सत्यापन के साथ WhatsApp Cloud API के लिए चैटबॉट बैकएंड।",
     p4_tit: "सांकेतिक भाषा", p4_desc: "MediaPipe और OpenCV का उपयोग करके रियल-टाइम में सांकेतिक भाषा के इशारों को पहचानने वाला कंप्यूटर विज़न ऐप।",
-    p5_tit: "Overwatch सर्वर", p5_desc: "WebSocket, मैचमेकिंग और REST API के साथ Overwatch-प्रेरित मल्टीप्लेयर गेम सर्वर (C++17 + Drogon)।",
     p6_tit: "Medieval Jump", p6_desc: "मध्ययुगीन थीम वाला अंतहीन 3D जंपर गेम। यथार्थवादी भौतिकी, 3D नाइट मॉडल और PWA मोड।",
     p7_tit: "Felycan पशु चिकित्सा", p7_desc: "Java Swing में पशु चिकित्सा प्रबंधन प्रणाली। रोगी CRUD, Excel निर्यात और ऑटो बैकअप।",
     p8_tit: "Dust Reminders", p8_desc: "Flutter में गॉथिक-थीम वाला रिमाइंडर ऐप। SQLite, स्थानीय सूचनाएं और कस्टम श्रेणियां।",
@@ -452,8 +429,7 @@ const translations = {
     cont_label: "संपर्क", cont_title: "चलो <span class='gradient-text'>साथ</span> काम करें",
     cont_desc: "क्या आपके पास ऐप के लिए कोई विचार है? बात करते हैं और इसे साकार करते हैं।",
     cont_email_tit: "ईमेल", cont_copiar: "ईमेल कॉपी करें",
-    footer_text: "ऐसे ऐप्स बनाना जो अंतर लाएं",
-    footer_copy: "&copy; 2026 फ्रांसिस्को गुज़मैन। <i class='fa-solid fa-heart'></i> के साथ शुरू से बनाया गया"
+    footer_text: "ऐसे ऐप्स बनाना जो अंतर लाएं"
   },
   nl: {
     titulo: "Francisco Guzmán | Mobiele App Ontwikkelaar",
@@ -462,7 +438,7 @@ const translations = {
     nav_habilidades: "Vaardigheden", nav_contacto: "Contact",
     hero_badge: "Android Ontwikkelaar",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Ik maak <strong>native mobiele apps</strong> met Kotlin en Jetpack Compose. Ideeën omzetten in <span class='gradient-text'>ervaringen</span> die in je zak passen.",
+    hero_sub: "Ontwikkelaar met 3 jaar ervaring in het bouwen van <strong>native mobiele apps</strong> met Kotlin en Jetpack Compose. Ik beheers de onderstaande technologieën en verander ideeën in <span class='gradient-text'>digitale ervaringen</span>.",
     hero_btn_apps: "Bekijk mijn Apps", hero_btn_contacto: "Neem contact op",
     stat_apps: "Native Apps", stat_proyectos: "+ Projecten", stat_web: "+ Web Apps",
     apps_label: "Native Mobiele Apps", apps_title: "Gebouwd met <span class='gradient-text'>Kotlin</span> vanaf nul",
@@ -479,7 +455,6 @@ const translations = {
     p2_desc: "Veterinair dermatologiesysteem met interactieve lichaamskaart, 11-stappen wizard en dermogram.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Chatbot-backend voor WhatsApp Cloud API met FastAPI en Pydantic-validatie.",
     p4_tit: "Gebarentaal", p4_desc: "Computer vision app die gebarentaal in real-time herkent met MediaPipe en OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Multiplayer game server geïnspireerd op Overwatch met WebSocket, matchmaking en REST API in C++17 met Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Eindeloze 3D jumper met middeleeuws thema, realistische fysica, 3D ridder en PWA-modus.",
     p7_tit: "Felycan Dierenarts", p7_desc: "Veterinair beheersysteem in Java Swing met patiënt-CRUD, Excel-export en automatische back-up.",
     p8_tit: "Dust Reminders", p8_desc: "Gotische herinneringsapp in Flutter met SQLite, lokale meldingen en aangepaste categorieën.",
@@ -490,8 +465,7 @@ const translations = {
     cont_label: "Contact", cont_title: "Laten we <span class='gradient-text'>samen</span> werken",
     cont_desc: "Heb je een idee voor een app? Laten we praten en het realiseren.",
     cont_email_tit: "Email", cont_copiar: "Kopieer Email",
-    footer_text: "Apps bouwen die het verschil maken",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Gemaakt met <i class='fa-solid fa-heart'></i> vanaf nul"
+    footer_text: "Apps bouwen die het verschil maken"
   },
   tr: {
     titulo: "Francisco Guzmán | Mobil Uygulama Geliştiricisi",
@@ -500,7 +474,7 @@ const translations = {
     nav_habilidades: "Yetenekler", nav_contacto: "İletişim",
     hero_badge: "Android Geliştirici",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Kotlin ve Jetpack Compose ile <strong>yerel mobil uygulamalar</strong> geliştiriyorum. Fikirleri cebinize sığacak <span class='gradient-text'>deneyimlere</span> dönüştürüyorum.",
+    hero_sub: "Kotlin ve Jetpack Compose ile <strong>yerel mobil uygulamalar</strong> geliştirmede 3 yıllık deneyime sahip geliştirici. Aşağıdaki teknolojilere hakimim ve fikirleri <span class='gradient-text'>dijital deneyimlere</span> dönüştürüyorum.",
     hero_btn_apps: "Uygulamalarımı Gör", hero_btn_contacto: "Bana Ulaşın",
     stat_apps: "Yerel Uygulama", stat_proyectos: "+ Proje", stat_web: "+ Web Uygulaması",
     apps_label: "Yerel Mobil Uygulamalar", apps_title: "<span class='gradient-text'>Kotlin</span> ile sıfırdan oluşturuldu",
@@ -517,7 +491,6 @@ const translations = {
     p2_desc: "Etkileşimli vücut haritası, 11 adımlı sihirbaz ve dermogram ile veteriner dermatoloji sistemi.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "FastAPI ve Pydantic doğrulama ile WhatsApp Cloud API için chatbot arka ucu.",
     p4_tit: "İşaret Dili", p4_desc: "MediaPipe ve OpenCV ile gerçek zamanlı işaret dili jestlerini tanıyan bilgisayar görüşü uygulaması.",
-    p5_tit: "Overwatch Sunucusu", p5_desc: "WebSocket, eşleştirme ve REST API ile Overwatch esinli çok oyunculu oyun sunucusu (C++17 + Drogon).",
     p6_tit: "Medieval Jump", p6_desc: "Ortaçağ temalı sonsuz 3D atlamalı oyun. Gerçekçi fizik, 3D şövalye modeli ve PWA modu.",
     p7_tit: "Felycan Veteriner", p7_desc: "Java Swing ile veteriner yönetim sistemi. Hasta CRUD, Excel dışa aktarma ve otomatik yedekleme.",
     p8_tit: "Dust Reminders", p8_desc: "Flutter'da gotik temalı hatırlatıcı uygulaması. SQLite, yerel bildirimler ve özel kategoriler.",
@@ -528,8 +501,7 @@ const translations = {
     cont_label: "İletişim", cont_title: "<span class='gradient-text'>Birlikte</span> çalışalım",
     cont_desc: "Bir uygulama fikriniz mi var? Konuşalım ve gerçekleştirelim.",
     cont_email_tit: "E-posta", cont_copiar: "E-posta'yı Kopyala",
-    footer_text: "Fark yaratan uygulamalar oluşturmak",
-    footer_copy: "&copy; 2026 Francisco Guzmán. <i class='fa-solid fa-heart'></i> ile sıfırdan yapıldı"
+    footer_text: "Fark yaratan uygulamalar oluşturmak"
   },
   pl: {
     titulo: "Francisco Guzmán | Deweloper Aplikacji Mobilnych",
@@ -538,7 +510,7 @@ const translations = {
     nav_habilidades: "Umiejętności", nav_contacto: "Kontakt",
     hero_badge: "Deweloper Android",
     hero_nombre: "Francisco", hero_apellido: " Guzmán",
-    hero_sub: "Tworzę <strong>natywne aplikacje mobilne</strong> w Kotlin i Jetpack Compose. Zamieniam pomysły w <span class='gradient-text'>doświadczenia</span>, które mieszczą się w kieszeni.",
+    hero_sub: "Deweloper z 3-letnim doświadczeniem w tworzeniu <strong>natywnych aplikacji mobilnych</strong> w Kotlin i Jetpack Compose. Opanowałem technologie poniżej i zamieniam pomysły w <span class='gradient-text'>cyfrowe doświadczenia</span>.",
     hero_btn_apps: "Zobacz moje aplikacje", hero_btn_contacto: "Skontaktuj się",
     stat_apps: "Natywne aplikacje", stat_proyectos: "+ Projektów", stat_web: "+ Aplikacji web",
     apps_label: "Natywne aplikacje mobilne", apps_title: "Zbudowane od podstaw w <span class='gradient-text'>Kotlin</span>",
@@ -555,7 +527,6 @@ const translations = {
     p2_desc: "System dermatologii weterynaryjnej z interaktywną mapą ciała, 11-etapowym kreatorem i dermogramem.",
     p3_tit: "WhatsApp ChatBot", p3_desc: "Backend chatbota dla WhatsApp Cloud API z FastAPI i walidacją Pydantic.",
     p4_tit: "Język migowy", p4_desc: "Aplikacja wizji komputerowej rozpoznająca gesty języka migowego w czasie rzeczywistym z MediaPipe i OpenCV.",
-    p5_tit: "Overwatch Server", p5_desc: "Serwer gry wieloosobowej inspirowany Overwatch z WebSocket, matchmakingiem i REST API w C++17 z Drogon.",
     p6_tit: "Medieval Jump", p6_desc: "Niekończąca się gra 3D z motywem średniowiecznym, realistyczną fizyką, modelem 3D rycerza i trybem PWA.",
     p7_tit: "Felycan Weterynaria", p7_desc: "System zarządzania weterynaryjnego w Java Swing z CRUD pacjentów, eksportem Excel i automatycznym backupem.",
     p8_tit: "Dust Reminders", p8_desc: "Gotycka aplikacja przypominająca we Flutter z SQLite, lokalnymi powiadomieniami i niestandardowymi kategoriami.",
@@ -566,7 +537,6 @@ const translations = {
     cont_label: "Kontakt", cont_title: "Pracujmy <span class='gradient-text'>razem</span>",
     cont_desc: "Masz pomysł na aplikację? Porozmawiajmy i zrealizujmy go.",
     cont_email_tit: "Email", cont_copiar: "Kopiuj Email",
-    footer_text: "Tworzę aplikacje, które robią różnicę",
-    footer_copy: "&copy; 2026 Francisco Guzmán. Zrobione z <i class='fa-solid fa-heart'></i> od podstaw"
+    footer_text: "Tworzę aplikacje, które robią różnicę"
   }
 };

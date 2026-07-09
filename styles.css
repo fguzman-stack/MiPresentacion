@@ -33,7 +33,8 @@
   --radius-sm: 11px;
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.48);
   --shadow-glow: 0 0 30px rgba(139, 108, 255, 0.18);
-  --transition: 220ms cubic-bezier(.2, .8, .2, 1);
+  --transition: 320ms cubic-bezier(.22, .9, .28, 1);
+  --transition-slow: 600ms cubic-bezier(.16, .85, .3, 1);
   --nebula-opacity: 0.22;
   --nebula-purple-1: #6f4cff;
   --nebula-purple-2: #b76bff;
@@ -53,6 +54,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -173,8 +181,10 @@ button:focus-visible,
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 110px 20px;
+  padding: 130px 20px;
 }
+
+
 
 .section-header {
   margin-bottom: 60px;
@@ -236,7 +246,7 @@ button:focus-visible,
   left: 0;
   z-index: 1000;
   padding: 16px 20px;
-  transition: background var(--transition), padding var(--transition), border-color var(--transition);
+  transition: background var(--transition-slow), padding var(--transition), border-color var(--transition), backdrop-filter var(--transition-slow);
 }
 
 .navbar.scrolled {
@@ -531,14 +541,15 @@ button:focus-visible,
 .skill-category,
 .contacto-card {
   will-change: transform, box-shadow;
-  transition: transform 400ms cubic-bezier(.2,.9,.25,1), box-shadow 400ms ease, border-color 400ms ease;
+  transform-style: preserve-3d;
+  transition: transform 480ms cubic-bezier(.22,.9,.28,1), box-shadow 480ms ease, border-color 480ms ease;
 }
 
 .app-card:hover,
 .project-card:hover,
 .skill-category:hover,
 .contacto-card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-8px) translateZ(18px) rotateX(1.5deg);
   box-shadow: var(--deep-shadow), 0 0 48px rgba(164, 118, 255, 0.08);
 }
 
@@ -645,17 +656,26 @@ button:focus-visible,
 
 .hero-title {
   text-shadow: 0 6px 30px rgba(80, 32, 140, 0.36), 0 1px 0 rgba(255,255,255,0.02);
-  background: linear-gradient(90deg, #b37aff 0%, #ff88c0 48%, #8edcff 100%);
+  background: linear-gradient(135deg, #6f4cff 0%, #b37aff 15%, #ff88c0 35%, #54dcff 55%, #b37aff 75%, #6f4cff 100%);
+  background-size: 300% 300%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleGlow 3.2s ease-in-out infinite;
-  transition: transform 350ms ease, text-shadow 350ms ease;
+  transform: translateZ(0);
+  transition: transform 420ms cubic-bezier(.2,.9,.25,1), text-shadow 420ms ease;
+  animation: galaxyDrift 8s ease-in-out infinite;
 }
 
 .hero-title:hover {
-  transform: scale(1.02) translateY(-4px);
-  text-shadow: 0 30px 60px rgba(110, 70, 200, 0.36), 0 1px 0 rgba(255,255,255,0.02);
+  transform: translateZ(18px) translateY(-6px) rotateX(1deg);
+  text-shadow: 0 30px 60px rgba(110, 70, 200, 0.36), 0 0 80px rgba(84, 220, 255, 0.15);
+}
+
+@keyframes galaxyDrift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes titleGlow {
@@ -839,8 +859,8 @@ button:focus-visible,
   overflow: hidden;
   cursor: pointer;
   border-radius: var(--radius);
-  transition: transform 400ms cubic-bezier(.2,.9,.25,1);
-  animation: cardSlideUp 0.6s cubic-bezier(.2,.9,.25,1) backwards;
+  transition: transform 480ms cubic-bezier(.22,.9,.28,1);
+  animation: cardSlideUp 0.6s cubic-bezier(.22,.9,.28,1) backwards;
 }
 
 .main-card:nth-child(1) { animation-delay: 0s; }
@@ -848,14 +868,9 @@ button:focus-visible,
 .main-card:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes cardSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 }
 
 .app-card:hover {
@@ -882,16 +897,16 @@ button:focus-visible,
   padding: 32px;
   overflow: hidden;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 32%),
     var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 14px 35px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: background var(--transition-slow), border-color var(--transition), box-shadow var(--transition-slow);
 }
 
 .app-card-content::after {
@@ -916,7 +931,7 @@ button:focus-visible,
   border-color: var(--border-hover);
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.42),
-    0 0 32px rgba(140, 103, 255, 0.13),
+    0 0 40px rgba(140, 103, 255, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -1022,17 +1037,17 @@ button:focus-visible,
 .project-card {
   overflow: hidden;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 32%),
     var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 14px 35px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 400ms ease, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
-  animation: projectCardFade 0.7s ease-out backwards;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform var(--transition-slow), border-color var(--transition), box-shadow var(--transition-slow), background var(--transition-slow);
+  animation: projectCardFade 0.7s cubic-bezier(.22,.9,.28,1) backwards;
 }
 
 .project-card:nth-child(1) { animation-delay: 0s; }
@@ -1043,17 +1058,11 @@ button:focus-visible,
 .project-card:nth-child(6) { animation-delay: 0.5s; }
 .project-card:nth-child(7) { animation-delay: 0.6s; }
 .project-card:nth-child(8) { animation-delay: 0.7s; }
-.project-card:nth-child(9) { animation-delay: 0.8s; }
 
 @keyframes projectCardFade {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 }
 
 .project-card:hover {
@@ -1063,7 +1072,7 @@ button:focus-visible,
   border-color: var(--border-hover);
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.42),
-    0 0 32px rgba(140, 103, 255, 0.13);
+    0 0 40px rgba(140, 103, 255, 0.13);
   transform: translateY(-6px);
 }
 
@@ -1159,17 +1168,17 @@ button:focus-visible,
 .skill-category {
   padding: 28px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 32%),
     var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 14px 35px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 400ms ease, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
-  animation: skillCategorySlide 0.6s cubic-bezier(.2,.9,.25,1) backwards;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform var(--transition-slow), border-color var(--transition), box-shadow var(--transition-slow), background var(--transition-slow);
+  animation: skillCategorySlide 0.6s cubic-bezier(.22,.9,.28,1) backwards;
 }
 
 .skill-category:nth-child(1) { animation-delay: 0s; }
@@ -1177,14 +1186,9 @@ button:focus-visible,
 .skill-category:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes skillCategorySlide {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 }
 
 .skill-category:hover {
@@ -1194,7 +1198,7 @@ button:focus-visible,
   border-color: var(--border-hover);
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.42),
-    0 0 32px rgba(140, 103, 255, 0.13);
+    0 0 40px rgba(140, 103, 255, 0.13);
   transform: translateY(-5px);
 }
 
@@ -1313,9 +1317,9 @@ button:focus-visible,
 .contacto-grid {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  max-width: 820px;
+  max-width: 660px;
   margin: 0 auto;
 }
 
@@ -1323,33 +1327,27 @@ button:focus-visible,
   padding: 29px 20px;
   text-align: center;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 32%),
     var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 14px 35px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 400ms ease, border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
-  animation: contactCardPop 0.5s cubic-bezier(.2,.9,.25,1) backwards;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform var(--transition-slow), border-color var(--transition), box-shadow var(--transition-slow), background var(--transition-slow);
+  animation: contactCardPop 0.5s cubic-bezier(.22,.9,.28,1) backwards;
 }
 
 .contacto-card:nth-child(1) { animation-delay: 0s; }
 .contacto-card:nth-child(2) { animation-delay: 0.1s; }
 .contacto-card:nth-child(3) { animation-delay: 0.2s; }
-.contacto-card:nth-child(4) { animation-delay: 0.3s; }
 
 @keyframes contactCardPop {
-  from {
-    opacity: 0;
-    transform: scale(0.8) translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.8) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
 }
 
 .contacto-card:hover {
@@ -1359,8 +1357,8 @@ button:focus-visible,
   border-color: var(--border-hover);
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.42),
-    0 0 32px rgba(140, 103, 255, 0.13);
-  transform: translateY(-10px);
+     0 0 40px rgba(140, 103, 255, 0.13);
+  transform: translateY(-6px);
 }
 
 .contacto-card a {
@@ -1402,10 +1400,22 @@ button:focus-visible,
 .footer {
   position: relative;
   z-index: 1;
-  padding: 44px 20px;
+  padding: 48px 20px;
   text-align: center;
   border-top: 1px solid var(--border);
   background: rgba(3, 3, 12, 0.35);
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
 }
 
 .footer-brand {
@@ -1442,12 +1452,12 @@ button:focus-visible,
 .footer-links a {
   color: var(--text-muted);
   font-size: 1.25rem;
-  transition: color var(--transition), transform var(--transition);
+  transition: color var(--transition-slow), transform var(--transition-slow);
 }
 
 .footer-links a:hover {
   color: var(--accent-soft);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.1);
 }
 
 .footer-copy {
@@ -1459,13 +1469,17 @@ button:focus-visible,
   color: var(--accent2);
 }
 
+.footer-text + .footer-links {
+  margin-top: 0;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
   .section {
-    padding: 82px 20px;
+    padding: 100px 20px;
   }
 
   .navbar {
@@ -1530,7 +1544,8 @@ button:focus-visible,
   }
 
   .contacto-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
   }
 
   .lang-dropdown {
@@ -1585,6 +1600,7 @@ button:focus-visible,
 
   .contacto-grid {
     grid-template-columns: 1fr;
+    max-width: 320px;
   }
 
   .nav-logo {
@@ -1615,5 +1631,16 @@ button:focus-visible,
   .nebula,
   .shooting-star {
     animation: none !important;
+  }
+
+  .app-card:hover,
+  .project-card:hover,
+  .skill-category:hover,
+  .contacto-card:hover {
+    transform: none;
+  }
+
+  .hero-title:hover {
+    transform: none;
   }
 }

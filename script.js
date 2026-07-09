@@ -1,7 +1,8 @@
 AOS.init({
-  duration: 800,
+  duration: 900,
   once: true,
-  offset: 100,
+  offset: 80,
+  easing: 'cubic-bezier(.22,.9,.28,1)',
 });
 
 const navbar = document.getElementById('navbar');
@@ -15,12 +16,25 @@ const langCurrent = document.getElementById('langCurrent');
 
 let currentLang = localStorage.getItem('lang') || 'es';
 
+const heroContent = document.querySelector('.hero-content');
+
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  const scrollY = window.scrollY;
+  navbar.classList.toggle('scrolled', scrollY > 50);
+
+  if (heroContent && scrollY < window.innerHeight) {
+    const progress = scrollY / window.innerHeight;
+    heroContent.style.transform = `translateY(${progress * -20}px)`;
+    heroContent.style.opacity = 1 - progress * 0.3;
+  } else if (heroContent) {
+    heroContent.style.transform = '';
+    heroContent.style.opacity = '';
+  }
+
   let current = '';
   sections.forEach(section => {
     const top = section.offsetTop - 100;
-    if (window.scrollY >= top) current = section.getAttribute('id');
+    if (scrollY >= top) current = section.getAttribute('id');
   });
   navItems.forEach(link => {
     link.classList.toggle('active', link.getAttribute('href') === '#' + current);
@@ -118,7 +132,7 @@ const statsSection = document.querySelector('.hero-stats');
 if (statsSection) observer.observe(statsSection);
 
 function copiarEmail() {
-  navigator.clipboard.writeText('fguzman.dev@email.com');
+  navigator.clipboard.writeText('familiazv2016@gmail.com');
   const toast = document.createElement('div');
   const key = 'cont_copiar';
   const text = translations[currentLang]?.[key] || 'Copiar Email';
