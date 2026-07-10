@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="titulo">Francisco Guzmán | Desarrollador de Apps Móviles</title>
   <meta name="description" data-i18n="descripcion" content="Portafolio de Francisco Guzmán, desarrollador especializado en apps Android nativas con Kotlin y Jetpack Compose" />
+
+  <meta property="og:title" data-i18n="titulo" content="Francisco Guzmán | Desarrollador de Apps Móviles" />
+  <meta property="og:description" data-i18n="descripcion" content="Portafolio de Francisco Guzmán, desarrollador especializado en apps Android nativas con Kotlin y Jetpack Compose" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fguzman-stack.github.io/Mipresentacion/" />
+  <meta property="og:image" content="https://fguzman-stack.github.io/Mipresentacion/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" data-i18n="titulo" content="Francisco Guzmán | Desarrollador de Apps Móviles" />
+  <meta name="twitter:description" data-i18n="descripcion" content="Portafolio de Francisco Guzmán, desarrollador especializado en apps Android nativas con Kotlin y Jetpack Compose" />
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%239b7bff'/><text x='50' y='72' font-size='60' font-family='monospace' fill='white' text-anchor='middle' font-weight='bold'>FG</text></svg>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,14 +26,35 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <script src="translations.js"></script>
 
-  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Francisco Guzmán",
+    "jobTitle": "Android Developer",
+    "url": "https://fguzman-stack.github.io/Mipresentacion/",
+    "sameAs": [
+      "https://github.com/fguzman-stack"
+    ],
+    "knowsAbout": ["Android Development", "Kotlin", "Jetpack Compose", "Firebase", "React", "Python"]
+  }
+  </script>
 </head>
-<body>
-  <div id="stars"></div>
-  <div id="stars2"></div>
-  <div id="stars3"></div>
+  <body>
+    <a href="#inicio" class="skip-link">Saltar al contenido</a>
+  <div id="stars" aria-hidden="true"></div>
+  <div id="stars2" aria-hidden="true"></div>
+  <div id="stars3" aria-hidden="true"></div>
+  <div class="nebula nebula-1" aria-hidden="true"></div>
+  <div class="nebula nebula-2" aria-hidden="true"></div>
+  <div class="nebula nebula-3" aria-hidden="true"></div>
+  <div class="nebula nebula-4" aria-hidden="true"></div>
 
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -34,30 +68,30 @@
       </div>
       <div class="nav-right">
         <div class="lang-selector">
-          <button class="lang-btn" id="langBtn">
+          <button class="lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="true" aria-label="Seleccionar idioma">
             <i class="fa-solid fa-globe"></i>
             <span id="langCurrent">ES</span>
             <i class="fa-solid fa-chevron-down"></i>
           </button>
-          <div class="lang-dropdown" id="langDropdown">
-            <button data-lang="es">🇪🇸 Español</button>
-            <button data-lang="en">🇺🇸 English</button>
-            <button data-lang="fr">🇫🇷 Français</button>
-            <button data-lang="de">🇩🇪 Deutsch</button>
-            <button data-lang="it">🇮🇹 Italiano</button>
-            <button data-lang="pt">🇧🇷 Português</button>
-            <button data-lang="ja">🇯🇵 日本語</button>
-            <button data-lang="zh">🇨🇳 中文</button>
-            <button data-lang="ko">🇰🇷 한국어</button>
-            <button data-lang="ru">🇷🇺 Русский</button>
-            <button data-lang="ar">🇸🇦 العربية</button>
-            <button data-lang="hi">🇮🇳 हिन्दी</button>
-            <button data-lang="nl">🇳🇱 Nederlands</button>
-            <button data-lang="tr">🇹🇷 Türkçe</button>
-            <button data-lang="pl">🇵🇱 Polski</button>
+          <div class="lang-dropdown" id="langDropdown" role="menu">
+            <button data-lang="es" role="menuitem">🇪🇸 Español</button>
+            <button data-lang="en" role="menuitem">🇺🇸 English</button>
+            <button data-lang="fr" role="menuitem">🇫🇷 Français</button>
+            <button data-lang="de" role="menuitem">🇩🇪 Deutsch</button>
+            <button data-lang="it" role="menuitem">🇮🇹 Italiano</button>
+            <button data-lang="pt" role="menuitem">🇧🇷 Português</button>
+            <button data-lang="ja" role="menuitem">🇯🇵 日本語</button>
+            <button data-lang="zh" role="menuitem">🇨🇳 中文</button>
+            <button data-lang="ko" role="menuitem">🇰🇷 한국어</button>
+            <button data-lang="ru" role="menuitem">🇷🇺 Русский</button>
+            <button data-lang="ar" role="menuitem">🇸🇦 العربية</button>
+            <button data-lang="hi" role="menuitem">🇮🇳 हिन्दी</button>
+            <button data-lang="nl" role="menuitem">🇳🇱 Nederlands</button>
+            <button data-lang="tr" role="menuitem">🇹🇷 Türkçe</button>
+            <button data-lang="pl" role="menuitem">🇵🇱 Polski</button>
           </div>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <button class="nav-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -65,18 +99,13 @@
   </nav>
 
   <section class="hero" id="inicio">
-    <div class="nebula nebula-1"></div>
-    <div class="nebula nebula-2"></div>
-    <div class="shooting-stars"></div>
-    <div class="nebula nebula-3" aria-hidden="true"></div>
-    <div class="nebula nebula-4" aria-hidden="true"></div>
-    <div class="planet" aria-hidden="true"></div>
+    <div class="shooting-stars" aria-hidden="true"></div>
     <div class="hero-content">
       <div class="hero-badge" data-aos="fade-up" data-aos-delay="100">
         <i class="fa-solid fa-rocket"></i>
         <span data-i18n="hero_badge">Desarrollador Android</span>
       </div>
-      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+      <h1 class="hero-title">
         <span data-i18n="hero_nombre">Francisco</span>
         <span class="gradient-text" data-i18n="hero_apellido"> Guzmán</span>
       </h1>
@@ -125,7 +154,7 @@
             <span class="app-chip" data-i18n="app1_chip1">Play Store Ready</span>
             <span class="app-chip secondary">AdMob</span>
           </div>
-          <h3 class="app-card-title">A Tiempo</h3>
+          <h3 class="app-card-title" data-i18n="app1_title">A Tiempo</h3>
           <p class="app-card-desc" data-i18n="app1_desc">App de recordatorios inteligentes con alarma, diario personal, widget y modo oscuro. MVVM + Room + Firebase.</p>
           <div class="app-card-features">
             <span><i class="fa-solid fa-check"></i> <span data-i18n="app1_f1">Alarmas + Notificaciones</span></span>
@@ -204,7 +233,7 @@
         </div>
         <div class="project-card-body">
           <div class="project-tags"><span>PHP</span><span>Fabric.js</span><span>MySQL</span></div>
-          <h3>DermVet</h3>
+          <h3 data-i18n="p2_tit">DermVet</h3>
           <p data-i18n="p2_desc">Sistema dermatológico veterinario con mapa corporal interactivo, wizard de 11 pasos y dermograma con índices CADESI.</p>
         </div>
       </div>
@@ -265,10 +294,34 @@
         </div>
         <div class="project-card-body">
           <div class="project-tags"><span>C#</span><span>Node.js</span><span>Tizen</span></div>
-          <h3>HomeVision</h3>
+          <h3 data-i18n="p9_tit">HomeVision</h3>
           <p data-i18n="p9_desc">Sistema de domótica con TV Samsung como centro de control. Microservicios con ASP.NET, WebSocket y Docker.</p>
         </div>
       </div>
+      <a href="https://fguzman-stack.github.io/CreatorFlow/" target="_blank" rel="noopener noreferrer" class="project-card-link">
+        <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="project-card-image" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364)">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+            <h3 data-i18n="p10_tit">CreatorFlow</h3>
+            <p data-i18n="p10_desc">Landing page moderna para monetizar conocimiento. Diseñada con HTML, CSS y JavaScript, con enfoque en conversión y UX.</p>
+          </div>
+        </div>
+      </a>
+      <a href="https://fguzman-stack.github.io/Aimpact/pages/index.html" target="_blank" rel="noopener noreferrer" class="project-card-link">
+        <div class="project-card" data-aos="fade-up" data-aos-delay="550">
+          <div class="project-card-image" style="background: linear-gradient(135deg, #141e30, #243b55)">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+            <h3 data-i18n="p11_tit">AImpact</h3>
+            <p data-i18n="p11_desc">Plantilla SaaS de inteligencia artificial con landing page, precios y testimonios. Diseño moderno y responsivo.</p>
+          </div>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -329,25 +382,24 @@
     </div>
     <div class="contacto-grid" data-aos="fade-up" data-aos-delay="100">
       <div class="contacto-card">
-        <a href="https://github.com/fguzman-stack" target="_blank" rel="noopener">
+        <a href="https://github.com/fguzman-stack" target="_blank" rel="noopener noreferrer">
           <i class="fa-brands fa-github"></i>
           <h3>GitHub</h3>
           <p>fguzman-stack</p>
         </a>
       </div>
       <div class="contacto-card">
-        <a href="mailto:familiazv2016@gmail.com">
-          <i class="fa-solid fa-envelope"></i>
-          <h3 data-i18n="cont_email_tit">Email</h3>
-          <p>familiazv2016@gmail.com</p>
+        <a href="https://linkedin.com/in/fguzman-stack" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin"></i>
+          <h3>LinkedIn</h3>
+          <p>fguzman-stack</p>
         </a>
       </div>
-
       <div class="contacto-card">
-        <a href="#" onclick="copiarEmail()">
-          <i class="fa-solid fa-copy"></i>
-          <h3 data-i18n="cont_copiar">Copiar Email</h3>
-          <p>familiazv2016@gmail.com</p>
+        <a href="#" id="emailLink">
+          <i class="fa-solid fa-envelope"></i>
+          <h3 data-i18n="cont_email_tit">Email</h3>
+          <p id="emailDisplay"></p>
         </a>
       </div>
     </div>
@@ -358,14 +410,12 @@
       <div class="footer-brand">&lt;FG /&gt;</div>
       <p class="footer-text" data-i18n="footer_text">Construyendo apps que marcan la diferencia</p>
       <div class="footer-links">
-        <a href="https://github.com/fguzman-stack" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-        <a href="mailto:familiazv2016@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://github.com/fguzman-stack" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="#" id="footerEmailLink"><i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="translations.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js" type="module"></script>
 </body>
 </html>

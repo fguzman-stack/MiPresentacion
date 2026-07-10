@@ -14,3 +14,7 @@ Desktop.ini
 # Env
 .env
 .env.local
+
+# Build
+dist/
+node_modules/

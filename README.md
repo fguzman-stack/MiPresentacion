@@ -73,9 +73,15 @@ DevOps    → Docker · APIs REST · WebSocket
 ```
 MiPresentacion
  ┣ index.html          → Página principal / Main page
- ┣ styles.css          → Estilos galácticos / Galactic styles
+ ┣ css/
+ ┃ ┣ base.css          → Variables, reset, estrellas / Variables, reset, stars
+ ┃ ┣ hero.css          → Hero galáctico / Galactic hero
+ ┃ ┣ components.css    → Nav, apps, proyectos, habilidades, contacto, footer
+ ┃ ┗ responsive.css    → Adaptación móvil / Mobile responsive
  ┣ script.js           → Interactividad / Interactivity
  ┣ translations.js     → 15 idiomas / 15 languages
+ ┣ vite.config.js      → Configuración Vite / Vite config
+ ┣ package.json        → Dependencias / Dependencies
  ┗ README.md           → Este archivo / This file
 ```
 
@@ -83,13 +89,19 @@ MiPresentacion
 
 ### Ver el proyecto / View Live
 
->Abre `index.html` en tu navegador o súbelo a cualquier hosting estático.  
->*Open `index.html` in your browser or deploy to any static hosting.*
-
 ```bash
-# Solo abre el archivo / Just open the file
-start index.html
+# Desarrollo con live-reload / Development with live-reload
+npm run dev
+
+# Build producción / Production build
+npm run build
+
+# Previsualizar build / Preview build
+npm run preview
 ```
+
+>O abre `index.html` en tu navegador o súbelo a cualquier hosting estático.  
+>*Or open `index.html` in your browser or deploy to any static hosting.*
 
 ---
 

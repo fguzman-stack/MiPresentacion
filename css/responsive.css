@@ -1,0 +1,130 @@
+@media (max-width: 768px) {
+  .section {
+    padding: 100px 20px;
+  }
+
+  .navbar {
+    padding: 13px 16px;
+  }
+
+  .navbar.scrolled {
+    padding: 10px 16px;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    left: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background: rgba(9, 8, 29, 0.93);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .hero {
+    min-height: 92vh;
+    padding: 110px 20px 70px;
+  }
+
+  .hero-stats {
+    gap: 25px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .apps-showcase,
+  .projects-grid,
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+
+  .app-card-content {
+    min-height: auto;
+    padding: 27px;
+  }
+
+  .app-card-features {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+  }
+
+  .lang-dropdown {
+    width: 180px;
+  }
+
+  .nebula-1 {
+    top: -130px;
+    right: -180px;
+    width: 380px;
+    height: 380px;
+  }
+
+  .nebula-2 {
+    bottom: -150px;
+    left: -180px;
+    width: 340px;
+    height: 340px;
+  }
+
+  .shooting-star {
+    width: 90px;
+  }
+}
+
+@media (max-width: 460px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-stats {
+    gap: 18px;
+  }
+
+  .stat-number {
+    font-size: 1.7rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    justify-content: center;
+  }
+
+  .contacto-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .nav-logo {
+    font-size: 1.05rem;
+  }
+}
