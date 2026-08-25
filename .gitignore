@@ -18,3 +18,7 @@ Desktop.ini
 # Build
 dist/
 node_modules/
+
+# Vite logs
+vite.log
+vite2.log

@@ -653,6 +653,16 @@
   font-size: 0.84rem;
 }
 
+.phone-digits {
+  min-height: 1lh;
+}
+
+.phone-digits::before {
+  content: attr(data-phone);
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
 .footer {
   position: relative;
   z-index: 1;
