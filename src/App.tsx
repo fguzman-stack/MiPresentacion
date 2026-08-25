@@ -119,10 +119,10 @@ export default function App() {
                 ✉️ {t(lang, "hero_btn_contacto")}
               </a>
             </div>
-            <div className="flex gap-10 justify-center mx-auto w-fit">
-              <div className="text-center min-w-[90px]"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="3">3</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_apps")}</span></div>
-              <div className="text-center min-w-[90px]"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="15">15</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
-              <div className="text-center min-w-[90px]"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="40">40</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
+            <div className="flex flex-wrap gap-6 sm:gap-10 justify-center mx-auto w-fit max-w-full px-2">
+              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="3">3</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_apps")}</span></div>
+              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="15">15</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
+              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="40">40</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
             </div>
           </div>
         </section>
