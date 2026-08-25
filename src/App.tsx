@@ -103,7 +103,7 @@ export default function App() {
               }} />
             ))}
           </div>
-          <div className="relative z-10 max-w-[830px] text-center">
+          <div className="relative z-10 max-w-[830px] mx-auto text-center w-full">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 px-[19px] py-[9px] rounded-full bg-[rgba(142,108,255,0.11)] border border-[rgba(177,142,255,0.26)] text-[#c4b5fd] text-sm font-semibold mb-6">
               🚀 {t(lang, "hero_badge")}
             </motion.div>
@@ -119,10 +119,10 @@ export default function App() {
                 ✉️ {t(lang, "hero_btn_contacto")}
               </a>
             </div>
-            <div className="flex gap-10 justify-center">
-              <div className="text-center"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="3">3</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_apps")}</span></div>
-              <div className="text-center"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="15">15</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
-              <div className="text-center"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="40">40</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
+            <div className="flex gap-10 justify-center mx-auto w-fit">
+              <div className="text-center min-w-[90px]"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="3">3</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_apps")}</span></div>
+              <div className="text-center min-w-[90px]"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="15">15</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
+              <div className="text-center min-w-[90px]"><span className="stat-number block font-['Orbitron'] text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="40">40</span><span className="text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
             </div>
           </div>
         </section>

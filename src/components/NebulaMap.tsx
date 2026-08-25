@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { projects } from "../data/projectsData";
 import { OrbitCard } from "./OrbitCard";
 import Swal from "sweetalert2";
@@ -8,6 +8,8 @@ const EMAIL = "familiazv2016@gmail.com";
 
 export function NebulaMap({ lang }: { lang: "es" | "en" }) {
   const [filter, setFilter] = useState("all");
+  const [previewProject, setPreviewProject] = useState<Project | null>(null);
+  const [iframeError, setIframeError] = useState(false);
 
   const filtered = useMemo(() => {
     if (filter === "all") return projects;
@@ -15,6 +17,20 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
   }, [filter]);
 
   const getTagline = (p: Project) => (lang === "en" ? p.taglineEN : p.taglineES);
+
+  // lock scroll when modal open + esc handler
+  useEffect(() => {
+    if (previewProject) {
+      document.body.style.overflow = "hidden";
+      const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setPreviewProject(null); };
+      window.addEventListener("keydown", onKey);
+      return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [previewProject]);
+
+  useEffect(() => { setIframeError(false); }, [previewProject]);
 
   const showMobileModal = (p: Project) => {
     Swal.fire({
@@ -51,7 +67,8 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
     if (p.type === "mobile") {
       showMobileModal(p);
     } else {
-      window.open(p.url, "_blank", "noopener");
+      setPreviewProject(p);
+      setIframeError(false);
     }
   };
 
@@ -64,43 +81,84 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
   ];
 
   return (
-    <section id="apps" className="section" data-aos>
-      <div className="section-header">
-        <span className="section-badge" data-i18n="apps_badge">
-          Portfolio / Galaxy
-        </span>
-        <h2 className="section-title" data-i18n="apps_title">
-          {lang === "en" ? (
-            <>Discovered <span className="gradient-text">Systems</span></>
-          ) : (
-            <>Sistemas <span className="gradient-text">Descubiertos</span></>
-          )}
-        </h2>
-        <p className="section-subtitle" data-i18n="apps_subtitle">
-          {lang === "en" ? "16 projects in 3 constellations. Explore each system." : "16 proyectos en 3 constelaciones. Explora cada sistema."}
-        </p>
-      </div>
+    <>
+      <section id="apps" className="section" data-aos>
+        <div className="section-header">
+          <span className="section-badge" data-i18n="apps_badge">
+            Portfolio / Galaxy
+          </span>
+          <h2 className="section-title" data-i18n="apps_title">
+            {lang === "en" ? (
+              <>Discovered <span className="gradient-text">Systems</span></>
+            ) : (
+              <>Sistemas <span className="gradient-text">Descubiertos</span></>
+            )}
+          </h2>
+          <p className="section-subtitle" data-i18n="apps_subtitle">
+            {lang === "en" ? "16 projects in 3 constellations. Explore each system." : "16 proyectos en 3 constelaciones. Explora cada sistema."}
+          </p>
+        </div>
 
-      <div className="nebula-filters" role="group" aria-label="Filtros">
-        {filters.map((f) => (
-          <button
-            key={f.id}
-            className={`filter-pill ${filter === f.id ? "active" : ""}`}
-            data-filter={f.id}
-            data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : "mobile"}`}
-            onClick={() => setFilter(f.id)}
-            type="button"
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
+        <div className="nebula-filters" role="group" aria-label="Filtros">
+          {filters.map((f) => (
+            <button
+              key={f.id}
+              className={`filter-pill ${filter === f.id ? "active" : ""}`}
+              data-filter={f.id}
+              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : "mobile"}`}
+              onClick={() => setFilter(f.id)}
+              type="button"
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
 
-      <div className="nebula-map" id="nebulaMap">
-        {filtered.map((p, i) => (
-          <OrbitCard key={p.id} project={p} index={i} lang={lang} onClick={handleCardClick} />
-        ))}
-      </div>
-    </section>
+        <div className="nebula-map" id="nebulaMap">
+          {filtered.map((p, i) => (
+            <OrbitCard key={p.id} project={p} index={i} lang={lang} onClick={handleCardClick} />
+          ))}
+        </div>
+      </section>
+
+      {previewProject && (
+        <div className="preview-overlay" onClick={() => setPreviewProject(null)} role="dialog" aria-modal="true" aria-label={`${previewProject.name} preview`}>
+          <div className="preview-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="preview-header">
+              <div className="preview-header-left">
+                <div className="preview-header-title">{previewProject.name}</div>
+                <div className="preview-header-sub">{getTagline(previewProject)} · {previewProject.feature}</div>
+              </div>
+              <div className="preview-header-actions">
+                <a href={previewProject.url} target="_blank" rel="noopener noreferrer" className="preview-btn-external" data-i18n="preview_open_external">
+                  Abrir ↗
+                </a>
+                <button className="preview-btn-close" onClick={() => setPreviewProject(null)} aria-label="Cerrar">✕</button>
+              </div>
+            </div>
+            <div className="preview-iframe-wrap">
+              {!iframeError ? (
+                <iframe
+                  src={previewProject.url}
+                  title={`${previewProject.name} preview`}
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                  loading="eager"
+                  onError={() => setIframeError(true)}
+                />
+              ) : null}
+              {iframeError && (
+                <div className="preview-iframe-fallback">
+                  <p style={{ fontFamily: "Orbitron, sans-serif", fontWeight: 700, fontSize: "1.1rem" }}>No se pudo embeber la vista previa</p>
+                  <p style={{ fontSize: "0.9rem", maxWidth: "420px", lineHeight: 1.5 }}>Este sitio bloquea iframes (X-Frame-Options). Abrilo en una pestaña externa para verlo completo.</p>
+                  <a href={previewProject.url} target="_blank" rel="noopener noreferrer" className="preview-btn-external" style={{ marginTop: "8px" }}>
+                    Abrir proyecto en nueva pestaña ↗
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

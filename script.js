@@ -233,6 +233,18 @@ const projectsData = [
       `;
       map.appendChild(card);
     });
+    // click en card completa para web abre modal iframe
+    map.querySelectorAll('.orbit-card').forEach(card => {
+      const id = card.querySelector('.hud-cta')?.dataset.project;
+      if (!id) return;
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.hud-cta')) return; // ya manejado arriba
+        const p = projectsData.find(x => x.id === id);
+        if (!p) return;
+        if (p.type === 'mobile') showMobileModal(p);
+        else openPreviewModal(p);
+      });
+    });
     map.querySelectorAll('.hud-cta').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -242,10 +254,45 @@ const projectsData = [
         if (p.type === 'mobile') {
           showMobileModal(p);
         } else {
-          window.open(p.url, '_blank');
+          openPreviewModal(p);
         }
       });
     });
+  }
+
+  function openPreviewModal(p) {
+    // crear overlay premium con iframe
+    let overlay = document.getElementById('previewOverlay');
+    if (overlay) overlay.remove();
+    overlay = document.createElement('div');
+    overlay.id = 'previewOverlay';
+    overlay.className = 'preview-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.innerHTML = `
+      <div class="preview-modal">
+        <div class="preview-header">
+          <div class="preview-header-left">
+            <div class="preview-header-title">${p.name}</div>
+            <div class="preview-header-sub">${getTagline(p)} · ${p.feature}</div>
+          </div>
+          <div class="preview-header-actions">
+            <a href="${p.url}" target="_blank" rel="noopener" class="preview-btn-external">Abrir ↗</a>
+            <button class="preview-btn-close" aria-label="Cerrar">✕</button>
+          </div>
+        </div>
+        <div class="preview-iframe-wrap">
+          <iframe src="${p.url}" title="${p.name} preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    const close = () => { overlay.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    overlay.querySelector('.preview-btn-close').addEventListener('click', close);
   }
 
   function showMobileModal(p) {
