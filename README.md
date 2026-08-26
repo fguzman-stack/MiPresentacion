@@ -1,13 +1,14 @@
 <div align="center">
   <br/>
-  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=800&size=32&duration=3000&pause=500&color=9B7BFF&center=true&vCenter=true&width=500&lines=%3C+FG+%2F%3E;Francisco+Guzm%C3%A1n;Mobile+App+Developer" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=800&size=32&duration=3000&pause=500&color=9B7BFF&center=true&vCenter=true&width=600&lines=%3C+FG+%2F%3E;Francisco+Guzm%C3%A1n;Desarrollador+Multiplataforma" alt="Typing SVG" />
   <br/><br/>
   <p>
-    <strong>Android Developer · Kotlin · Jetpack Compose</strong>
+    <strong>Desarrollador Multiplataforma · Kotlin · React · Web & Desktop</strong>
   </p>
   <p>
     <a href="https://github.com/fguzman-stack"><img src="https://img.shields.io/badge/GitHub-fguzman--stack-9B7BFF?style=for-the-badge&logo=github&logoColor=white" /></a>
     <a href="mailto:familiazv2016@gmail.com"><img src="https://img.shields.io/badge/Email-Contact-FF63B8?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+    <a href="https://fguzman-stack.github.io/MiPresentacion/"><img src="https://img.shields.io/badge/Live-Demo-54DCFF?style=for-the-badge&logo=vercel&logoColor=white" /></a>
   </p>
   <br/>
 </div>
@@ -16,11 +17,23 @@
 
 ## Portfolio — MiPresentacion
 
-Portfolio personal donde muestro mis **apps nativas Android**, proyectos web, sistemas y más.  
-Construido con HTML, CSS y JavaScript puro — sin frameworks. Con **soporte completo para 15 idiomas**.
+Portfolio personal donde muestro **3 apps nativas Android + 13 plantillas web** como proyectos de demostración para exhibir habilidades de desarrollo y diseño.  
+Construido con **React 19 + Vite 6 + Tailwind CSS 4 + TypeScript**. Con **carga adaptativa** y **soporte ES/EN**.
 
-Personal portfolio showcasing my **native Android apps**, web projects, systems and more.  
-Built with pure HTML, CSS and JavaScript — no frameworks. With **full 15-language support**.
+Personal portfolio showcasing **3 native Android apps + 13 web templates** as demo projects to showcase dev & design skills.  
+Built with **React 19 + Vite 6 + Tailwind CSS 4 + TypeScript**. With **adaptive loading** and **ES/EN i18n**.
+
+> **Nota:** Todas las webs son **plantillas demo de portafolio**, no servicios reales. Las 3 apps móviles sí son proyectos nativos con Kotlin.
+
+---
+
+### Stats / Métricas
+
+| Métrica | Valor |
+|---------|-------|
+| **Apps Nativas** | 3 (Kotlin · Compose) |
+| **Proyectos totales** | 16 |
+| **Apps Web (plantillas)** | 13 |
 
 ---
 
@@ -29,42 +42,36 @@ Built with pure HTML, CSS and JavaScript — no frameworks. With **full 15-langu
 | App | Stack | Descripción |
 |-----|-------|-------------|
 | **A Tiempo** | Kotlin · Compose · Room · Firebase | Recordatorios inteligentes con alarma, widget y diario personal |
-| **Mitad y Mitad** | Kotlin · Firebase · AdMob | Split de gastos en pareja con sincronización Firestore |
-| **Despensa al Día** | Kotlin · Compose · Retrofit · Firebase AI | Gestión de despensa con recetas generadas por IA |
+| **Mitad y Mitad** | Kotlin · Firebase · Firestore | Split de gastos en pareja con sincronización multi-moneda |
+| **Despensa al Día** | Kotlin · Compose · Retrofit · Firebase AI | Gestión de despensa con recetas generadas por IA + widget |
+
+### Plantillas Web / Web Templates
+
+13 demos en 3 constelaciones + 1 órbita móvil: `nebula-tech` (5 SaaS & IA), `orbita-reservas` (5 Booking), `aurora-creative` (3 Creative), `satellites` (3 Mobile). Todas marcadas como **Plantilla demo** en cards y modales.
 
 ---
 
 ### Stack / Tech Stack
 
 ```
-Mobile    → Kotlin · Jetpack Compose · Android SDK · Room · Firebase · Flutter · React Native
-Frontend  → HTML5 · CSS3 · JavaScript · React · Next.js · TypeScript
-Backend   → PHP · Python · Django · FastAPI · Java · C++ / C#
+Frontend  → React 19 · Vite 6 · Tailwind CSS 4 · TypeScript · Framer Motion · Lenis
+Mobile    → Kotlin · Jetpack Compose · Android SDK · Room · Firebase · Firestore
+Backend   → PHP · Python · Django · FastAPI
 Database  → MySQL · Firestore · SQLite · Room
-DevOps    → Docker · APIs REST · WebSocket
+UI/Icons  → Lucide React · @tsparticles/slim · SweetAlert2
+Perf      → WebP (88% ahorro) · Network Information API + fallback · Lazy + Load More
 ```
 
 ---
 
-### 15 Idiomas / 15 Languages
+### Idiomas / Languages
 
-| Flag | Language | Código |
-|------|----------|--------|
-| | Español | `es` |
-| | English | `en` |
-| | Français | `fr` |
-| | Deutsch | `de` |
-| | Italiano | `it` |
-| | Português | `pt` |
-| | 日本語 | `ja` |
-| | 中文 | `zh` |
-| | 한국어 | `ko` |
-| | Русский | `ru` |
-| | العربية | `ar` |
-| | हिन्दी | `hi` |
-| | Nederlands | `nl` |
-| | Türkçe | `tr` |
-| | Polski | `pl` |
+| | Language | Código |
+|---|----------|--------|
+| 🇪🇸 | Español | `es` |
+| 🇺🇸 | English | `en` |
+
+> Antes con 15 idiomas, ahora enfocado en **ES/EN 100% traducido** sin hardcodes. Selector reparado.
 
 ---
 
@@ -72,43 +79,54 @@ DevOps    → Docker · APIs REST · WebSocket
 
 ```
 MiPresentacion
- ┣ index.html          → Página principal / Main page
- ┣ css/
- ┃ ┣ base.css          → Variables, reset, estrellas / Variables, reset, stars
- ┃ ┣ hero.css          → Hero galáctico / Galactic hero
- ┃ ┣ components.css    → Nav, apps, proyectos, habilidades, contacto, footer
- ┃ ┗ responsive.css    → Adaptación móvil / Mobile responsive
- ┣ script.js           → Interactividad / Interactivity
- ┣ translations.js     → 15 idiomas / 15 languages
- ┣ vite.config.js      → Configuración Vite / Vite config
- ┣ package.json        → Dependencias / Dependencies
- ┗ README.md           → Este archivo / This file
+ ┣ public/
+ ┃ ┗ images/               → 13 WebP optimizados (public, Vite los sirve en /images/)
+ ┣ src/
+ ┃ ┣ components/           → NebulaMap, OrbitCard, MobileSheet, ProjectFilters...
+ ┃ ┣ data/                 → projectsData.ts (16 proyectos)
+ ┃ ┣ hooks/                → useConnectionQuality.ts (Network Info API + fallback)
+ ┃ ┣ lib/                  → i18n.ts, previewImages.ts
+ ┃ ┣ App.tsx               → Hero multiplataforma + stats 3/16/13, Galaxy bg
+ ┃ ┗ index.css             → Tailwind + nebula/orbit styles
+ ┣ vite.config.ts          → base: './' (GitHub Pages)
+ ┣ package.json
+ ┗ README.md
 ```
+
+---
+
+### Características / Features
+
+- **Hero multiplataforma** — de "solo Kotlin" a "Kotlin + Web & Desktop"
+- **i18n reparado** — 100% traducido ES/EN, sin hardcodes, `t(lang,key)`
+- **Lucide icons** — reemplazo total de emojis por iconografía consistente
+- **Carga adaptativa** — `navigator.connection` + medición manual → iframe (rápido) o WebP estático (lento)
+- **Load More galáctico** — 6 iniciales, +6 por clic, contador `Mostrando X de Y`
+- **Plantilla demo badge** — disclaimer profesional en cards y modales
 
 ---
 
 ### Ver el proyecto / View Live
 
 ```bash
-# Desarrollo con live-reload / Development with live-reload
-npm run dev
+# Desarrollo / Development
+npm run dev          # http://localhost:5173
 
 # Build producción / Production build
-npm run build
+npm run build        # → dist/
 
-# Previsualizar build / Preview build
+# Preview build
 npm run preview
 ```
 
->O abre `index.html` en tu navegador o súbelo a cualquier hosting estático.  
->*Or open `index.html` in your browser or deploy to any static hosting.*
+**GitHub Pages:** `https://fguzman-stack.github.io/MiPresentacion/` (deploy automático vía GitHub Actions `main` → `gh-pages`)
 
 ---
 
 <div align="center">
   <sub>
-    <strong></strong> Hecho con love desde cero por Francisco Guzmán ·
-    <strong></strong> Made with love from scratch by Francisco Guzmán
+    Hecho con 💜 desde cero por Francisco Guzmán ·
+    Made with 💜 from scratch by Francisco Guzmán
   </sub>
   <br/><br/>
   <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Ffguzman-stack%2FMiPresentacion&label=Visitors&countColor=%239B7BFF" />

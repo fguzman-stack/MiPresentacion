@@ -51,13 +51,23 @@ export default function App() {
 
   return (
     <LangContext.Provider value={{ lang, setLang }}>
-      <div className="min-h-screen bg-[#02020a] text-[#f4f1ff]">
-        {/* Stars background */}
-        <div id="stars" className="fixed inset-0 pointer-events-none opacity-35" style={{
-          backgroundImage: `radial-gradient(circle at 12% 18%, rgba(255,255,255,0.9) 0 1px, transparent 1.5px), radial-gradient(circle at 62% 8%, rgba(180,210,255,0.75) 0 1px, transparent 1.5px)`,
-          backgroundSize: "260px 260px, 340px 340px"
-        }} />
-        <div className="fixed -top-[210px] -right-[200px] w-[650px] h-[650px] rounded-full blur-[85px] opacity-20 pointer-events-none" style={{ background: "radial-gradient(circle, #7e5cff, transparent 68%)" }} />
+      <div className="min-h-screen bg-[#02020a] text-[#f4f1ff] relative">
+        {/* Galactic Background - mejora sutil manteniendo estrellas */}
+        <div className="fixed inset-0 pointer-events-none">
+          {/* Estrellas base con parpadeo muy sutil (siempre visibles) */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 12% 18%, rgba(255,255,255,0.92) 0 1px, transparent 1.5px), radial-gradient(circle at 62% 8%, rgba(180,210,255,0.78) 0 1px, transparent 1.5px), radial-gradient(circle at 42% 62%, rgba(255,255,255,0.72) 0 1px, transparent 1.5px)`,
+            backgroundSize: "260px 260px, 340px 340px, 420px 420px",
+            opacity: 0.42,
+            animation: "twinkleSubtle 7s ease-in-out infinite alternate"
+          }} />
+          {/* Nebulosas suaves - no tapan estrellas */}
+          <div className="absolute -top-[210px] -right-[200px] w-[720px] h-[720px] rounded-full blur-[85px] opacity-[0.26]" style={{ background: "radial-gradient(circle, #7e5cff 0%, #6f4cff 30%, #8b6cff 50%, transparent 70%)" }} />
+          <div className="absolute -bottom-[180px] -left-[160px] w-[560px] h-[560px] rounded-full blur-[90px] opacity-[0.09]" style={{ background: "radial-gradient(circle, #ff63b8 0%, #d66bff 35%, transparent 68%)" }} />
+          <div className="absolute top-[48%] left-[50%] -translate-x-1/2 w-[520px] h-[520px] rounded-full blur-[80px] opacity-[0.05]" style={{ background: "radial-gradient(circle, #54dcff 0%, transparent 70%)" }} />
+          {/* Vignette suave para profundidad */}
+          <div className="absolute inset-0 opacity-60" style={{ background: "radial-gradient(ellipse at center, transparent 62%, rgba(2,2,10,0.55) 92%)" }} />
+        </div>
 
         {/* Navbar */}
         <nav className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-300 ${scrolled ? "py-3 bg-[rgba(3,3,12,0.72)] border-b border-[rgba(151,127,255,0.16)] backdrop-blur-[20px] shadow-[0_12px_30px_rgba(0,0,0,0.2)]" : "py-4 bg-transparent border-transparent"}`}>
@@ -122,8 +132,8 @@ export default function App() {
             </div>
             <div className="flex flex-wrap gap-6 sm:gap-10 justify-center mx-auto w-fit max-w-full px-2">
               <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="3">3</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_apps")}</span></div>
-              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="15">15</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
-              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="40">40</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
+              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="16">16</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
+              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="13">13</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
             </div>
           </div>
         </section>

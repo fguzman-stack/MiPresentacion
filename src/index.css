@@ -285,3 +285,27 @@ body {
 .section-title { margin-bottom: 16px; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.04em; font-family: "Orbitron", monospace; text-align: center; }
 .section-subtitle { max-width: 620px; margin: 0 auto; color: #b8b1d0; font-size: 1.08rem; text-align: center; }
 
+/* === Galactic Background mejorado === */
+@keyframes twinkle {
+  0% { opacity: 0.22; }
+  50% { opacity: 0.85; }
+  100% { opacity: 0.35; }
+}
+@keyframes twinkleSubtle {
+  0% { opacity: 0.38; }
+  100% { opacity: 0.45; }
+}
+@keyframes nebulaDrift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(18px, -14px, 0) scale(1.04); }
+}
+@keyframes shoot {
+  0% { opacity: 0; transform: rotate(-32deg) translateX(0); }
+  8% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(-32deg) translateX(420px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
