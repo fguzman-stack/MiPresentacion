@@ -164,7 +164,14 @@ body {
   .orbit-card:hover { transform: translateY(-4px) scale(1.01); }
   .orbit-card:hover::before { opacity: 0; }
   .card-content { padding: 16px; }
-  .card-preview { height: 155px; }
+  .card-preview { height: 148px; }
+  /* Solo móvil: iframe más pequeño (más zoom out) sin tocar PC */
+  .card-preview iframe {
+    width: 420%;
+    height: 520%;
+    transform: scale(0.238);
+    opacity: 0.82;
+  }
   .section { padding: 80px 16px; }
   .section-header { margin-bottom: 36px; }
   .section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
@@ -270,6 +277,13 @@ body {
   .preview-header-sub { font-size: 0.72rem; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; white-space: normal; }
   .preview-btn-external { padding: 8px 12px; font-size: 0.76rem; min-height: 36px; }
   .preview-btn-close { width: 38px; height: 38px; min-width: 38px; }
+  /* Solo móvil: iframe del modal un poco más pequeño para que no tape todo */
+  .preview-iframe-wrap iframe {
+    transform: scale(0.92);
+    transform-origin: top left;
+    width: 108.7%;
+    height: 108.7%;
+  }
 }
 /* Hero mobile stack */
 @media (max-width: 460px) {
