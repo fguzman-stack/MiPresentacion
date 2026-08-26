@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Lenis from "lenis";
 import { NebulaMap } from "./components/NebulaMap";
 import { LangContext, t, type Lang } from "./lib/i18n";
+import { Rocket, Mail, GitBranch, Briefcase, MessageCircle, Globe, Smartphone, Layers, Database, Flame, Code2, Palette, FileCode, Atom, Braces, Terminal, Server, Zap, Cpu } from "lucide-react";
 
 export default function App() {
   const [lang, setLang] = useState<Lang>(() => (localStorage.getItem("lang") as Lang) || "es");
@@ -71,12 +72,12 @@ export default function App() {
             <div className="flex items-center gap-2">
               <div className="relative">
                 <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-[9px] bg-white/[0.035] border border-white/10 text-sm text-[#b8b1d0] hover:text-white">
-                  <span className="text-xs">🌐</span> {lang.toUpperCase()} ▾
+                  <Globe className="w-3.5 h-3.5" /> {lang.toUpperCase()} ▾
                 </button>
                 {langOpen && (
                   <div className="absolute top-[calc(100%+10px)] right-0 w-[205px] p-1.5 bg-[rgba(9,8,29,0.9)] border border-white/10 rounded-[14px] shadow-xl backdrop-blur-xl max-h-[320px] overflow-y-auto z-50">
                     {[
-                      ["es","🇪🇸 Español"],["en","🇺🇸 English"],["fr","🇫🇷 Français"],["de","🇩🇪 Deutsch"],["it","🇮🇹 Italiano"],["pt","🇧🇷 Português"],["ja","🇯🇵 日本語"],["zh","🇨🇳 中文"],["ko","🇰🇷 한국어"],["ru","🇷🇺 Русский"],["ar","🇸🇦 العربية"],["hi","🇮🇳 हिन्दी"],["nl","🇳🇱 Nederlands"],["tr","🇹🇷 Türkçe"],["pl","🇵🇱 Polski"],
+                      ["es","Español"],["en","English"],
                     ].map(([code, label]) => (
                       <button key={code} onClick={() => { setLang(code as Lang); setLangOpen(false); }} className="w-full text-left px-3 py-2 rounded-[8px] text-sm text-[#b8b1d0] hover:text-white hover:bg-[rgba(142,108,255,0.12)]">{label}</button>
                     ))}
@@ -105,7 +106,7 @@ export default function App() {
           </div>
           <div className="relative z-10 max-w-[830px] mx-auto text-center w-full">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 px-[19px] py-[9px] rounded-full bg-[rgba(142,108,255,0.11)] border border-[rgba(177,142,255,0.26)] text-[#c4b5fd] text-sm font-semibold mb-6">
-              🚀 {t(lang, "hero_badge")}
+              <Rocket className="w-4 h-4 text-[#c4b5fd]" /> {t(lang, "hero_badge")}
             </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 28, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.9, ease: [0.16,0.85,0.3,1] }} className="font-['Orbitron'] text-[clamp(2.3rem,7vw,4.4rem)] font-black leading-[1.14] tracking-tighter mb-5 bg-gradient-to-r from-[#6f4cff] via-[#b37aff] via-[#ff88c0] to-[#54dcff] bg-clip-text text-transparent">
               Francisco Guzmán
@@ -113,10 +114,10 @@ export default function App() {
             <p className="max-w-[620px] mx-auto text-[#b8b1d0] text-[clamp(1rem,2vw,1.22rem)] leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t(lang, "hero_sub") }} />
             <div className="flex flex-wrap gap-4 justify-center mb-12">
               <a href="#apps" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[13px] bg-gradient-to-r from-[#8b6cff] via-[#d66bff] to-[#ff78ae] text-white font-bold shadow-[0_8px_24px_rgba(126,91,255,0.28)] hover:translate-y-[-3px] transition-transform">
-                🚀 {t(lang, "hero_btn_apps")}
+                <Rocket className="w-4 h-4" /> {t(lang, "hero_btn_apps")}
               </a>
               <a href="#contacto" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[13px] bg-white/[0.025] border border-[rgba(192,175,255,0.22)] text-white font-bold hover:bg-[rgba(140,106,255,0.1)]">
-                ✉️ {t(lang, "hero_btn_contacto")}
+                <Mail className="w-4 h-4" /> {t(lang, "hero_btn_contacto")}
               </a>
             </div>
             <div className="flex flex-wrap gap-6 sm:gap-10 justify-center mx-auto w-fit max-w-full px-2">
@@ -133,21 +134,21 @@ export default function App() {
         {/* Habilidades */}
         <section id="habilidades" className="max-w-[1200px] mx-auto px-5 py-[110px]">
           <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[rgba(142,108,255,0.1)] border border-[rgba(167,137,255,0.24)] text-[#c4b5fd] text-xs font-bold uppercase tracking-widest">Stack Tecnológico</span>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[rgba(142,108,255,0.1)] border border-[rgba(167,137,255,0.24)] text-[#c4b5fd] text-xs font-bold uppercase tracking-widest">{t(lang,"hab_label")}</span>
             <h2 className="font-['Orbitron'] text-[clamp(2rem,5vw,3.2rem)] font-extrabold tracking-tight mt-3" dangerouslySetInnerHTML={{ __html: t(lang,"hab_title") }} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: t(lang,"cat_mobile"), items: [["Kotlin","#7F52FF"],["Jetpack Compose","#4285F4"],["Android SDK","#FF6F00"],["Room DB","#02569B"],["Firebase","#FFCA28"]] },
-              { title: t(lang,"cat_frontend"), items: [["HTML5","#E44D26"],["CSS3 / Tailwind","#1572B6"],["JavaScript","#F7DF1E"],["React","#61DAFB"],["Next.js","#000000"]] },
-              { title: t(lang,"cat_backend"), items: [["PHP","#777BB4"],["Python","#3776AB"],["Django","#092E20"],["FastAPI","#009688"],["MySQL","#4479A1"]] },
+              { title: t(lang,"cat_mobile"), items: [["Kotlin","#7F52FF", Code2],["Jetpack Compose","#4285F4", Layers],["Android SDK","#FF6F00", Smartphone],["Room DB","#02569B", Database],["Firebase","#FFCA28", Flame]] as [string,string, typeof Code2][], },
+              { title: t(lang,"cat_frontend"), items: [["HTML5","#E44D26", Code2],["CSS3 / Tailwind","#1572B6", Palette],["JavaScript","#F7DF1E", FileCode],["React","#61DAFB", Atom],["Next.js","#000000", Globe]] as [string,string, typeof Code2][], },
+              { title: t(lang,"cat_backend"), items: [["PHP","#777BB4", Braces],["Python","#3776AB", Terminal],["Django","#092E20", Server],["FastAPI","#009688", Zap],["MySQL","#4479A1", Database]] as [string,string, typeof Code2][], },
             ].map((cat) => (
               <div key={cat.title} className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-[rgba(151,127,255,0.16)] backdrop-blur-xl">
-                <h3 className="font-['Orbitron'] font-extrabold mb-5 flex items-center gap-2">{cat.title}</h3>
+                <h3 className="font-['Orbitron'] font-extrabold mb-5 flex items-center gap-2"><Cpu className="w-4 h-4 text-[#9b7bff]" />{cat.title}</h3>
                 <div className="flex flex-col gap-2.5">
-                  {cat.items.map(([name, color]) => (
+                  {cat.items.map(([name, color, Icon]) => (
                     <div key={name} className="flex items-center gap-3 p-3 rounded-[11px] bg-white/[0.025] border border-transparent hover:border-white/10 hover:bg-[rgba(142,108,255,0.09)] transition-colors">
-                      <div className="w-9 h-9 rounded-[9px] flex items-center justify-center text-white text-sm" style={{ background: color as string }}>◆</div>
+                      <div className="w-9 h-9 rounded-[9px] flex items-center justify-center text-white" style={{ background: color as string }}><Icon className="w-4 h-4" /></div>
                       <span className="flex-1 text-sm font-semibold">{name}</span>
                       <span className="text-xs px-2 py-1 rounded-[6px] bg-[rgba(142,108,255,0.12)] border border-white/10 text-[#c4b5fd]">{t(lang,"nivel_av")}</span>
                     </div>
@@ -165,16 +166,16 @@ export default function App() {
           <p className="text-[#b8b1d0] mt-3 mb-8">{t(lang,"cont_desc")}</p>
           <div className="grid grid-cols-2 max-[460px]:grid-cols-1 gap-4">
             <a href="https://github.com/fguzman-stack" target="_blank" rel="noopener" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="text-2xl mb-2">★</div><div className="font-bold">GitHub</div><div className="text-sm text-white/50">fguzman-stack</div>
+              <div className="flex justify-center mb-2"><GitBranch className="w-6 h-6 text-white/90" /></div><div className="font-bold">GitHub</div><div className="text-sm text-white/50">fguzman-stack</div>
             </a>
             <a href="https://linkedin.com/in/fguzman-stack" target="_blank" rel="noopener" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="text-2xl mb-2">◎</div><div className="font-bold">LinkedIn</div><div className="text-sm text-white/50">fguzman-stack</div>
+              <div className="flex justify-center mb-2"><Briefcase className="w-6 h-6 text-white/90" /></div><div className="font-bold">LinkedIn</div><div className="text-sm text-white/50">fguzman-stack</div>
             </a>
             <a href="mailto:familiazv2016@gmail.com" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="text-2xl mb-2">✉️</div><div className="font-bold">{t(lang,"cont_email_tit")}</div><div className="text-sm text-white/50">familiazv2016@gmail.com</div>
+              <div className="flex justify-center mb-2"><Mail className="w-6 h-6 text-white/90" /></div><div className="font-bold">{t(lang,"cont_email_tit")}</div><div className="text-sm text-white/50">familiazv2016@gmail.com</div>
             </a>
             <a href="https://wa.me/56939439403" target="_blank" rel="noopener" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="text-2xl mb-2">💬</div><div className="font-bold">{t(lang,"cont_phone_tit")}</div><div className="text-sm text-white/50">+56 9 3943 9403</div>
+              <div className="flex justify-center mb-2"><MessageCircle className="w-6 h-6 text-white/90" /></div><div className="font-bold">{t(lang,"cont_phone_tit")}</div><div className="text-sm text-white/50">+56 9 3943 9403</div>
             </a>
           </div>
         </section>

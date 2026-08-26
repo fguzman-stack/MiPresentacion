@@ -2,6 +2,7 @@ import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import type { Project } from "../types/project";
 import { constellationMeta } from "../data/projectsData";
+import { t } from "../lib/i18n";
 
 export function MobileSheet({ project, lang, onClose, onOpen }: {
   project: Project | null;
@@ -40,7 +41,7 @@ export function MobileSheet({ project, lang, onClose, onOpen }: {
             <div className="flex items-center gap-2 mb-3">
               <h3 className="font-['Orbitron'] text-[1.1rem] font-bold text-white flex-1">{project.name}</h3>
               <span className="px-2.5 py-1 rounded-full text-[0.65rem] font-bold border" style={{ background: `${meta.color}18`, borderColor: `${meta.color}55`, color: meta.color }}>
-                {isMobile ? "MOBILE" : "WEB"}
+                {isMobile ? t(lang, "type_mobile") : t(lang, "type_web")}
               </span>
             </div>
             <div className="relative h-[180px] rounded-[12px] overflow-hidden border border-white/10 bg-black/40 mb-4">
@@ -63,14 +64,14 @@ export function MobileSheet({ project, lang, onClose, onOpen }: {
             <div className="flex gap-3">
               {!isMobile ? (
                 <a href={project.url} target="_blank" rel="noopener" className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-[10px] text-sm font-semibold text-white" style={{ background: `linear-gradient(135deg, ${meta.color}, #9b7bff)` }}>
-                  {lang === "en" ? "Open project" : "Abrir proyecto"} <ExternalLink className="w-4 h-4" />
+                  {t(lang, "hud_open")} <ExternalLink className="w-4 h-4" />
                 </a>
               ) : (
                 <button onClick={() => onOpen(project)} className="flex-1 py-3 rounded-[10px] text-sm font-semibold text-white" style={{ background: `linear-gradient(135deg, ${meta.color}, #9b7bff)` }}>
-                  {lang === "en" ? "Request APK" : "Solicitar APK"}
+                  {t(lang, "modal_mobile_btn")}
                 </button>
               )}
-              <button onClick={onClose} className="px-6 py-3 rounded-[10px] border border-white/10 text-white/70">Cerrar</button>
+              <button onClick={onClose} className="px-6 py-3 rounded-[10px] border border-white/10 text-white/70">{t(lang, "close")}</button>
             </div>
           </motion.div>
         </>
