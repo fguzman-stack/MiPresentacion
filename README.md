@@ -143,6 +143,4 @@ npm run preview
     Hecho con 💜 desde cero por Francisco Guzmán ·
     Made with 💜 from scratch by Francisco Guzmán
   </sub>
-  <br/><br/>
-  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Ffguzman-stack%2FMiPresentacion&label=Visitors&countColor=%239B7BFF" />
 </div>
