@@ -10,18 +10,16 @@ import { getPreviewImage } from "../lib/previewImages";
 import { Orbit } from "lucide-react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
-type ExploreIntent = "auto" | "mobile" | "web" | "ai" | "desktop";
+type ExploreIntent = "auto" | "mobile" | "web" | "ai";
 
 const intentFilters: Record<Exclude<ExploreIntent, "auto" | "ai" | "web">, string> = {
   mobile: "satellites",
-  desktop: "desktop-apps",
 };
 
 const intentMatches: Record<Exclude<ExploreIntent, "auto">, (project: Project) => boolean> = {
   mobile: (project) => project.type === "mobile",
   web: (project) => project.type === "web",
   ai: (project) => [project.name, project.feature, project.taglineES, project.taglineEN, ...project.tech].join(" ").toLowerCase().includes("ai") || [project.name, project.feature, project.taglineES, project.taglineEN, ...project.tech].join(" ").toLowerCase().includes("ia"),
-  desktop: (project) => project.type === "desktop",
 };
 
 export function NebulaMap({ lang }: { lang: Lang }) {
@@ -37,19 +35,19 @@ export function NebulaMap({ lang }: { lang: Lang }) {
 
   const connectionQuality = useConnectionQuality();
   const isCompactDevice = useMediaQuery("(max-width: 760px)");
+  const mapProjects = useMemo(() => projects.filter((project) => project.type !== "desktop"), []);
 
   const filtered = useMemo(() => {
-    const base = filter === "all" ? projects : projects.filter((p) => p.constellation === filter);
+    const base = filter === "all" ? mapProjects : mapProjects.filter((p) => p.constellation === filter);
     const withScore = base.map((project, index) => {
       let score = 0;
       if (intent !== "auto" && intentMatches[intent](project)) score += 40;
       if (intent === "auto" && isCompactDevice && project.type === "mobile") score += 10;
-      if (intent === "auto" && !isCompactDevice && project.type === "desktop") score += 8;
       if (intent === "auto" && !isCompactDevice && project.type === "web") score += 4;
       return { project, score, index };
     });
     return withScore.sort((a, b) => b.score - a.score || a.index - b.index).map(({ project }) => project);
-  }, [filter, intent, isCompactDevice]);
+  }, [filter, intent, isCompactDevice, mapProjects]);
 
   useEffect(() => {
     setVisibleCount(INITIAL_VISIBLE);
@@ -154,12 +152,11 @@ export function NebulaMap({ lang }: { lang: Lang }) {
     { id: "mobile", label: t(lang, "intent_mobile"), desc: t(lang, "intent_mobile_desc") },
     { id: "web", label: t(lang, "intent_web"), desc: t(lang, "intent_web_desc") },
     { id: "ai", label: t(lang, "intent_ai"), desc: t(lang, "intent_ai_desc") },
-    { id: "desktop", label: t(lang, "intent_desktop"), desc: t(lang, "intent_desktop_desc") },
   ];
 
   const chooseIntent = (nextIntent: ExploreIntent) => {
     setIntent(nextIntent);
-    if (nextIntent === "mobile" || nextIntent === "desktop") setFilter(intentFilters[nextIntent]);
+    if (nextIntent === "mobile") setFilter(intentFilters[nextIntent]);
     if (nextIntent === "web" || nextIntent === "ai" || nextIntent === "auto") setFilter("all");
   };
 
@@ -169,7 +166,6 @@ export function NebulaMap({ lang }: { lang: Lang }) {
     { id: "orbita-reservas", label: t(lang, "filter_booking") },
     { id: "aurora-creative", label: t(lang, "filter_creative") },
     { id: "satellites", label: t(lang, "filter_mobile") },
-    { id: "desktop-apps", label: t(lang, "filter_desktop") },
   ];
 
   return (
@@ -178,7 +174,7 @@ export function NebulaMap({ lang }: { lang: Lang }) {
         <div className="editorial-heading">
           <div><span className="eyebrow">{t(lang, "projects_kicker")}</span>
           <h2>{t(lang, "projects_title_a")}<br /><span className="gradient-text">{t(lang, "projects_title_b")}</span></h2></div>
-          <p>{projects.length} {t(lang, "projects_desc")}</p>
+          <p>{mapProjects.length} {t(lang, "projects_desc")}</p>
         </div>
 
         <div className="nebula-filters" role="group" aria-label="Filtros">
@@ -187,7 +183,7 @@ export function NebulaMap({ lang }: { lang: Lang }) {
               key={f.id}
               className={`filter-pill ${filter === f.id ? "active" : ""}`}
               data-filter={f.id}
-              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : f.id === "desktop-apps" ? "desktop" : "mobile"}`}
+              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : "mobile"}`}
               onClick={() => setFilter(f.id)}
               type="button"
               aria-pressed={filter === f.id}
