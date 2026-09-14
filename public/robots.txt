@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fguzman-stack.github.io/MiPresentacion/sitemap.xml
+Sitemap: https://mipresentacion.vercel.app/sitemap.xml
