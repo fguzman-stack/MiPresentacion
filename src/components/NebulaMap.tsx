@@ -10,14 +10,9 @@ import { getPreviewImage } from "../lib/previewImages";
 import { Orbit } from "lucide-react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
-type ExploreIntent = "auto" | "mobile" | "web" | "ai";
-
-const intentFilters: Record<Exclude<ExploreIntent, "auto" | "ai" | "web">, string> = {
-  mobile: "satellites",
-};
+type ExploreIntent = "auto" | "web" | "ai";
 
 const intentMatches: Record<Exclude<ExploreIntent, "auto">, (project: Project) => boolean> = {
-  mobile: (project) => project.type === "mobile",
   web: (project) => project.type === "web",
   ai: (project) => [project.name, project.feature, project.taglineES, project.taglineEN, ...project.tech].join(" ").toLowerCase().includes("ai") || [project.name, project.feature, project.taglineES, project.taglineEN, ...project.tech].join(" ").toLowerCase().includes("ia"),
 };
@@ -35,14 +30,13 @@ export function NebulaMap({ lang }: { lang: Lang }) {
 
   const connectionQuality = useConnectionQuality();
   const isCompactDevice = useMediaQuery("(max-width: 760px)");
-  const mapProjects = useMemo(() => projects.filter((project) => project.type !== "desktop"), []);
+  const mapProjects = useMemo(() => projects.filter((project) => project.type === "web"), []);
 
   const filtered = useMemo(() => {
     const base = filter === "all" ? mapProjects : mapProjects.filter((p) => p.constellation === filter);
     const withScore = base.map((project, index) => {
       let score = 0;
       if (intent !== "auto" && intentMatches[intent](project)) score += 40;
-      if (intent === "auto" && isCompactDevice && project.type === "mobile") score += 10;
       if (intent === "auto" && !isCompactDevice && project.type === "web") score += 4;
       return { project, score, index };
     });
@@ -149,14 +143,12 @@ export function NebulaMap({ lang }: { lang: Lang }) {
 
   const intentOptions: { id: ExploreIntent; label: string; desc: string }[] = [
     { id: "auto", label: t(lang, "intent_auto"), desc: isCompactDevice ? t(lang, "intent_auto_mobile") : t(lang, "intent_auto_desktop") },
-    { id: "mobile", label: t(lang, "intent_mobile"), desc: t(lang, "intent_mobile_desc") },
     { id: "web", label: t(lang, "intent_web"), desc: t(lang, "intent_web_desc") },
     { id: "ai", label: t(lang, "intent_ai"), desc: t(lang, "intent_ai_desc") },
   ];
 
   const chooseIntent = (nextIntent: ExploreIntent) => {
     setIntent(nextIntent);
-    if (nextIntent === "mobile") setFilter(intentFilters[nextIntent]);
     if (nextIntent === "web" || nextIntent === "ai" || nextIntent === "auto") setFilter("all");
   };
 
@@ -165,7 +157,6 @@ export function NebulaMap({ lang }: { lang: Lang }) {
     { id: "nebula-tech", label: t(lang, "filter_tech") },
     { id: "orbita-reservas", label: t(lang, "filter_booking") },
     { id: "aurora-creative", label: t(lang, "filter_creative") },
-    { id: "satellites", label: t(lang, "filter_mobile") },
   ];
 
   return (
@@ -183,7 +174,7 @@ export function NebulaMap({ lang }: { lang: Lang }) {
               key={f.id}
               className={`filter-pill ${filter === f.id ? "active" : ""}`}
               data-filter={f.id}
-              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : "mobile"}`}
+              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : "creative"}`}
               onClick={() => setFilter(f.id)}
               type="button"
               aria-pressed={filter === f.id}

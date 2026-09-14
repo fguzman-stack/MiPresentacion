@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mipresentacion.vercel.app/sitemap.xml
+Sitemap: https://miportafolio-virid-alpha.vercel.app/sitemap.xml
