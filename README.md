@@ -42,7 +42,6 @@ Built with **React 19 + Vite 6 + Tailwind CSS 4 + TypeScript**. With **adaptive 
 | App | Stack | Descripción |
 |-----|-------|-------------|
 | **A Tiempo** | Kotlin · Compose · Room · Firebase | Recordatorios inteligentes con alarma, widget y diario personal |
-| **Mitad y Mitad** | Kotlin · Firebase · Firestore | Split de gastos en pareja con sincronización multi-moneda |
 | **Despensa al Día** | Kotlin · Compose · Retrofit · Firebase AI | Gestión de despensa con recetas generadas por IA + widget |
 
 ### Plantillas Web / Web Templates

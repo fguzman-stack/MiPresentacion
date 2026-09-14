@@ -20,6 +20,5 @@ export function getPreviewImage(projectId: string): string | null {
   // Solo WebP — PNG borrados (ahorra ~88% peso). Vite sirve public/images en /images/ o ./images/
   const webp = file.replace(/\.png$/i, ".webp");
   const base = import.meta.env.BASE_URL || "/";
-  const prefix = base.startsWith(".") ? "./images/" : "/images/";
-  return `${prefix}${webp}`;
+  return `${base}images/${webp}`;
 }

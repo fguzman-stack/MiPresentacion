@@ -5,7 +5,8 @@ const constellationGroups: Record<string, string[]> = {
   "nebula-tech": ["ai-boost", "aimpact", "nexusstream", "promptflow", "reviewroom"],
   "orbita-reservas": ["latambooker", "bookingsuite", "nichebooker", "barberia", "vetflow"],
   "aurora-creative": ["auradesign", "creatorflow", "comidacallejera"],
-  satellites: ["a-tiempo", "mitad-mitad", "despensa-dia"],
+  satellites: ["codepet", "a-tiempo", "despensa-al-dia"],
+  "desktop-apps": ["documind", "screenscript"],
 };
 
 const colors: Record<string, string> = {
@@ -13,6 +14,7 @@ const colors: Record<string, string> = {
   "orbita-reservas": "#9b7bff",
   "aurora-creative": "#ff63b8",
   satellites: "#ffca6b",
+  "desktop-apps": "#ff9f43",
 };
 
 export function ConstellationLines({ projects, hoveredId }: { projects: Project[]; hoveredId: string | null }) {

@@ -4,6 +4,7 @@ const filters = [
   { id: "orbita-reservas", labelES: "Booking", labelEN: "Booking", i18n: "filter_booking" },
   { id: "aurora-creative", labelES: "Creative", labelEN: "Creative", i18n: "filter_creative" },
   { id: "satellites", labelES: "Apps Móviles", labelEN: "Mobile Apps", i18n: "filter_mobile" },
+  { id: "desktop-apps", labelES: "Software Windows", labelEN: "Windows Software", i18n: "filter_desktop" },
 ] as const;
 
 export function ProjectFilters({ active, onChange, lang }: { active: string; onChange: (id: string) => void; lang: "es" | "en" }) {

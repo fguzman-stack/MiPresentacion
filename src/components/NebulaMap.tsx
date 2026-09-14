@@ -1,81 +1,141 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { projects } from "../data/projectsData";
 import { OrbitCard } from "./OrbitCard";
 import Swal from "sweetalert2";
 import type { Project } from "../types/project";
-import { t } from "../lib/i18n";
+import { t, type Lang } from "../lib/i18n";
+import { projectDescription, projectFeature, projectTagline } from "../lib/projectText";
 import { useConnectionQuality } from "../hooks/useConnectionQuality";
 import { getPreviewImage } from "../lib/previewImages";
 import { Orbit } from "lucide-react";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
-const EMAIL = "familiazv2016@gmail.com";
+type ExploreIntent = "auto" | "mobile" | "web" | "ai" | "desktop";
 
-export function NebulaMap({ lang }: { lang: "es" | "en" }) {
+const intentFilters: Record<Exclude<ExploreIntent, "auto" | "ai" | "web">, string> = {
+  mobile: "satellites",
+  desktop: "desktop-apps",
+};
+
+const intentMatches: Record<Exclude<ExploreIntent, "auto">, (project: Project) => boolean> = {
+  mobile: (project) => project.type === "mobile",
+  web: (project) => project.type === "web",
+  ai: (project) => [project.name, project.feature, project.taglineES, project.taglineEN, ...project.tech].join(" ").toLowerCase().includes("ai") || [project.name, project.feature, project.taglineES, project.taglineEN, ...project.tech].join(" ").toLowerCase().includes("ia"),
+  desktop: (project) => project.type === "desktop",
+};
+
+export function NebulaMap({ lang }: { lang: Lang }) {
   const [filter, setFilter] = useState("all");
+  const [intent, setIntent] = useState<ExploreIntent>("auto");
   const [previewProject, setPreviewProject] = useState<Project | null>(null);
+  const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [iframeError, setIframeError] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const INITIAL_VISIBLE = 6;
   const STEP = 6;
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
   const connectionQuality = useConnectionQuality();
+  const isCompactDevice = useMediaQuery("(max-width: 760px)");
 
   const filtered = useMemo(() => {
-    if (filter === "all") return projects;
-    return projects.filter((p) => p.constellation === filter);
-  }, [filter]);
+    const base = filter === "all" ? projects : projects.filter((p) => p.constellation === filter);
+    const withScore = base.map((project, index) => {
+      let score = 0;
+      if (intent !== "auto" && intentMatches[intent](project)) score += 40;
+      if (intent === "auto" && isCompactDevice && project.type === "mobile") score += 10;
+      if (intent === "auto" && !isCompactDevice && project.type === "desktop") score += 8;
+      if (intent === "auto" && !isCompactDevice && project.type === "web") score += 4;
+      return { project, score, index };
+    });
+    return withScore.sort((a, b) => b.score - a.score || a.index - b.index).map(({ project }) => project);
+  }, [filter, intent, isCompactDevice]);
 
   useEffect(() => {
     setVisibleCount(INITIAL_VISIBLE);
-  }, [filter]);
+  }, [filter, intent]);
 
   const visibleProjects = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
   const canLoadMore = visibleCount < filtered.length;
 
-  const getTagline = (p: Project) => (lang === "en" ? p.taglineEN : p.taglineES);
+  const getTagline = (p: Project) => projectTagline(p, lang);
 
   // lock scroll when modal open + esc handler
   useEffect(() => {
     if (previewProject) {
+      const previousFocus = document.activeElement as HTMLElement | null;
       document.body.style.overflow = "hidden";
-      const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setPreviewProject(null); };
+      dialogRef.current?.querySelector<HTMLButtonElement>(".preview-btn-close")?.focus();
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setPreviewProject(null);
+        if (e.key === "Tab") {
+          const elements = dialogRef.current?.querySelectorAll<HTMLElement>('a[href], button, iframe');
+          if (!elements?.length) return;
+          const first = elements[0], last = elements[elements.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      };
       window.addEventListener("keydown", onKey);
-      return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+      return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); previousFocus?.focus(); };
     } else {
       document.body.style.overflow = "";
     }
   }, [previewProject]);
 
+  useEffect(() => {
+    if (!previewProject || previewProject.type !== "desktop") return;
+    const screenshots = previewProject.screenshots ?? (previewProject.screenshot ? [previewProject.screenshot] : []);
+    const onKey = (event: KeyboardEvent) => {
+      if (!screenshots.length) return;
+      if (event.key === "ArrowRight") setActiveScreenshot((current) => (current + 1) % screenshots.length);
+      if (event.key === "ArrowLeft") setActiveScreenshot((current) => (current - 1 + screenshots.length) % screenshots.length);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [previewProject]);
+
   useEffect(() => { setIframeError(false); }, [previewProject]);
 
   const showMobileModal = (p: Project) => {
+    const screenshots = p.screenshots ?? (p.screenshot ? [p.screenshot] : []);
     Swal.fire({
       title: `<span style="font-family:Orbitron,sans-serif;font-size:1.1rem">${p.name}</span>`,
       html: `
         <div style="text-align:left;font-family:Inter,sans-serif">
+          ${screenshots.length ? `<div class="project-gallery project-gallery-mobile">${screenshots.map((src, index) => `<a href="${src}" target="_blank" rel="noopener noreferrer" class="project-gallery-item"><img src="${src}" alt="${p.name} screenshot ${index + 1}" loading="lazy" /></a>`).join("")}</div>` : ""}
           <p style="margin-bottom:14px;color:rgba(244,241,255,0.7);font-size:0.9rem;line-height:1.5">${getTagline(p)}</p>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
             ${p.tech.map((tech) => `<span style="background:rgba(155,123,255,0.12);padding:4px 10px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;color:#9b7bff;border:1px solid rgba(155,123,255,0.2)">${tech}</span>`).join("")}
           </div>
-          <p style="font-size:0.82rem;color:rgba(244,241,255,0.4);line-height:1.4">${p.feature}. ${t(lang, "modal_mobile_desc")}</p>
+          <p style="font-size:0.9rem;color:#b9bdd0;line-height:1.7">${projectDescription(p, lang)}</p>
+          <p style="margin:18px 0;color:#d0c5ff">${projectFeature(p, lang)}</p>
+          ${p.id === "codepet" ? `<div class="feature-links"><a class="button button-primary" href="${p.url}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>${p.downloadUrl ? `<a class="text-link" href="${p.downloadUrl}" target="_blank" rel="noopener noreferrer">${t(lang, "mobile_releases")} ↗</a>` : ""}</div>` : ""}
         </div>
       `,
-      showCancelButton: true,
-      confirmButtonText: t(lang, "modal_mobile_btn"),
+      showCancelButton: false,
+      confirmButtonText: t(lang, "close"),
       cancelButtonText: t(lang, "close"),
       background: "#0e0e25",
       color: "#f4f1ff",
       confirmButtonColor: "#9b7bff",
       cancelButtonColor: "rgba(255,255,255,0.08)",
+      width: Math.min(window.innerWidth - 32, 860),
       customClass: {
         popup: "rounded-2xl border border-white/10 backdrop-blur-xl",
         confirmButton: "swal2-confirm-custom",
         cancelButton: "swal2-cancel-custom",
       },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = `mailto:${EMAIL}?subject=Solicitud%20APK%20${encodeURIComponent(p.name)}`;
-      }
+      didOpen: (popup) => {
+        const items = Array.from(popup.querySelectorAll<HTMLElement>(".project-gallery-item"));
+        items.forEach((item) => item.setAttribute("tabindex", "0"));
+        const onKey = (event: KeyboardEvent) => {
+          const current = items.indexOf(document.activeElement as HTMLElement);
+          if (event.key === "ArrowRight" && items.length) items[(Math.max(0, current) + 1) % items.length].focus();
+          if (event.key === "ArrowLeft" && items.length) items[(Math.max(0, current) - 1 + items.length) % items.length].focus();
+        };
+        popup.addEventListener("keydown", onKey);
+      },
     });
   };
 
@@ -84,8 +144,23 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
       showMobileModal(p);
     } else {
       setPreviewProject(p);
+      setActiveScreenshot(0);
       setIframeError(false);
     }
+  };
+
+  const intentOptions: { id: ExploreIntent; label: string; desc: string }[] = [
+    { id: "auto", label: t(lang, "intent_auto"), desc: isCompactDevice ? t(lang, "intent_auto_mobile") : t(lang, "intent_auto_desktop") },
+    { id: "mobile", label: t(lang, "intent_mobile"), desc: t(lang, "intent_mobile_desc") },
+    { id: "web", label: t(lang, "intent_web"), desc: t(lang, "intent_web_desc") },
+    { id: "ai", label: t(lang, "intent_ai"), desc: t(lang, "intent_ai_desc") },
+    { id: "desktop", label: t(lang, "intent_desktop"), desc: t(lang, "intent_desktop_desc") },
+  ];
+
+  const chooseIntent = (nextIntent: ExploreIntent) => {
+    setIntent(nextIntent);
+    if (nextIntent === "mobile" || nextIntent === "desktop") setFilter(intentFilters[nextIntent]);
+    if (nextIntent === "web" || nextIntent === "ai" || nextIntent === "auto") setFilter("all");
   };
 
   const filters = [
@@ -94,25 +169,16 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
     { id: "orbita-reservas", label: t(lang, "filter_booking") },
     { id: "aurora-creative", label: t(lang, "filter_creative") },
     { id: "satellites", label: t(lang, "filter_mobile") },
+    { id: "desktop-apps", label: t(lang, "filter_desktop") },
   ];
 
   return (
     <>
       <section id="apps" className="section" data-aos>
-        <div className="section-header">
-          <span className="section-badge">
-            {t(lang, "apps_badge")}
-          </span>
-          <h2 className="section-title">
-            {lang === "en" ? (
-              <>Discovered <span className="gradient-text">Systems</span></>
-            ) : (
-              <>Sistemas <span className="gradient-text">Descubiertos</span></>
-            )}
-          </h2>
-          <p className="section-subtitle">
-            {t(lang, "apps_subtitle")}
-          </p>
+        <div className="editorial-heading">
+          <div><span className="eyebrow">{t(lang, "projects_kicker")}</span>
+          <h2>{t(lang, "projects_title_a")}<br /><span className="gradient-text">{t(lang, "projects_title_b")}</span></h2></div>
+          <p>{projects.length} {t(lang, "projects_desc")}</p>
         </div>
 
         <div className="nebula-filters" role="group" aria-label="Filtros">
@@ -121,13 +187,28 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
               key={f.id}
               className={`filter-pill ${filter === f.id ? "active" : ""}`}
               data-filter={f.id}
-              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : "mobile"}`}
+              data-i18n={`filter_${f.id === "all" ? "all" : f.id === "nebula-tech" ? "tech" : f.id === "orbita-reservas" ? "booking" : f.id === "aurora-creative" ? "creative" : f.id === "desktop-apps" ? "desktop" : "mobile"}`}
               onClick={() => setFilter(f.id)}
               type="button"
+              aria-pressed={filter === f.id}
             >
               {f.label}
             </button>
           ))}
+        </div>
+
+        <div className="smart-guide" aria-label={t(lang, "intent_label")}>
+          <div>
+            <span className="eyebrow">{t(lang, "intent_kicker")}</span>
+            <p>{intentOptions.find((option) => option.id === intent)?.desc}</p>
+          </div>
+          <div className="smart-guide-options" role="group" aria-label={t(lang, "intent_label")}>
+            {intentOptions.map((option) => (
+              <button key={option.id} type="button" className={`smart-pill ${intent === option.id ? "active" : ""}`} onClick={() => chooseIntent(option.id)} aria-pressed={intent === option.id}>
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="nebula-map" id="nebulaMap" aria-live="polite">
@@ -162,7 +243,7 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
       </section>
 
       {previewProject && (
-        <div className="preview-overlay" onClick={() => setPreviewProject(null)} role="dialog" aria-modal="true" aria-label={`${previewProject.name} preview`}>
+        <div ref={dialogRef} className="preview-overlay" onClick={() => setPreviewProject(null)} role="dialog" aria-modal="true" aria-label={`${previewProject.name} preview`}>
           <div className="preview-modal" onClick={(e) => e.stopPropagation()}>
             <div className="preview-header">
               <div className="preview-header-left">
@@ -184,6 +265,31 @@ export function NebulaMap({ lang }: { lang: "es" | "en" }) {
             )}
             <div className="preview-iframe-wrap">
               {(() => {
+                if (previewProject.type === "desktop") {
+                  const screenshots = previewProject.screenshots ?? (previewProject.screenshot ? [previewProject.screenshot] : []);
+                  const currentScreenshot = screenshots[activeScreenshot] ?? screenshots[0];
+                  return (
+                    <div className="desktop-gallery-view">
+                      <div className="desktop-gallery-copy">
+                        <p>{projectDescription(previewProject, lang)}</p>
+                        <div className="card-tech">{previewProject.tech.map((tech) => <span className="tech-tag" key={tech}>{tech}</span>)}</div>
+                      </div>
+                      {currentScreenshot && (
+                        <a href={currentScreenshot} target="_blank" rel="noopener noreferrer" className="desktop-gallery-hero">
+                          <img src={currentScreenshot} alt={`${previewProject.name} screenshot ${activeScreenshot + 1}`} loading="eager" decoding="async" />
+                        </a>
+                      )}
+                      <p className="gallery-key-hint">{t(lang, "gallery_key_hint")}</p>
+                      <div className="project-gallery project-gallery-desktop project-gallery-thumbs">
+                        {screenshots.map((src, index) => (
+                          <button type="button" className={`project-gallery-item ${activeScreenshot === index ? "active" : ""}`} key={src} onClick={() => setActiveScreenshot(index)}>
+                            <img src={src} alt={`${previewProject.name} screenshot ${index + 1}`} loading="lazy" decoding="async" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
                 const isSlow = connectionQuality === "slow";
                 const imageSrc = previewProject ? getPreviewImage(previewProject.id) : null;
                 const showImageInstead = isSlow && imageSrc;

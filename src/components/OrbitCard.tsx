@@ -1,42 +1,49 @@
 import type { Project } from "../types/project";
-import { t } from "../lib/i18n";
+import { t, type Lang } from "../lib/i18n";
+import { projectFeature, projectTagline } from "../lib/projectText";
 import { useConnectionQuality } from "../hooks/useConnectionQuality";
 import { getPreviewImage } from "../lib/previewImages";
 
 export function OrbitCard({ project, index, lang, onClick }: {
   project: Project;
   index: number;
-  lang: "es" | "en";
+  lang: Lang;
   onClick: (p: Project) => void;
 }) {
   const isMobile = project.type === "mobile";
-  const tagline = lang === "en" ? project.taglineEN : project.taglineES;
+  const isDesktop = project.type === "desktop";
+  const tagline = projectTagline(project, lang);
   const color = project.color ?? "#9b7bff";
   const color2 = project.color2 ?? "#54dcff";
   const preview = project.preview ?? project.previewColor ?? "linear-gradient(135deg, #667eea, #764ba2)";
-  const feature = project.feature ?? project.featureHighlight ?? "";
+  const feature = projectFeature(project, lang);
 
-  const ctaText = isMobile ? t(lang, "modal_mobile_btn") : `${t(lang, "hud_open")} ↗`;
+  const ctaText = isMobile ? t(lang, "mobile_card_cta") : `${t(lang, "hud_open")} ↗`;
   const connection = useConnectionQuality();
   const useImage = !isMobile && connection !== "unknown" && connection !== "fast";
   const imageSrc = !isMobile ? getPreviewImage(project.id) : null;
 
   return (
-    <div
+    <article
       className="orbit-card"
       style={{
         ["--card-glow" as string]: color,
         ["--card-glow-2" as string]: color2,
         animationDelay: `${index * 0.07}s`,
       } as React.CSSProperties}
-      onClick={() => onClick(project)}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick(project); }}
-      aria-label={`${project.name}: ${tagline}`}
     >
       <div className="card-preview" style={{ ["--preview-bg" as string]: preview } as React.CSSProperties}>
-        {!isMobile ? (
+        {isMobile || isDesktop ? (
+          project.screenshot ? (
+            <img
+              src={project.screenshot}
+              alt={`${project.name} screenshot`}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover object-top"
+            />
+          ) : null
+        ) : (
           useImage && imageSrc ? (
             <img
               src={imageSrc}
@@ -51,21 +58,20 @@ export function OrbitCard({ project, index, lang, onClick }: {
               onLoad={() => console.log(`[OrbitCard] imagen ok: ${imageSrc}`)}
             />
           ) : (
-            <iframe src={project.url} loading="lazy" title={`${project.name} preview`} sandbox="allow-same-origin allow-scripts" />
+            <iframe src={project.url} loading="lazy" tabIndex={-1} title={`${project.name} preview`} sandbox="allow-same-origin allow-scripts" />
           )
-        ) : null}
+        )}
         <div className="card-preview-overlay" />
-        {!isMobile && (
+        {!isMobile && !isDesktop && (
           <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-black/55 backdrop-blur border border-white/10 text-[0.62rem] font-semibold tracking-wide text-white/90">
             <span className="w-1.5 h-1.5 rounded-full bg-[#8b6cff] animate-pulse" /> {t(lang, "template_badge")}
           </div>
         )}
         {isMobile && (
           <>
-            <div className="mobile-ring" />
             <div className="card-preview-fallback">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" /></svg>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem" }}>{t(lang, "hud_apk")}</span>
+              <span className="mobile-card-monogram">{project.id === "codepet" ? "{ cp }" : "AT"}</span>
+              <span>ANDROID / {project.name}</span>
             </div>
           </>
         )}
@@ -76,7 +82,7 @@ export function OrbitCard({ project, index, lang, onClick }: {
 
       <div className="card-content">
         <div className="card-header">
-          <div className="card-title">{project.name}</div>
+          <h3 className="card-title">{project.name}</h3>
           <div className="card-type">{project.type}</div>
         </div>
         <div className="card-desc">{tagline}</div>
@@ -91,6 +97,11 @@ export function OrbitCard({ project, index, lang, onClick }: {
             <span key={t} className="tech-tag">{t}</span>
           ))}
         </div>
+        {isDesktop && project.screenshot && (
+          <div className="text-[0.68rem] leading-snug text-white/40 italic mt-2 border-l border-white/10 pl-2">
+            {lang === "en" ? "Desktop application — screenshot from live app" : lang === "pt" ? "Aplicação desktop — captura do app real" : lang === "fr" ? "Application de bureau — capture de l'app réelle" : "Aplicación de escritorio — captura de la app real"}
+          </div>
+        )}
       </div>
 
       <div className="card-hover-hud">
@@ -102,9 +113,9 @@ export function OrbitCard({ project, index, lang, onClick }: {
             onClick(project);
           }}
         >
-          {ctaText}
+          {isDesktop || isMobile ? `${t(lang, "hud_open")} ↗` : `${t(lang, "hud_open")} ↗`}
         </button>
       </div>
-    </div>
+    </article>
   );
 }

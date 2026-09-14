@@ -36,11 +36,11 @@ function getNetworkInfoQuality(): ConnectionQuality | null {
 async function measureDownloadSpeed(): Promise<ConnectionQuality> {
   // Fallback: measure time to fetch a small image from public/images (/images/ o ./images/) con cache bust
   const base = import.meta.env.BASE_URL || "/";
-  const prefix = base.startsWith(".") ? "./images/" : "/images/";
-  const testUrl = `${prefix}Ai-Boost.webp?cb=${Date.now()}`;
+  const testUrl = `${base}images/Ai-Boost.webp?cb=${Date.now()}`;
   const start = performance.now();
   try {
-    const res = await fetch(testUrl, { cache: "no-store" });
+    const res = await fetch(testUrl, { cache: "no-store", signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return "slow";
     // Consume body to get accurate timing (clone)
     await res.blob();
     const durationMs = performance.now() - start;
@@ -90,11 +90,12 @@ export function useConnectionQuality(): ConnectionQuality {
       if (conn?.addEventListener) {
         conn.addEventListener("change", handler);
         return () => {
+          mounted = false;
           clearTimeout(t);
           conn.removeEventListener?.("change", handler);
         };
       }
-      return () => clearTimeout(t);
+      return () => { mounted = false; clearTimeout(t); };
     }
 
     // Fallback: manual measurement (Safari sin Network Information API)

@@ -1,200 +1,128 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
+import { ArrowDown, ArrowUpRight, Code2, GitBranch as Github, Globe, Layers, Mail, Menu, MessageCircle, Satellite, Smartphone, X } from "lucide-react";
 import { NebulaMap } from "./components/NebulaMap";
-import { LangContext, t, type Lang } from "./lib/i18n";
-import { Rocket, Mail, GitBranch, Briefcase, MessageCircle, Globe, Smartphone, Layers, Database, Flame, Code2, Palette, FileCode, Atom, Braces, Terminal, Server, Zap, Cpu } from "lucide-react";
+import { MobileShowcase, WindowsShowcase } from "./components/MobileShowcase";
+import { projects } from "./data/projectsData";
+import { LangContext, languages, t, type Lang } from "./lib/i18n";
+
+const isLang = (value: string | null): value is Lang => languages.some((language) => language.code === value);
 
 export default function App() {
-  const [lang, setLang] = useState<Lang>(() => (localStorage.getItem("lang") as Lang) || "es");
+  const [lang, setLang] = useState<Lang>(() => {
+    try {
+      const saved = localStorage.getItem("lang");
+      return isLang(saved) ? saved : "es";
+    } catch {
+      return "es";
+    }
+  });
   const [navOpen, setNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("lang", lang);
+    try { localStorage.setItem("lang", lang); } catch { /* Storage may be disabled. */ }
     document.documentElement.lang = lang;
-    document.documentElement.dir = (lang as string) === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = "ltr";
   }, [lang]);
 
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
-    let rafId: number;
-    const raf = (time: number) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
-    rafId = requestAnimationFrame(raf);
-    return () => cancelAnimationFrame(rafId);
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lenis: Lenis | undefined;
+    const update = () => {
+      lenis?.destroy();
+      lenis = query.matches ? undefined : new Lenis({
+        lerp: 0.08,
+        smoothWheel: true,
+        autoRaf: true,
+        anchors: true,
+        prevent: (node) => !!node.closest(".preview-overlay, .swal2-container"),
+      });
+    };
+    update();
+    query.addEventListener("change", update);
+    return () => { lenis?.destroy(); query.removeEventListener("change", update); };
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const close = (e: KeyboardEvent) => { if (e.key === "Escape") setNavOpen(false); };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
   }, []);
 
-  // stats counter animation for hero
-  useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>(".stat-number");
-    els.forEach((el) => {
-      const target = parseInt(el.dataset.count || "0");
-      let start: number | null = null;
-      const duration = 2000;
-      const step = (ts: number) => {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.floor(ease * target));
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    });
-  }, []);
+  const nav = [
+    ["inicio", t(lang, "nav_home")],
+    ["mobile", t(lang, "nav_mobile")],
+    ["windows", t(lang, "nav_windows")],
+    ["apps", t(lang, "nav_projects")],
+    ["habilidades", t(lang, "nav_skills")],
+  ];
+  const stats = [
+    [projects.filter((p) => p.type === "mobile").length, t(lang, "stat_mobile")],
+    [projects.filter((p) => p.type === "desktop").length, t(lang, "stat_desktop")],
+    [projects.filter((p) => p.type === "web").length, t(lang, "stat_web")],
+    [projects.length, t(lang, "stat_total")],
+  ] as const;
 
   return (
     <LangContext.Provider value={{ lang, setLang }}>
-      <div className="min-h-screen bg-[#02020a] text-[#f4f1ff] relative">
-        {/* Galactic Background - mejora sutil manteniendo estrellas */}
-        <div className="fixed inset-0 pointer-events-none">
-          {/* Estrellas base con parpadeo muy sutil (siempre visibles) */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 12% 18%, rgba(255,255,255,0.92) 0 1px, transparent 1.5px), radial-gradient(circle at 62% 8%, rgba(180,210,255,0.78) 0 1px, transparent 1.5px), radial-gradient(circle at 42% 62%, rgba(255,255,255,0.72) 0 1px, transparent 1.5px)`,
-            backgroundSize: "260px 260px, 340px 340px, 420px 420px",
-            opacity: 0.42,
-            animation: "twinkleSubtle 7s ease-in-out infinite alternate"
-          }} />
-          {/* Nebulosas suaves - no tapan estrellas */}
-          <div className="absolute -top-[210px] -right-[200px] w-[720px] h-[720px] rounded-full blur-[85px] opacity-[0.26]" style={{ background: "radial-gradient(circle, #7e5cff 0%, #6f4cff 30%, #8b6cff 50%, transparent 70%)" }} />
-          <div className="absolute -bottom-[180px] -left-[160px] w-[560px] h-[560px] rounded-full blur-[90px] opacity-[0.09]" style={{ background: "radial-gradient(circle, #ff63b8 0%, #d66bff 35%, transparent 68%)" }} />
-          <div className="absolute top-[48%] left-[50%] -translate-x-1/2 w-[520px] h-[520px] rounded-full blur-[80px] opacity-[0.05]" style={{ background: "radial-gradient(circle, #54dcff 0%, transparent 70%)" }} />
-          {/* Vignette suave para profundidad */}
-          <div className="absolute inset-0 opacity-60" style={{ background: "radial-gradient(ellipse at center, transparent 62%, rgba(2,2,10,0.55) 92%)" }} />
+      <MotionConfig reducedMotion="user">
+        <div className="portfolio-shell galaxy-shell">
+          <a href="#main" className="skip-link">{t(lang, "skip")}</a>
+          <div className="ambient-background galaxy-background" aria-hidden="true" />
+          <header className="site-header observatory-header">
+            <a className="brand" href="#inicio" aria-label="Francisco Guzmán"><span className="brand-symbol">fg<span>.</span></span><span className="brand-caption">ORBITAL<br />PORTFOLIO</span></a>
+            <nav id="navigation" aria-label={t(lang, "nav_label")} className={`site-nav ${navOpen ? "is-open" : ""}`}>
+              {nav.map(([id, label]) => <a href={`#${id}`} key={id} onClick={() => setNavOpen(false)}>{label}</a>)}
+              <a href="#contacto" className="nav-contact" onClick={() => setNavOpen(false)}>{t(lang, "nav_contact")}<ArrowUpRight size={15} /></a>
+            </nav>
+            <div className="nav-actions">
+              <label className="language-select" aria-label={t(lang, "lang_label")}>
+                <Globe size={15} />
+                <select value={lang} onChange={(event) => setLang(event.target.value as Lang)}>
+                  {languages.map((language) => <option key={language.code} value={language.code}>{language.short} · {language.label}</option>)}
+                </select>
+              </label>
+              <button className="menu-button" onClick={() => setNavOpen(!navOpen)} aria-controls="navigation" aria-expanded={navOpen} aria-label={t(lang, "menu_label")}>{navOpen ? <X /> : <Menu />}</button>
+            </div>
+          </header>
+          <main id="main">
+            <section id="inicio" className="hero-section orbital-hero">
+              <div className="hero-copy">
+                <span className="eyebrow hero-eyebrow"><span className="status-dot" />{t(lang, "hero_badge")}</span>
+                <p className="hero-intro">{t(lang, "hero_intro")}</p>
+                <h1>{t(lang, "hero_title_a")}<br /><span className="gradient-text">{t(lang, "hero_title_b")}</span></h1>
+                <p className="hero-description">{t(lang, "hero_desc")}</p>
+                <div className="hero-actions"><a className="button button-primary" href="#mobile">{t(lang, "hero_primary")}<ArrowUpRight size={18} /></a><a className="button button-secondary" href="#contacto">{t(lang, "hero_secondary")}<Mail size={17} /></a></div>
+                <div className="hero-stack"><span>Kotlin</span><i /> <span>Jetpack Compose</span><i /><span>React</span><i /><span>Vite</span><i /><span>Web</span></div>
+              </div>
+              <div className="hero-art space-observatory" aria-label="Digital observatory">
+                <div className="star-orbit orbit-a" /><div className="star-orbit orbit-b" /><div className="star-orbit orbit-c" />
+                <div className="planet-core"><span /></div>
+                <div className="art-coordinate">FG — STAR MAP<br />33° S / 70° W</div>
+                <div className="code-window telescope-window"><div className="window-bar"><span /><span /><span /><small>stellar-map.ts</small></div><div className="code-body"><span className="code-comment">// {t(lang, "hero_comment")}</span><p><b>const</b> observatory = {"{"}</p><p className="code-indent">pilot: <em>"Francisco"</em>,</p><p className="code-indent">orbit: [<em>"Android"</em>, <em>"Web"</em>],</p><p className="code-indent">identity: <strong>"space"</strong></p><p>{"}"};</p><div className="code-result"><span className="status-dot" />{t(lang, "hero_ready")}</div></div></div>
+                <a href="#mobile" className="floating-label label-android"><Satellite size={20} /><span>Satellites<span>{t(lang, "hero_android_sub")}</span></span><ArrowUpRight size={16} /></a>
+                <a href="#apps" className="floating-label label-web"><Code2 size={20} /><span>Nebula<span>{t(lang, "hero_web_sub")}</span></span><ArrowUpRight size={16} /></a>
+                <span className="art-bottom">{t(lang, "art_bottom")}</span>
+              </div>
+              <div className="hero-bottom"><a href="#mobile" className="scroll-cue"><ArrowDown size={16} />{t(lang, "hero_scroll")}</a><div className="hero-stats">{stats.map(([count, label]) => <div key={label}><strong>{String(count).padStart(2, "0")}</strong><span>{label}</span></div>)}</div></div>
+            </section>
+            <MobileShowcase lang={lang} />
+            <WindowsShowcase lang={lang} />
+            <NebulaMap lang={lang} />
+            <section id="habilidades" className="section expertise-section space-section">
+              <div className="editorial-heading"><div><span className="eyebrow">{t(lang, "skills_kicker")}</span><h2>{t(lang, "skills_title_a")}<br /><span className="gradient-text">{t(lang, "skills_title_b")}</span></h2></div><p>{t(lang, "skills_desc")}</p></div>
+              <div className="expertise-grid">{[
+                { Icon: Smartphone, title: "Android", text: t(lang, "skill_android"), tech: ["Kotlin", "Jetpack Compose", "Android SDK", "Room", "Firebase"] },
+                { Icon: Code2, title: "Frontend", text: t(lang, "skill_frontend"), tech: ["React", "Next.js", "JavaScript", "HTML & CSS", "Tailwind CSS"] },
+                { Icon: Layers, title: "Backend", text: t(lang, "skill_backend"), tech: ["Python", "Django", "FastAPI", "PHP", "MySQL"] },
+              ].map(({ Icon, title, text, tech }, i) => <article className="expertise-card" key={title}><div className="expertise-top"><Icon size={24} /><span>0{i + 1}</span></div><h3>{title}</h3><p>{text}</p><div className="expertise-tags">{tech.map(item => <span key={item}>{item}</span>)}</div></article>)}</div>
+            </section>
+            <section id="contacto" className="section contact-section"><div className="contact-panel command-panel"><div className="contact-grid"><div className="contact-intro"><span className="eyebrow">{t(lang, "contact_kicker")}</span><h2>{t(lang, "contact_title_a")}<br /><span className="gradient-text">{t(lang, "contact_title_b")}</span></h2><p>{t(lang, "contact_desc")}</p></div><div className="contact-rail"><a className="contact-email" href="mailto:familiazv2016@gmail.com"><span className="ce-icon"><Mail size={19} /></span><span className="ce-text"><small>{t(lang, "contact_email_label")}</small><strong>familiazv2016@gmail.com</strong></span><ArrowUpRight size={18} /></a><span className="contact-or">{t(lang, "contact_or_label")}</span><div className="contact-links"><a href="https://github.com/fguzman-stack" target="_blank" rel="noopener noreferrer"><Github size={16} /><span>GitHub</span></a><a href="https://www.linkedin.com/in/francisco-guzm%C3%A1n-745b5b372/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span></a><a href="https://api.whatsapp.com/send?phone=56939439403" target="_blank" rel="noopener noreferrer"><MessageCircle size={16} /><span>WhatsApp</span></a></div></div></div></div></section>
+          </main>
+          <footer className="site-footer"><a className="brand-symbol" href="#inicio">fg<span>.</span></a><p>© {new Date().getFullYear()} Francisco Guzmán <span>· {t(lang, "footer_text")}</span></p><a href="#inicio">{t(lang, "back_top")} ↑</a></footer>
         </div>
-
-        {/* Navbar */}
-        <nav className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-300 ${scrolled ? "py-3 bg-[rgba(3,3,12,0.72)] border-b border-[rgba(151,127,255,0.16)] backdrop-blur-[20px] shadow-[0_12px_30px_rgba(0,0,0,0.2)]" : "py-4 bg-transparent border-transparent"}`}>
-          <div className="max-w-[1200px] mx-auto flex items-center justify-between px-5">
-            <a href="#" className="font-['Orbitron'] text-[1.28rem] font-black tracking-tighter bg-gradient-to-r from-[#8b6cff] via-[#d66bff] to-[#ff78ae] bg-clip-text text-transparent">{"<FG />"}</a>
-            <div className={`flex items-center gap-1 max-[768px]:absolute max-[768px]:top-[calc(100%+8px)] max-[768px]:inset-x-4 max-[768px]:flex-col max-[768px]:p-3 max-[768px]:bg-[rgba(9,8,29,0.93)] max-[768px]:border max-[768px]:border-white/10 max-[768px]:rounded-[18px] ${navOpen ? "max-[768px]:flex" : "max-[768px]:hidden"} md:flex`}>
-              <a href="#inicio" className="px-3.5 py-2 rounded-[9px] text-sm font-semibold text-[#b8b1d0] hover:text-white hover:bg-[rgba(142,108,255,0.12)]">{t(lang, "nav_inicio")}</a>
-              <a href="#apps" className="px-3.5 py-2 rounded-[9px] text-sm font-semibold text-[#b8b1d0] hover:text-white hover:bg-[rgba(142,108,255,0.12)]">{t(lang, "nav_apps")}</a>
-              <a href="#habilidades" className="px-3.5 py-2 rounded-[9px] text-sm font-semibold text-[#b8b1d0] hover:text-white hover:bg-[rgba(142,108,255,0.12)]">{t(lang, "nav_habilidades")}</a>
-              <a href="#contacto" className="px-3.5 py-2 rounded-[9px] text-sm font-semibold text-[#b8b1d0] hover:text-white hover:bg-[rgba(142,108,255,0.12)]">{t(lang, "nav_contacto")}</a>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-[9px] bg-white/[0.035] border border-white/10 text-sm text-[#b8b1d0] hover:text-white">
-                  <Globe className="w-3.5 h-3.5" /> {lang.toUpperCase()} ▾
-                </button>
-                {langOpen && (
-                  <div className="absolute top-[calc(100%+10px)] right-0 w-[205px] p-1.5 bg-[rgba(9,8,29,0.9)] border border-white/10 rounded-[14px] shadow-xl backdrop-blur-xl max-h-[320px] overflow-y-auto z-50">
-                    {[
-                      ["es","Español"],["en","English"],
-                    ].map(([code, label]) => (
-                      <button key={code} onClick={() => { setLang(code as Lang); setLangOpen(false); }} className="w-full text-left px-3 py-2 rounded-[8px] text-sm text-[#b8b1d0] hover:text-white hover:bg-[rgba(142,108,255,0.12)]">{label}</button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <button onClick={() => setNavOpen(!navOpen)} className="hidden max-[768px]:flex flex-col gap-[5px] p-1.5">
-                <span className="w-[22px] h-[2px] bg-white rounded-full" /><span className="w-[22px] h-[2px] bg-white rounded-full" /><span className="w-[22px] h-[2px] bg-white rounded-full" />
-              </button>
-            </div>
-          </div>
-        </nav>
-
-        {/* Hero */}
-        <section id="inicio" className="relative z-10 min-h-screen flex items-center justify-center px-5 pt-[100px] pb-20 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="absolute w-[140px] h-[1px] opacity-0 bg-gradient-to-r from-transparent via-white/90 to-white rounded-full" style={{
-                top: `${10 + Math.random()*60}%`,
-                left: `${10 + Math.random()*80}%`,
-                animation: `shoot ${3+Math.random()*4}s linear infinite`,
-                animationDelay: `${Math.random()*12}s`,
-                transform: "rotate(-32deg)",
-              }} />
-            ))}
-          </div>
-          <div className="relative z-10 max-w-[830px] mx-auto text-center w-full">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 px-[19px] py-[9px] rounded-full bg-[rgba(142,108,255,0.11)] border border-[rgba(177,142,255,0.26)] text-[#c4b5fd] text-sm font-semibold mb-6">
-              <Rocket className="w-4 h-4 text-[#c4b5fd]" /> {t(lang, "hero_badge")}
-            </motion.div>
-            <motion.h1 initial={{ opacity: 0, y: 28, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.9, ease: [0.16,0.85,0.3,1] }} className="font-['Orbitron'] text-[clamp(2.3rem,7vw,4.4rem)] font-black leading-[1.14] tracking-tighter mb-5 bg-gradient-to-r from-[#6f4cff] via-[#b37aff] via-[#ff88c0] to-[#54dcff] bg-clip-text text-transparent">
-              Francisco Guzmán
-            </motion.h1>
-            <p className="max-w-[620px] mx-auto text-[#b8b1d0] text-[clamp(1rem,2vw,1.22rem)] leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t(lang, "hero_sub") }} />
-            <div className="flex flex-wrap gap-4 justify-center mb-12">
-              <a href="#apps" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[13px] bg-gradient-to-r from-[#8b6cff] via-[#d66bff] to-[#ff78ae] text-white font-bold shadow-[0_8px_24px_rgba(126,91,255,0.28)] hover:translate-y-[-3px] transition-transform">
-                <Rocket className="w-4 h-4" /> {t(lang, "hero_btn_apps")}
-              </a>
-              <a href="#contacto" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[13px] bg-white/[0.025] border border-[rgba(192,175,255,0.22)] text-white font-bold hover:bg-[rgba(140,106,255,0.1)]">
-                <Mail className="w-4 h-4" /> {t(lang, "hero_btn_contacto")}
-              </a>
-            </div>
-            <div className="flex flex-wrap gap-6 sm:gap-10 justify-center mx-auto w-fit max-w-full px-2">
-              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="3">3</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_apps")}</span></div>
-              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="16">16</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_proyectos")}</span></div>
-              <div className="text-center min-w-[80px] flex-1 sm:flex-none"><span className="stat-number block font-['Orbitron'] text-[2.2rem] sm:text-[2.5rem] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent" data-count="13">13</span><span className="text-[0.78rem] sm:text-[0.83rem] text-[#817a9e]">{t(lang,"stat_web")}</span></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Nebula Map 2.0 */}
-        <NebulaMap lang={lang} />
-
-        {/* Habilidades */}
-        <section id="habilidades" className="max-w-[1200px] mx-auto px-5 py-[110px]">
-          <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[rgba(142,108,255,0.1)] border border-[rgba(167,137,255,0.24)] text-[#c4b5fd] text-xs font-bold uppercase tracking-widest">{t(lang,"hab_label")}</span>
-            <h2 className="font-['Orbitron'] text-[clamp(2rem,5vw,3.2rem)] font-extrabold tracking-tight mt-3" dangerouslySetInnerHTML={{ __html: t(lang,"hab_title") }} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { title: t(lang,"cat_mobile"), items: [["Kotlin","#7F52FF", Code2],["Jetpack Compose","#4285F4", Layers],["Android SDK","#FF6F00", Smartphone],["Room DB","#02569B", Database],["Firebase","#FFCA28", Flame]] as [string,string, typeof Code2][], },
-              { title: t(lang,"cat_frontend"), items: [["HTML5","#E44D26", Code2],["CSS3 / Tailwind","#1572B6", Palette],["JavaScript","#F7DF1E", FileCode],["React","#61DAFB", Atom],["Next.js","#000000", Globe]] as [string,string, typeof Code2][], },
-              { title: t(lang,"cat_backend"), items: [["PHP","#777BB4", Braces],["Python","#3776AB", Terminal],["Django","#092E20", Server],["FastAPI","#009688", Zap],["MySQL","#4479A1", Database]] as [string,string, typeof Code2][], },
-            ].map((cat) => (
-              <div key={cat.title} className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-[rgba(151,127,255,0.16)] backdrop-blur-xl">
-                <h3 className="font-['Orbitron'] font-extrabold mb-5 flex items-center gap-2"><Cpu className="w-4 h-4 text-[#9b7bff]" />{cat.title}</h3>
-                <div className="flex flex-col gap-2.5">
-                  {cat.items.map(([name, color, Icon]) => (
-                    <div key={name} className="flex items-center gap-3 p-3 rounded-[11px] bg-white/[0.025] border border-transparent hover:border-white/10 hover:bg-[rgba(142,108,255,0.09)] transition-colors">
-                      <div className="w-9 h-9 rounded-[9px] flex items-center justify-center text-white" style={{ background: color as string }}><Icon className="w-4 h-4" /></div>
-                      <span className="flex-1 text-sm font-semibold">{name}</span>
-                      <span className="text-xs px-2 py-1 rounded-[6px] bg-[rgba(142,108,255,0.12)] border border-white/10 text-[#c4b5fd]">{t(lang,"nivel_av")}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contacto */}
-        <section id="contacto" className="max-w-[660px] mx-auto px-5 py-[110px] text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[rgba(142,108,255,0.1)] border border-white/10 text-[#c4b5fd] text-xs font-bold uppercase tracking-widest">{t(lang,"cont_label")}</span>
-          <h2 className="font-['Orbitron'] text-[clamp(2rem,5vw,3.2rem)] font-extrabold tracking-tight mt-3" dangerouslySetInnerHTML={{ __html: t(lang,"cont_title") }} />
-          <p className="text-[#b8b1d0] mt-3 mb-8">{t(lang,"cont_desc")}</p>
-          <div className="grid grid-cols-2 max-[460px]:grid-cols-1 gap-4">
-            <a href="https://github.com/fguzman-stack" target="_blank" rel="noopener" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="flex justify-center mb-2"><GitBranch className="w-6 h-6 text-white/90" /></div><div className="font-bold">GitHub</div><div className="text-sm text-white/50">fguzman-stack</div>
-            </a>
-            <a href="https://linkedin.com/in/fguzman-stack" target="_blank" rel="noopener" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="flex justify-center mb-2"><Briefcase className="w-6 h-6 text-white/90" /></div><div className="font-bold">LinkedIn</div><div className="text-sm text-white/50">fguzman-stack</div>
-            </a>
-            <a href="mailto:familiazv2016@gmail.com" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="flex justify-center mb-2"><Mail className="w-6 h-6 text-white/90" /></div><div className="font-bold">{t(lang,"cont_email_tit")}</div><div className="text-sm text-white/50">familiazv2016@gmail.com</div>
-            </a>
-            <a href="https://wa.me/56939439403" target="_blank" rel="noopener" className="p-7 rounded-[18px] bg-[rgba(14,14,37,0.76)] border border-white/10 backdrop-blur-xl hover:-translate-y-1 transition-transform">
-              <div className="flex justify-center mb-2"><MessageCircle className="w-6 h-6 text-white/90" /></div><div className="font-bold">{t(lang,"cont_phone_tit")}</div><div className="text-sm text-white/50">+56 9 3943 9403</div>
-            </a>
-          </div>
-        </section>
-
-        <footer className="text-center py-12 border-t border-white/10">
-          <div className="font-['Orbitron'] font-black bg-gradient-to-r from-[#8b6cff] to-[#ff78ae] bg-clip-text text-transparent">{"<FG />"}</div>
-          <p className="text-sm text-white/40 mt-2">{t(lang,"footer_text")}</p>
-        </footer>
-      </div>
+      </MotionConfig>
     </LangContext.Provider>
   );
 }
