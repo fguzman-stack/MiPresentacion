@@ -43,7 +43,7 @@ export const projects: Project[] = [
   {
     id: "despensa-al-dia", name: "Despensa al Día", type: "mobile", constellation: "satellites",
     taglineES: "Gestión inteligente de despensa que combate el desperdicio de alimentos.", taglineEN: "Smart pantry management that fights food waste.", taglinePT: "Gestão inteligente de despensa que combate o desperdício de alimentos.", taglineFR: "Gestion intelligente du garde-manger qui lutte contre le gaspillage alimentaire.",
-    url: "https://github.com/fguzman-stack", tech: ["Kotlin", "Jetpack Compose", "Room", "ML Kit", "CameraX"], color: "#4ade80", color2: "#22c55e", preview: "linear-gradient(135deg, #14532d, #052e16)",
+    url: "https://github.com/fguzman-stack/Despensadeldia", tech: ["Kotlin", "Jetpack Compose", "Room", "ML Kit", "CameraX"], color: "#4ade80", color2: "#22c55e", preview: "linear-gradient(135deg, #14532d, #052e16)",
     feature: "Escáner de códigos · Recetas IA · Estadísticas · Widget", featureEN: "Barcode scanner · AI recipes · Statistics · Widget", featurePT: "Scanner de código · Receitas IA · Estatísticas · Widget", featureFR: "Scanner de codes · Recettes IA · Statistiques · Widget",
     descriptionES: "Asistente inteligente de inventario que agrupa productos por urgencia, muestra el valor económico en riesgo y te ayuda a consumir antes de que venza. Escáner de códigos con ML Kit, recetas con ingredientes que expiran y estadísticas mensuales.",
     descriptionEN: "Smart inventory assistant that groups products by urgency, shows economic value at risk and helps you consume before expiration. Barcode scanner with ML Kit, recipes with expiring ingredients and monthly statistics.",
@@ -54,7 +54,8 @@ export const projects: Project[] = [
     highlightsPT: ["Scanner de código ML Kit + CameraX", "Receitas priorizando ingredientes que expiram", "Estatísticas mensais com gráfico donut", "Widget de tela inicial com produtos urgentes"],
     highlightsFR: ["Scanner de codes ML Kit + CameraX", "Recettes priorisant les ingrédients qui expirent", "Statistiques mensuelles avec graphique donut", "Widget d'écran d'accueil avec produits urgents"],
     screenshot: "images/gallery/despensa-01-usa-primero.png",
-    screenshots: ["images/gallery/despensa-01-usa-primero.png", "images/gallery/despensa-02-inventario.png", "images/gallery/despensa-03-estadisticas.png", "images/gallery/despensa-04-ajustes.png"]
+    screenshots: ["images/gallery/despensa-01-usa-primero.png", "images/gallery/despensa-02-inventario.png", "images/gallery/despensa-03-estadisticas.png", "images/gallery/despensa-04-ajustes.png"],
+    downloadUrl: "https://github.com/fguzman-stack/Despensadeldia/releases/latest"
   },
   {
     id: "documind", name: "DocuMind AI", type: "desktop", constellation: "desktop-apps",

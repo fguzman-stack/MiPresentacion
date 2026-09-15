@@ -102,7 +102,7 @@ export function NebulaMap({ lang }: { lang: Lang }) {
           </div>
           <p style="font-size:0.9rem;color:#b9bdd0;line-height:1.7">${projectDescription(p, lang)}</p>
           <p style="margin:18px 0;color:#d0c5ff">${projectFeature(p, lang)}</p>
-          ${p.id === "codepet" ? `<div class="feature-links"><a class="button button-primary" href="${p.url}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>${p.downloadUrl ? `<a class="text-link" href="${p.downloadUrl}" target="_blank" rel="noopener noreferrer">${t(lang, "mobile_releases")} ↗</a>` : ""}</div>` : ""}
+          ${p.url.includes("github.com") ? `<div class="feature-links"><a class="button button-primary" href="${p.url}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>${p.downloadUrl ? `<a class="text-link" href="${p.downloadUrl}" target="_blank" rel="noopener noreferrer">${t(lang, "mobile_releases")} ↗</a>` : ""}</div>` : ""}
         </div>
       `,
       showCancelButton: false,

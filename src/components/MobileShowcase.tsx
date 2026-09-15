@@ -97,8 +97,11 @@ export function MobileShowcase({ lang }: { lang: Lang }) {
                 <div className="card-tech">{p.tech.map(tech => <span className="tech-tag" key={tech}>{tech}</span>)}</div>
                 <div className="feature-links">
                   <button className="button button-primary" type="button" onClick={() => showScreenshots(p, lang)}>{screenshotsLabel(lang)}<Images size={16} /></button>
-                  {p.id === "codepet" && (
-                    <a className="button button-secondary" href={p.url} target="_blank" rel="noopener noreferrer" aria-label="CodePet GitHub"><Github size={16} />GitHub<ArrowUpRight size={15} /></a>
+                  {p.url.includes("github.com") && (
+                    <a className="button button-secondary" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} GitHub`}><Github size={16} />GitHub<ArrowUpRight size={15} /></a>
+                  )}
+                  {p.downloadUrl && (
+                    <a className="button button-secondary" href={p.downloadUrl} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} releases`}>{t(lang, "mobile_releases")}<ArrowUpRight size={15} /></a>
                   )}
                 </div>
               </div>
