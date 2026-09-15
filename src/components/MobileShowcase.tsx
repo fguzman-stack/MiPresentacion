@@ -100,9 +100,6 @@ export function MobileShowcase({ lang }: { lang: Lang }) {
                   {p.url.includes("github.com") && (
                     <a className="button button-secondary" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} GitHub`}><Github size={16} />GitHub<ArrowUpRight size={15} /></a>
                   )}
-                  {p.downloadUrl && (
-                    <a className="button button-secondary" href={p.downloadUrl} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} releases`}>{t(lang, "mobile_releases")}<ArrowUpRight size={15} /></a>
-                  )}
                 </div>
               </div>
             </article>

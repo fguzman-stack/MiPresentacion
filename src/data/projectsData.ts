@@ -54,8 +54,7 @@ export const projects: Project[] = [
     highlightsPT: ["Scanner de código ML Kit + CameraX", "Receitas priorizando ingredientes que expiram", "Estatísticas mensais com gráfico donut", "Widget de tela inicial com produtos urgentes"],
     highlightsFR: ["Scanner de codes ML Kit + CameraX", "Recettes priorisant les ingrédients qui expirent", "Statistiques mensuelles avec graphique donut", "Widget d'écran d'accueil avec produits urgents"],
     screenshot: "images/gallery/despensa-01-usa-primero.png",
-    screenshots: ["images/gallery/despensa-01-usa-primero.png", "images/gallery/despensa-02-inventario.png", "images/gallery/despensa-03-estadisticas.png", "images/gallery/despensa-04-ajustes.png"],
-    downloadUrl: "https://github.com/fguzman-stack/Despensadeldia/releases/latest"
+    screenshots: ["images/gallery/despensa-01-usa-primero.png", "images/gallery/despensa-02-inventario.png", "images/gallery/despensa-03-estadisticas.png", "images/gallery/despensa-04-ajustes.png"]
   },
   {
     id: "documind", name: "DocuMind AI", type: "desktop", constellation: "desktop-apps",
