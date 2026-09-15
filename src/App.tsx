@@ -52,6 +52,7 @@ export default function App() {
 
   const nav = [
     ["inicio", t(lang, "nav_home")],
+    ["servicios", lang === "en" ? "Services" : "Servicios"],
     ["mobile", t(lang, "nav_mobile")],
     ["windows", t(lang, "nav_windows")],
     ["apps", t(lang, "nav_projects")],
@@ -99,7 +100,7 @@ export default function App() {
               <div className="hero-art space-observatory" aria-label="Digital observatory">
                 <div className="star-orbit orbit-a" /><div className="star-orbit orbit-b" /><div className="star-orbit orbit-c" />
                 <div className="planet-core"><span /></div>
-                <div className="art-coordinate">FG — STAR MAP<br />33° S / 70° W</div>
+                <div className="art-coordinate">FG — STAR MAP<br />CHILE · LATINOAMÉRICA</div>
                 <div className="code-window telescope-window"><div className="window-bar"><span /><span /><span /><small>stellar-map.ts</small></div><div className="code-body"><span className="code-comment">// {t(lang, "hero_comment")}</span><p><b>const</b> observatory = {"{"}</p><p className="code-indent">pilot: <em>"Francisco"</em>,</p><p className="code-indent">orbit: [<em>"Android"</em>, <em>"Web"</em>],</p><p className="code-indent">identity: <strong>"space"</strong></p><p>{"}"};</p><div className="code-result"><span className="status-dot" />{t(lang, "hero_ready")}</div></div></div>
                 <a href="#mobile" className="floating-label label-android"><Satellite size={20} /><span>Satellites<span>{t(lang, "hero_android_sub")}</span></span><ArrowUpRight size={16} /></a>
                 <a href="#apps" className="floating-label label-web"><Code2 size={20} /><span>Nebula<span>{t(lang, "hero_web_sub")}</span></span><ArrowUpRight size={16} /></a>
@@ -109,6 +110,16 @@ export default function App() {
             </section>
             <MobileShowcase lang={lang} />
             <WindowsShowcase lang={lang} />
+            <section id="servicios" className="section expertise-section space-section">
+              <div className="editorial-heading"><div><span className="eyebrow">SERVICIOS</span><h2>Desarrollo de software para tu proyecto<br /><span className="gradient-text">Android · Web · PC · Automatización</span></h2></div><p>Servicios de programación a medida para emprendedores y empresas en Chile y Latinoamérica. Trabajo 100% remoto.</p></div>
+              <div className="expertise-grid">{[
+                { Icon: Smartphone, title: "Apps móviles Android", text: "Desarrollo de aplicaciones Android nativas con Kotlin y Jetpack Compose: catálogos, inventario, reservas, puntos de venta y apps offline con diseño moderno.", tech: ["Android", "Kotlin", "Jetpack Compose", "App móvil"] },
+                { Icon: Globe, title: "Desarrollo web", text: "Sitios y aplicaciones web rápidas y responsivas: landing pages, dashboards, e-commerce y portales con SEO y buen rendimiento.", tech: ["React", "Vite", "JavaScript", "HTML & CSS", "SEO"] },
+                { Icon: Code2, title: "Software de escritorio (PC)", text: "Programas para PC y Windows: herramientas internas, gestión, productividad y apps de IA local empaquetadas para instalar.", tech: ["Windows", "Tauri", "Rust", "Software PC"] },
+                { Icon: Layers, title: "Automatización e integraciones", text: "Automatizo tareas repetitivas, conecto APIs y genero reportes para ahorrar tiempo y reducir errores operativos.", tech: ["Python", "APIs", "Automatización", "Scripts"] },
+              ].map(({ Icon, title, text, tech }, i) => <article className="expertise-card" key={title}><div className="expertise-top"><Icon size={24} /><span>0{i + 1}</span></div><h3>{title}</h3><p>{text}</p><div className="expertise-tags">{tech.map(item => <span key={item}>{item}</span>)}</div></article>)}</div>
+              <p className="section-note" style={{ marginTop: 20 }}>Desarrollador de software freelance disponible en remoto para clientes en Chile, Latinoamérica y cualquier país de habla hispana.</p>
+            </section>
             <NebulaMap lang={lang} />
             <section id="habilidades" className="section expertise-section space-section">
               <div className="editorial-heading"><div><span className="eyebrow">{t(lang, "skills_kicker")}</span><h2>{t(lang, "skills_title_a")}<br /><span className="gradient-text">{t(lang, "skills_title_b")}</span></h2></div><p>{t(lang, "skills_desc")}</p></div>
