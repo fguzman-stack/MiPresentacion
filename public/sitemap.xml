@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://miportafolio-fguz.vercel.app/</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://miportafolio-fguz.vercel.app/og-image.png</image:loc>
+      <image:title>Francisco Guzmán — Desarrollador de Software y Soluciones Digitales</image:title>
+      <image:caption>Portafolio de Francisco Guzmán: apps Android, desarrollo web, software Windows y automatización.</image:caption>
+    </image:image>
   </url>
 </urlset>
