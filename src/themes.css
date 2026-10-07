@@ -128,8 +128,10 @@ body, .galaxy-shell { background: var(--space-base); }
 .browser-dots i { width: 6px; height: 6px; border-radius: 50%; background: #fc8391; }
 .browser-dots i:nth-child(2) { background: #eac778; }
 .browser-dots i:nth-child(3) { background: #80d8b2; }
-.collaboration-image-link { display: block; background: #fff; }
-.collaboration-image-link img { display: block; width: 100%; height: auto; }
+.collaboration-frame-wrap { position: relative; aspect-ratio: 1597 / 785; background: #fff; overflow: hidden; }
+.collaboration-frame-wrap iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+.collaboration-image-link { display: block; width: 100%; height: 100%; background: #fff; }
+.collaboration-image-link img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .collaboration-preview figcaption { padding: 18px; }
 .collaboration-preview figcaption strong { display: block; font-size: 11px; color: var(--space-soft); }
 .collaboration-preview figcaption span { display: block; margin-top: 7px; font-size: 11px; line-height: 1.8; color: #aab6c8; }

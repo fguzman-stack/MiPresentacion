@@ -1,7 +1,21 @@
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Code2, Globe, ShieldCheck } from "lucide-react";
+import { useConnectionQuality } from "../hooks/useConnectionQuality";
 import { t, type Lang } from "../lib/i18n";
 
 export function Collaborations({ lang }: { lang: Lang }) {
+  const connectionQuality = useConnectionQuality();
+  const [iframeFailed, setIframeFailed] = useState(false);
+  const shouldTryLivePreview = connectionQuality !== "slow" && !iframeFailed;
+
+  useEffect(() => {
+    if (!shouldTryLivePreview) return;
+    const fallbackTimer = window.setTimeout(() => {
+      setIframeFailed(true);
+    }, 2600);
+    return () => window.clearTimeout(fallbackTimer);
+  }, [shouldTryLivePreview]);
+
   return (
     <section id="colaboraciones" className="section space-section collaborations-section" aria-labelledby="collaborations-title">
       <div className="editorial-heading">
@@ -26,9 +40,21 @@ export function Collaborations({ lang }: { lang: Lang }) {
         </div>
         <figure className="collaboration-preview">
           <div className="collaboration-browser"><span className="browser-dots" aria-hidden="true"><i /><i /><i /></span><span>clinicaveterinariafelycan.cl</span><Globe size={13} aria-hidden="true" /></div>
-          <a className="collaboration-image-link" href="https://clinicaveterinariafelycan.cl/" target="_blank" rel="noopener noreferrer">
-            <img src="/images/felycan-preview.webp" srcSet="/images/felycan-preview-small.webp 800w, /images/felycan-preview.webp 1597w" sizes="(max-width: 1000px) calc(100vw - 48px), 650px" width="1597" height="785" alt={t(lang, "collab_alt")} loading="eager" decoding="async" />
-          </a>
+          <div className="collaboration-frame-wrap">
+            {shouldTryLivePreview ? (
+              <iframe
+                src="https://clinicaveterinariafelycan.cl/"
+                title="Clínica Veterinaria Felycan"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                onError={() => setIframeFailed(true)}
+              />
+            ) : (
+              <a className="collaboration-image-link" href="https://clinicaveterinariafelycan.cl/" target="_blank" rel="noopener noreferrer">
+                <img src="/images/felycan-preview.webp" srcSet="/images/felycan-preview-small.webp 800w, /images/felycan-preview.webp 1597w" sizes="(max-width: 1000px) calc(100vw - 48px), 650px" width="1597" height="785" alt={t(lang, "collab_alt")} loading="eager" decoding="async" />
+              </a>
+            )}
+          </div>
           <figcaption><strong>{t(lang, "collab_preview")}</strong><span>{t(lang, "collab_preview_note")}</span></figcaption>
         </figure>
       </article>
