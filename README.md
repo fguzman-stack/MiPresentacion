@@ -23,7 +23,15 @@ Construido con **React 19 + Vite 6 + Tailwind CSS 4 + TypeScript**. Con **carga 
 Personal portfolio showcasing **3 native Android apps, 13 web systems/templates and 2 Windows apps (in development)**.  
 Built with **React 19 + Vite 6 + Tailwind CSS 4 + TypeScript**. With **adaptive loading** and **ES/EN/PT/FR i18n**.
 
-> **Nota:** Todas las webs son **plantillas demo de portafolio**, no servicios reales. Las 3 apps móviles son proyectos nativos con Kotlin; las de Windows están en desarrollo activo.
+> **Experiencia profesional:** El sitio de **Clínica Veterinaria Felycan** es un proyecto real desarrollado y publicado para la empresa, mostrado con su autorización en la sección **Colaboraciones con empresas**. Las webs del mapa de constelaciones son plantillas demo. Las apps móviles son proyectos nativos con Kotlin; las de Windows están en desarrollo activo.
+
+### Colaboraciones, temas y página 404
+
+- **Felycan:** [clinicaveterinariafelycan.cl](https://clinicaveterinariafelycan.cl/), con captura local responsive generada desde `felycan.png`. El sitio de la clínica bloquea iframes mediante `frame-ancestors 'none'`, por lo que la vista previa usa imágenes WebP ligeras para cualquier conexión.
+- Para actualizar las capturas: `node scripts/optimize-felycan.mjs` desde la raíz.
+- **Selector de temas:** icono de pincel junto al idioma, con cinco paletas oscuras espaciales: Morado (predeterminada), Verde, Rojo, Celeste y Supernova (dorado/naranja eléctrico). La preferencia se guarda en `localStorage` bajo `space-theme` y se comparte con la página 404.
+- **404 independiente:** `404.html` tiene su propia entrada React (`src/notfound.tsx`) y se genera en `dist/404.html`. `vercel.json` sirve los archivos existentes y responde con esta página y estado HTTP 404 para las rutas inexistentes. En desarrollo, la app también muestra la pantalla 404 para rutas desconocidas.
+- La nueva sección, el selector y los mensajes de error están traducidos a ES/EN/PT/FR.
 
 ---
 

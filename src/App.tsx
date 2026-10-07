@@ -4,6 +4,8 @@ import Lenis from "lenis";
 import { ArrowDown, ArrowUpRight, Code2, GitBranch as Github, Globe, Layers, Mail, Menu, MessageCircle, Satellite, Smartphone, X } from "lucide-react";
 import { NebulaMap } from "./components/NebulaMap";
 import { MobileShowcase, WindowsShowcase } from "./components/MobileShowcase";
+import { Collaborations } from "./components/Collaborations";
+import { ThemePicker } from "./components/ThemePicker";
 import { projects } from "./data/projectsData";
 import { LangContext, languages, t, type Lang } from "./lib/i18n";
 
@@ -52,6 +54,7 @@ export default function App() {
 
   const nav = [
     ["inicio", t(lang, "nav_home")],
+    ["colaboraciones", t(lang, "nav_collaborations")],
     ["servicios", lang === "en" ? "Services" : "Servicios"],
     ["mobile", t(lang, "nav_mobile")],
     ["windows", t(lang, "nav_windows")],
@@ -84,6 +87,7 @@ export default function App() {
                   {languages.map((language) => <option key={language.code} value={language.code}>{language.short} · {language.label}</option>)}
                 </select>
               </label>
+              <ThemePicker lang={lang} />
               <button className="menu-button" onClick={() => setNavOpen(!navOpen)} aria-controls="navigation" aria-expanded={navOpen} aria-label={t(lang, "menu_label")}>{navOpen ? <X /> : <Menu />}</button>
             </div>
           </header>
@@ -108,6 +112,7 @@ export default function App() {
               </div>
               <div className="hero-bottom"><a href="#mobile" className="scroll-cue"><ArrowDown size={16} />{t(lang, "hero_scroll")}</a><div className="hero-stats">{stats.map(([count, label]) => <div key={label}><strong>{String(count).padStart(2, "0")}</strong><span>{label}</span></div>)}</div></div>
             </section>
+            <Collaborations lang={lang} />
             <MobileShowcase lang={lang} />
             <WindowsShowcase lang={lang} />
             <section id="servicios" className="section expertise-section space-section">

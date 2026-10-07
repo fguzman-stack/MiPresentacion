@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { experienceCopy } from "./experienceCopy";
 
 export type Lang = "es" | "en" | "pt" | "fr";
 export const defaultLang: Lang = "es";
@@ -54,7 +55,7 @@ const translations: Record<Lang, Record<string, string>> = {
 };
 
 export function t(lang: Lang, key: string): string {
-  return translations[lang]?.[key] ?? translations[defaultLang][key] ?? key;
+  return experienceCopy[lang]?.[key] ?? translations[lang]?.[key] ?? experienceCopy[defaultLang][key] ?? translations[defaultLang][key] ?? key;
 }
 
 export function getProjectI18n(project: { taglineES: string; taglineEN: string; taglinePT?: string; taglineFR?: string }, lang: Lang) {

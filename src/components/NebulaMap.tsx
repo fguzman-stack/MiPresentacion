@@ -210,7 +210,7 @@ export function NebulaMap({ lang }: { lang: Lang }) {
             {t(lang, "showing")} {Math.min(visibleCount, filtered.length)} {t(lang, "of")} {filtered.length} {t(lang, "projects")}
           </p>
           {canLoadMore && (
-            <div className="relative group p-[1.5px] rounded-full bg-gradient-to-r from-[#8b6cff] via-[#d66bff] to-[#54dcff] shadow-[0_0_30px_rgba(139,108,255,0.25)] hover:shadow-[0_0_45px_rgba(139,108,255,0.45)] transition-all duration-300 hover:scale-[1.02]">
+            <div className="galaxy-load-more relative group p-[1.5px] rounded-full bg-gradient-to-r from-[#8b6cff] via-[#d66bff] to-[#54dcff] shadow-[0_0_30px_rgba(139,108,255,0.25)] hover:shadow-[0_0_45px_rgba(139,108,255,0.45)] transition-all duration-300 hover:scale-[1.02]">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#8b6cff]/20 to-[#54dcff]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
               <button
                 onClick={() => setVisibleCount((c) => Math.min(c + STEP, filtered.length))}

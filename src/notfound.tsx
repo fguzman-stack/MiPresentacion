@@ -1,13 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import NotFound from "./components/NotFound";
 import "./index.css";
 import "./portfolio.css";
 import "./themes.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    {window.location.pathname === "/" || window.location.pathname === "/index.html" ? <App /> : <NotFound />}
-  </React.StrictMode>
+  <React.StrictMode><NotFound /></React.StrictMode>,
 );
