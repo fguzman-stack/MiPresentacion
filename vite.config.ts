@@ -11,6 +11,10 @@ export default defineConfig({
       input: {
         main: 'index.html',
         notfound: '404.html',
+        services: 'servicios.html',
+        web: 'desarrollo-web-chile.html',
+        android: 'apps-android-kotlin-chile.html',
+        windows: 'software-windows.html',
       },
     },
   },

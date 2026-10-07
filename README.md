@@ -95,6 +95,9 @@ Perf      → WebP (88% ahorro) · Network Information API + fallback · Lazy + 
 - `title`, `description`, canonical y JSON-LD (`Person`) en `index.html`
 - OpenGraph + Twitter Card con imagen social 1200×630 (`public/og-image.png`)
 - `robots.txt` + `sitemap.xml` registrados en Google Search Console
+- Páginas SEO estáticas para intención de búsqueda: `/servicios.html`, `/desarrollo-web-chile.html`, `/apps-android-kotlin-chile.html` y `/software-windows.html`
+- Contenido HTML inicial en la home para que Google lea servicios, experiencia real y FAQ incluso antes de renderizar React
+- JSON-LD adicional de servicios y FAQPage para reforzar búsquedas por desarrollo web, apps Android Kotlin y software Windows en Chile
 
 ---
 
