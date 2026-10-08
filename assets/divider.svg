@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 24" width="1000" height="24" role="img" aria-label="Separador"><title>Separador</title><defs>
+<linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="#9B7BFF" stop-opacity="0"/><stop offset=".5" stop-color="#9B7BFF"/><stop offset="1" stop-color="#FF63B8" stop-opacity="0"/></linearGradient>
+<linearGradient id="s" x1="0" x2="1"><stop offset="0" stop-color="#D9C8FF" stop-opacity="0"/><stop offset=".5" stop-color="#D9C8FF"/><stop offset="1" stop-color="#D9C8FF" stop-opacity="0"/></linearGradient></defs>
+<rect x="0" y="11" width="1000" height="2" fill="url(#l)" opacity=".75"/>
+<rect x="-180" y="11" width="180" height="2" fill="url(#s)"><animateTransform attributeName="transform" type="translate" from="0 0" to="1180 0" dur="7s" repeatCount="indefinite"/></rect>
+<circle cx="500" cy="12" r="9" fill="#FF63B8" opacity=".18"><animate attributeName="opacity" values=".08;.3;.08" dur="3.4s" repeatCount="indefinite"/></circle>
+<path d="M500 1L503.6 8.4L511 12L503.6 15.6L500 23L496.4 15.6L489 12L496.4 8.4Z" fill="#E9E4FF"/></svg>

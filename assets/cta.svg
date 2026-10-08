@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 68" width="360" height="68" role="img" aria-label="Abrir el portafolio en vivo"><title>Abrir el portafolio en vivo</title><defs><linearGradient id="p" x1="0" x2="1"><stop offset="0" stop-color="#7C5CFF"/><stop offset="1" stop-color="#B84FD8"/></linearGradient>
+<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="b" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="6"/></filter>
+<clipPath id="c"><rect x="4" y="4" width="352" height="56" rx="28"/></clipPath></defs>
+<rect x="8" y="10" width="344" height="52" rx="26" fill="#9B7BFF" filter="url(#b)"><animate attributeName="opacity" values=".3;.65;.3" dur="3.2s" repeatCount="indefinite"/></rect>
+<rect x="4" y="4" width="352" height="56" rx="28" fill="url(#p)"/>
+<g clip-path="url(#c)"><g><animateTransform attributeName="transform" type="translate" from="-120 0" to="480 0" dur="4s" repeatCount="indefinite"/><rect x="0" y="0" width="70" height="64" fill="url(#sh)" transform="skewX(-20)"/></g></g>
+<text x="180" y="38" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="700" fill="#fff">Abrir el portafolio en vivo</text></svg>
