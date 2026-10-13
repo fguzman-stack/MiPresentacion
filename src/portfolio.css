@@ -100,6 +100,12 @@ section[id] { scroll-margin-top: 105px; }
 .mobile-feature-content .eyebrow { font-size: 8px; letter-spacing: 1.5px; }
 .desktop-status-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .status-badge { display: inline-flex; align-items: center; min-height: 28px; padding: 5px 9px; border-radius: 999px; border: 1px solid rgba(255,202,107,.28); background: rgba(255,202,107,.1); color: #ffd69b; font: 700 9px/1 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+.status-badge--live { border-color: rgba(130,201,31,.45); background: rgba(130,201,31,.12); color: #b6f06a; }
+.appsumo-tag { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(130,201,31,.4); background: rgba(130,201,31,.09); color: #b6f06a; font: 700 9px/1 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background .2s ease, border-color .2s ease; }
+.appsumo-tag:hover { background: rgba(130,201,31,.18); border-color: rgba(130,201,31,.7); }
+.appsumo-tag strong { color: #e8ffc8; letter-spacing: .5px; text-transform: none; font-size: 10px; }
+.appsumo-tag-dot { width: 7px; height: 7px; border-radius: 50%; background: #82c91f; box-shadow: 0 0 8px rgba(130,201,31,.9); animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
 .mobile-feature h3 { display: flex; justify-content: space-between; margin-top: 15px; font-size: 29px; font-weight: 500; letter-spacing: -1px; }
 .mobile-feature h3 span { color: #65778b; font-size: 24px; }
 .mobile-feature-content > p { color: #aab3c1; font-size: 12px; line-height: 1.9; margin-top: 15px; }

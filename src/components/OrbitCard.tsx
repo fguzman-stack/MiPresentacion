@@ -67,6 +67,11 @@ export function OrbitCard({ project, index, lang, onClick }: {
             <span className="w-1.5 h-1.5 rounded-full bg-[#8b6cff] animate-pulse" /> {t(lang, "template_badge")}
           </div>
         )}
+        {project.appsumoUrl && (
+          <div className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[#0e0e25]/80 backdrop-blur border border-[#82c91f]/50 text-[0.62rem] font-bold tracking-wide text-[#a8f04f]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#82c91f] animate-pulse" /> {t(lang, "appsumo_badge")}
+          </div>
+        )}
         {isMobile && (
           <>
             <div className="card-preview-fallback">

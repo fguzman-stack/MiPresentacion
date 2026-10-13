@@ -7,7 +7,7 @@ import { t, type Lang } from "../lib/i18n";
 import { projectDescription, projectFeature, projectTagline } from "../lib/projectText";
 import { useConnectionQuality } from "../hooks/useConnectionQuality";
 import { getPreviewImage } from "../lib/previewImages";
-import { Orbit } from "lucide-react";
+import { Orbit, ArrowUpRight } from "lucide-react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
 type ExploreIntent = "auto" | "web" | "ai";
@@ -248,6 +248,18 @@ export function NebulaMap({ lang }: { lang: Lang }) {
               <div className="px-4 py-2 bg-[#8b6cff]/10 border-y border-[#8b6cff]/15 text-[0.72rem] text-[#c4b5fd] flex items-center gap-2">
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#8b6cff]/20 border border-[#8b6cff]/30 text-[0.65rem] font-bold tracking-wide">◆ {t(lang, "template_badge")}</span>
                 <span className="opacity-80">{t(lang, "template_disclaimer")}</span>
+              </div>
+            )}
+            {previewProject.appsumoUrl && (
+              <div className="px-4 py-2 bg-[#82c91f]/10 border-y border-[#82c91f]/20 text-[0.72rem] text-[#c6ea8b] flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#82c91f]/20 border border-[#82c91f]/40 text-[0.65rem] font-bold tracking-wide text-[#a8f04f]">◆ {t(lang, "appsumo_badge")}</span>
+                <span className="opacity-80">
+                  {t(lang, "buy_appsumo")}
+                  {previewProject.appsumoPrice ? ` — ${t(lang, "appsumo_price_from")} $${previewProject.appsumoPrice} lifetime` : ""}
+                </span>
+                <a href={previewProject.appsumoUrl} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#82c91f] text-[#0e0e25] text-[0.7rem] font-bold hover:brightness-110 transition">
+                  {t(lang, "buy_appsumo")} <ArrowUpRight size={13} />
+                </a>
               </div>
             )}
             <div className="preview-iframe-wrap">

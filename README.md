@@ -84,11 +84,11 @@ Built with **React 19 + Vite 6 + Tailwind CSS 4 + TypeScript**, with **adaptive 
 <br />
 
 <p align="center">
-  <img src="assets/win-documind.svg" alt="DocuMind AI: software de Windows en proceso, IA local" width="49%" />
+  <img src="assets/win-documind.svg" alt="DocuMind AI: software de Windows disponible en AppSumo, IA local" width="49%" />
   <img src="assets/win-screenscript.svg" alt="ScreenScript Studio: software de Windows en proceso, IA local" width="49%" />
 </p>
 
-Ambas llevan el badge **En proceso** mientras siguen en desarrollo activo.
+**DocuMind AI ya está publicado y a la venta en AppSumo** ([ver listado](https://appsumo.com/products/documind-ai-1fe9cdd3/)). ScreenScript Studio conserva el badge **En proceso**.
 
 <br />
 

@@ -30,6 +30,10 @@ export interface Project {
   screenshot?: string;
   screenshots?: string[];
   downloadUrl?: string;
+  /** Producto propio a la venta en AppSumo */
+  appsumoUrl?: string;
+  /** Precio de lanzamiento en AppSumo, sin símbolo de moneda (ej: "39") */
+  appsumoPrice?: string;
   // legacy aliases for backward compat
   featureHighlight?: string;
   previewColor?: string;

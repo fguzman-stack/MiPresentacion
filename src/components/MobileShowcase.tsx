@@ -135,14 +135,24 @@ export function WindowsShowcase({ lang }: { lang: Lang }) {
               <div className="mobile-feature-content">
                 <div className="desktop-status-row">
                   <span className="eyebrow">{desktopKindFallback(lang)}</span>
-                  <span className="status-badge">{t(lang, "windows_status")}</span>
+                  <span className={`status-badge${p.appsumoUrl ? " status-badge--live" : ""}`}>{p.appsumoUrl ? t(lang, "windows_status_available") : t(lang, "windows_status")}</span>
                 </div>
                 <h3>{p.name}<span>↗</span></h3>
                 <p>{projectDescription(p, lang)}</p>
                 <ul>{projectHighlights(p, lang)?.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul>
                 <div className="card-tech">{p.tech.map(tech => <span className="tech-tag" key={tech}>{tech}</span>)}</div>
+                {p.appsumoUrl && (
+                  <a className="appsumo-tag" href={p.appsumoUrl} target="_blank" rel="noopener noreferrer">
+                    <span className="appsumo-tag-dot" aria-hidden="true" />
+                    {t(lang, "appsumo_badge")}
+                    {p.appsumoPrice && <strong>{t(lang, "appsumo_price_from")} ${p.appsumoPrice}</strong>}
+                  </a>
+                )}
                 <div className="feature-links">
-                  <a className="button button-primary" href={p.url} target="_blank" rel="noopener noreferrer">{lang === "en" ? "View project" : lang === "pt" ? "Ver projeto" : lang === "fr" ? "Voir le projet" : "Ver proyecto"}<ArrowUpRight size={16} /></a>
+                  {p.appsumoUrl && (
+                    <a className="button button-primary" href={p.appsumoUrl} target="_blank" rel="noopener noreferrer">{t(lang, "buy_appsumo")}<ArrowUpRight size={16} /></a>
+                  )}
+                  <a className={`button ${p.appsumoUrl ? "button-secondary" : "button-primary"}`} href={p.url} target="_blank" rel="noopener noreferrer">{lang === "en" ? "View project" : lang === "pt" ? "Ver projeto" : lang === "fr" ? "Voir le projet" : "Ver proyecto"}<ArrowUpRight size={16} /></a>
                 </div>
               </div>
             </article>
