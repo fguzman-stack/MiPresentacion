@@ -88,6 +88,8 @@ section[id] { scroll-margin-top: 105px; }
 .app-icon-badge img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .phone-frame { position: absolute; width: 185px; height: 370px; left: 50%; top: 55px; transform: translateX(-50%) rotate(-7deg); border: 5px solid #262f32; outline: 1px solid #83938d80; border-radius: 28px; overflow: hidden; box-shadow: 15px 15px 55px #0006; background: #101a14; }
 .phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.codepet .phone-frame img { object-fit: contain; }
+.codepet .mobile-feature-content h3 { font-size: 25px; overflow-wrap: anywhere; }
 .desktop-frame { position: absolute; left: 50%; top: 82px; width: min(520px, calc(100% - 72px)); height: 210px; transform: translateX(-50%); border: 1px solid rgba(196,181,253,.45); border-radius: 16px; overflow: hidden; background: #080913; box-shadow: 20px 20px 60px rgba(0,0,0,.5), 0 0 55px rgba(84,220,255,.14); }
 .desktop-frame::before { content: ''; position: absolute; inset: 0 0 auto; height: 28px; background: linear-gradient(90deg, rgba(255,255,255,.11), rgba(255,255,255,.035)); border-bottom: 1px solid rgba(255,255,255,.08); z-index: 1; }
 .desktop-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -203,6 +205,8 @@ section[id] { scroll-margin-top: 105px; }
 .project-gallery-item:hover img { transform: scale(1.025); }
 .project-gallery-desktop .project-gallery-item { min-height: 250px; }
 .project-gallery-mobile .project-gallery-item { aspect-ratio: 9 / 16; }
+.project-gallery-codepet .project-gallery-item img { height: auto; object-fit: contain; }
+.project-gallery-codepet .project-gallery-item { aspect-ratio: auto; align-self: start; }
 .project-gallery-windows { grid-template-columns: minmax(0, 1fr); max-height: 68vh; overflow-y: auto; padding: 2px; scrollbar-gutter: stable; }
 .project-gallery-windows .project-gallery-item { aspect-ratio: auto; }
 .project-gallery-windows .project-gallery-item img { height: auto; object-fit: contain; }

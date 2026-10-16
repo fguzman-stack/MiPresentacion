@@ -2,7 +2,7 @@ import { ArrowUpRight, Check, Clock3, GitBranch as Github, Images, Monitor, Smar
 import Swal from "sweetalert2";
 import { projects } from "../data/projectsData";
 import { t, type Lang } from "../lib/i18n";
-import { projectDescription, projectHighlights } from "../lib/projectText";
+import { projectDescription, projectFeature, projectHighlights } from "../lib/projectText";
 import type { Project } from "../types/project";
 
 const kindKeys: Record<string, string> = {
@@ -28,7 +28,7 @@ const appIcons: Record<string, string> = {
 };
 
 const appLogos: Record<string, string> = {
-  codepet: "images/icons/codepet-512.png",
+  codepet: "images/icons/codepet-v320.webp",
   "a-tiempo": "images/icons/a-tiempo-512.png",
   "despensa-al-dia": "images/icons/despensa-al-dia-512.jpg",
 };
@@ -48,7 +48,7 @@ function showScreenshots(project: Project, lang: Lang) {
     title: `<span style="font-family:Orbitron,sans-serif;font-size:1.05rem">${project.name}</span>`,
     html: `
       <div style="text-align:left;font-family:Inter,sans-serif">
-        <div class="project-gallery ${isDesktop ? "project-gallery-windows" : "project-gallery-mobile"}">
+        <div class="project-gallery ${isDesktop ? "project-gallery-windows" : "project-gallery-mobile"} ${project.id === "codepet" ? "project-gallery-codepet" : ""}">
           ${screenshots.map((src, index) => `<a href="${src}" target="_blank" rel="noopener noreferrer" class="project-gallery-item"><img src="${src}" alt="${project.name} screenshot ${index + 1}" loading="lazy" /></a>`).join("")}
         </div>
         <p style="font-size:0.86rem;color:#b9bdd0;line-height:1.7;margin-top:14px">${projectDescription(project, lang)}</p>
@@ -95,11 +95,13 @@ export function MobileShowcase({ lang }: { lang: Lang }) {
               <div className="mobile-feature-content">
                 <span className="eyebrow">{kindKey ? t(lang, kindKey) : ""}</span>
                 <h3>{p.name}<span>↗</span></h3>
+                {p.id === "codepet" && <span className="eyebrow">{projectFeature(p, lang)}</span>}
                 <p>{projectDescription(p, lang)}</p>
                 <ul>{projectHighlights(p, lang)?.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul>
                 <div className="card-tech">{p.tech.map(tech => <span className="tech-tag" key={tech}>{tech}</span>)}</div>
                 <div className="feature-links">
                   <button className="button button-primary" type="button" onClick={() => showScreenshots(p, lang)}>{screenshotsLabel(lang)}<Images size={16} /></button>
+                  {p.downloadUrl && <a className="button button-secondary" href={p.downloadUrl} target="_blank" rel="noopener noreferrer">{t(lang, "mobile_releases")}<ArrowUpRight size={16} /></a>}
                   {p.url.includes("github.com") && (
                     <a className="button button-secondary" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} GitHub`}><Github size={16} />GitHub<ArrowUpRight size={15} /></a>
                   )}
