@@ -22,7 +22,9 @@ const appIcons: Record<string, string> = {
   "a-tiempo": "AT",
   "despensa-al-dia": "DA",
   documind: "DM",
-  screenscript: "SS",
+  counterkeep: "CK",
+  sopbuilder: "SB",
+  "restaurant-costing": "RC",
 };
 
 const appLogos: Record<string, string> = {
@@ -40,12 +42,13 @@ const screenshotsLabel = (lang: Lang) => lang === "en" ? "View screenshots" : la
 
 function showScreenshots(project: Project, lang: Lang) {
   const screenshots = project.screenshots ?? (project.screenshot ? [project.screenshot] : []);
+  const isDesktop = project.type === "desktop";
 
   Swal.fire({
     title: `<span style="font-family:Orbitron,sans-serif;font-size:1.05rem">${project.name}</span>`,
     html: `
       <div style="text-align:left;font-family:Inter,sans-serif">
-        <div class="project-gallery project-gallery-mobile">
+        <div class="project-gallery ${isDesktop ? "project-gallery-windows" : "project-gallery-mobile"}">
           ${screenshots.map((src, index) => `<a href="${src}" target="_blank" rel="noopener noreferrer" class="project-gallery-item"><img src="${src}" alt="${project.name} screenshot ${index + 1}" loading="lazy" /></a>`).join("")}
         </div>
         <p style="font-size:0.86rem;color:#b9bdd0;line-height:1.7;margin-top:14px">${projectDescription(project, lang)}</p>
@@ -56,7 +59,7 @@ function showScreenshots(project: Project, lang: Lang) {
     background: "#0e0e25",
     color: "#f4f1ff",
     confirmButtonColor: "#9b7bff",
-    width: Math.min(window.innerWidth - 32, 860),
+    width: Math.min(window.innerWidth - 32, isDesktop ? 1280 : 860),
     customClass: { popup: "rounded-2xl border border-white/10 backdrop-blur-xl", confirmButton: "swal2-confirm-custom" },
   });
 }
@@ -123,7 +126,7 @@ export function WindowsShowcase({ lang }: { lang: Lang }) {
       <div className="mobile-feature-grid">
         {desktopProjects.map((p, i) => {
           const icon = projectIcon(p.id, p.name);
-          const footnote = p.id === "documind" ? "ASK. SEARCH. PRIVACY." : "REC. TRANSCRIBE. EXPORT.";
+           const footnote = ({ counterkeep: "SELL. TRACK. MANAGE.", documind: "ASK. SEARCH. DISCOVER.", sopbuilder: "WRITE. RUN. REVIEW.", "restaurant-costing": "COST. PRICE. CONTROL." } as Record<string, string>)[p.id];
           return (
             <article key={p.id} className={`mobile-feature desktop-feature ${p.id}`}>
               <div className="mobile-art">
@@ -135,24 +138,25 @@ export function WindowsShowcase({ lang }: { lang: Lang }) {
               <div className="mobile-feature-content">
                 <div className="desktop-status-row">
                   <span className="eyebrow">{desktopKindFallback(lang)}</span>
-                  <span className={`status-badge${p.appsumoUrl ? " status-badge--live" : ""}`}>{p.appsumoUrl ? t(lang, "windows_status_available") : t(lang, "windows_status")}</span>
+                   <span className={`status-badge${p.purchaseUrl ? " status-badge--live" : ""}`}>{p.purchaseUrl ? t(lang, "windows_status_available") : t(lang, "windows_status")}</span>
                 </div>
                 <h3>{p.name}<span>↗</span></h3>
                 <p>{projectDescription(p, lang)}</p>
                 <ul>{projectHighlights(p, lang)?.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul>
                 <div className="card-tech">{p.tech.map(tech => <span className="tech-tag" key={tech}>{tech}</span>)}</div>
-                {p.appsumoUrl && (
-                  <a className="appsumo-tag" href={p.appsumoUrl} target="_blank" rel="noopener noreferrer">
-                    <span className="appsumo-tag-dot" aria-hidden="true" />
-                    {t(lang, "appsumo_badge")}
-                    {p.appsumoPrice && <strong>{t(lang, "appsumo_price_from")} ${p.appsumoPrice}</strong>}
-                  </a>
-                )}
-                <div className="feature-links">
-                  {p.appsumoUrl && (
-                    <a className="button button-primary" href={p.appsumoUrl} target="_blank" rel="noopener noreferrer">{t(lang, "buy_appsumo")}<ArrowUpRight size={16} /></a>
-                  )}
-                  <a className={`button ${p.appsumoUrl ? "button-secondary" : "button-primary"}`} href={p.url} target="_blank" rel="noopener noreferrer">{lang === "en" ? "View project" : lang === "pt" ? "Ver projeto" : lang === "fr" ? "Voir le projet" : "Ver proyecto"}<ArrowUpRight size={16} /></a>
+                 {p.purchaseUrl && (
+                   <a className="product-purchase-tag" href={p.purchaseUrl} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} — ${p.purchaseStore}`}>
+                     {t(lang, "product_store")} {p.purchaseStore}
+                     {p.purchasePrice && <strong>US${p.purchasePrice} · {t(lang, "product_payment")}</strong>}
+                   </a>
+                 )}
+                 <p className="product-price-note">{t(lang, "product_price_note")}</p>
+                 <div className="feature-links">
+                   {p.purchaseUrl && (
+                     <a className="button button-primary" href={p.purchaseUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t(lang, "buy_product")} ${p.purchaseStore} — ${p.name}`}>{t(lang, "buy_product")} {p.purchaseStore}<ArrowUpRight size={16} /></a>
+                   )}
+                   <a className="button button-secondary" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`${t(lang, "product_website")} — ${p.name}`}>{t(lang, "product_website")}<ArrowUpRight size={16} /></a>
+                   <button className="text-link" type="button" onClick={() => showScreenshots(p, lang)}>{screenshotsLabel(lang)}<Images size={16} /></button>
                 </div>
               </div>
             </article>

@@ -250,15 +250,15 @@ export function NebulaMap({ lang }: { lang: Lang }) {
                 <span className="opacity-80">{t(lang, "template_disclaimer")}</span>
               </div>
             )}
-            {previewProject.appsumoUrl && (
+            {previewProject.purchaseUrl && (
               <div className="px-4 py-2 bg-[#82c91f]/10 border-y border-[#82c91f]/20 text-[0.72rem] text-[#c6ea8b] flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#82c91f]/20 border border-[#82c91f]/40 text-[0.65rem] font-bold tracking-wide text-[#a8f04f]">◆ {t(lang, "appsumo_badge")}</span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#82c91f]/20 border border-[#82c91f]/40 text-[0.65rem] font-bold tracking-wide text-[#a8f04f]">{previewProject.purchaseStore}</span>
                 <span className="opacity-80">
-                  {t(lang, "buy_appsumo")}
-                  {previewProject.appsumoPrice ? ` — ${t(lang, "appsumo_price_from")} $${previewProject.appsumoPrice} lifetime` : ""}
+                  {t(lang, "product_payment")}
+                  {previewProject.purchasePrice ? ` — US$${previewProject.purchasePrice}` : ""}
                 </span>
-                <a href={previewProject.appsumoUrl} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#82c91f] text-[#0e0e25] text-[0.7rem] font-bold hover:brightness-110 transition">
-                  {t(lang, "buy_appsumo")} <ArrowUpRight size={13} />
+                <a href={previewProject.purchaseUrl} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#82c91f] text-[#0e0e25] text-[0.7rem] font-bold hover:brightness-110 transition">
+                  {t(lang, "buy_product")} {previewProject.purchaseStore} <ArrowUpRight size={13} />
                 </a>
               </div>
             )}

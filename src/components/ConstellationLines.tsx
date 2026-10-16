@@ -6,7 +6,7 @@ const constellationGroups: Record<string, string[]> = {
   "orbita-reservas": ["latambooker", "bookingsuite", "nichebooker", "barberia", "vetflow"],
   "aurora-creative": ["auradesign", "creatorflow", "comidacallejera"],
   satellites: ["codepet", "a-tiempo", "despensa-al-dia"],
-  "desktop-apps": ["documind", "screenscript"],
+  "desktop-apps": ["counterkeep", "documind", "sopbuilder", "restaurant-costing"],
 };
 
 const colors: Record<string, string> = {

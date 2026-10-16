@@ -1,4 +1,5 @@
 import type { Project } from "../types/project";
+import { desktopProjects } from "./desktopProjects";
 
 export const projects: Project[] = [
   { id: "ai-boost", name: "AI-Boost", taglineES: "Plantilla premium para negocios de IA", taglineEN: "Premium template for AI businesses", taglinePT: "Template premium para negócios de IA", taglineFR: "Template premium pour entreprises IA", url: "https://fguzman-stack.github.io/Ai-Boost/", type: "web", tech: ["HTML", "CSS", "JS"], constellation: "nebula-tech", color: "#54dcff", color2: "#00c8ff", preview: "linear-gradient(135deg, #667eea, #764ba2)", feature: "Demo interactivo con modo simulado", featureEN: "Interactive demo with simulated mode", featurePT: "Demo interativa com modo simulado", featureFR: "Démo interactive avec mode simulé" },
@@ -56,26 +57,7 @@ export const projects: Project[] = [
     screenshot: "images/gallery/despensa-01-usa-primero.png",
     screenshots: ["images/gallery/despensa-01-usa-primero.png", "images/gallery/despensa-02-inventario.png", "images/gallery/despensa-03-estadisticas.png", "images/gallery/despensa-04-ajustes.png"]
   },
-  {
-    id: "documind", name: "DocuMind AI", type: "desktop", constellation: "desktop-apps",
-    taglineES: "Chat con tus documentos, 100% offline con RAG local.", taglineEN: "Chat with your documents, 100% offline with local RAG.", taglinePT: "Chat com seus documentos, 100% offline com RAG local.", taglineFR: "Chat avec vos documents, 100% hors ligne avec RAG local.",
-    url: "https://fguzman-stack.github.io/DocuMind-Ai-Web/", appsumoUrl: "https://appsumo.com/products/documind-ai-1fe9cdd3/", appsumoPrice: "39", tech: ["Tauri 2", "React 19", "TypeScript", "Ollama", "SQLite"], color: "#8b5cf6", color2: "#a78bfa", preview: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-    feature: "RAG local · PDF/DOCX/XLSX · Workspaces", featureEN: "Local RAG · PDF/DOCX/XLSX · Workspaces", featurePT: "RAG local · PDF/DOCX/XLSX · Workspaces", featureFR: "RAG local · PDF/DOCX/XLSX · Workspaces",
-    descriptionES: "Aplicación de escritorio publicada en AppSumo para hacer preguntas sobre tus PDFs, Word, Excel y textos con un modelo de lenguaje local. Nada sale de tu máquina.", descriptionEN: "Desktop app published on AppSumo that lets you ask questions about your PDFs, Word, Excel and text files using a local language model. Nothing leaves your machine.", descriptionPT: "App de desktop publicado na AppSumo para fazer perguntas sobre seus PDFs, Word, Excel e textos usando um modelo de linguagem local. Nada sai da sua máquina.", descriptionFR: "Application de bureau publiée sur AppSumo qui vous permet de poser des questions sur vos PDFs, Word, Excel et textes avec un modèle de langage local. Rien ne quitte votre machine.",
-    highlightsES: ["100% local y privado", "Gráficos y tablas desde el chat", "UI en 5 idiomas", "Publicado en AppSumo"], highlightsEN: ["100% local and private", "Charts and tables from chat", "UI in 5 languages", "Published on AppSumo"], highlightsPT: ["100% local e privado", "Gráficos e tabelas no chat", "UI em 5 idiomas", "Publicado na AppSumo"], highlightsFR: ["100% local et privé", "Graphiques et tableaux depuis le chat", "Interface en 5 langues", "Publié sur AppSumo"],
-    screenshot: "images/documind.png",
-    screenshots: ["images/documind.png", "images/gallery/documind-detail-01.png", "images/gallery/documind-detail-02.png"]
-  },
-  {
-    id: "screenscript", name: "ScreenScript Studio", type: "desktop", constellation: "desktop-apps",
-    taglineES: "Graba, transcribe y genera SOPs automáticos. 100% offline.", taglineEN: "Record, transcribe and generate automatic SOPs. 100% offline.", taglinePT: "Grave, transcreva e gere SOPs automáticos. 100% offline.", taglineFR: "Enregistrez, transcrivez et générez des SOP automatiques. 100% hors ligne.",
-    url: "https://github.com/fguzman-stack/ScreenScript-Studio", tech: ["Tauri 2", "React", "Rust", "Whisper.cpp", "Ollama"], color: "#06b6d4", color2: "#22d3ee", preview: "linear-gradient(135deg, #0891b2, #06b6d4)",
-    feature: "Grabación pantalla · Transcripción · SOPs", featureEN: "Screen recording · Transcription · SOPs", featurePT: "Gravação de tela · Transcrição · SOPs", featureFR: "Enregistrement d'écran · Transcription · SOPs",
-    descriptionES: "Transforma procedimientos reales en documentación visual estructurada y exportable. Graba pantalla, transcribe con whisper.cpp y genera SOPs con IA local.", descriptionEN: "Transform real procedures into structured, exportable visual documentation. Record screen, transcribe with whisper.cpp and generate SOPs with local AI.", descriptionPT: "Transforme procedimentos reais em documentação visual estruturada e exportável. Grave tela, transcreva com whisper.cpp e gere SOPs com IA local.", descriptionFR: "Transformez les procédures réelles en documentation visuelle structurée et exportable. Enregistrez l'écran, transcrivez avec whisper.cpp et générez des SOP avec IA locale.",
-    highlightsES: ["Grabación de pantalla + audio", "Transcripción local con whisper.cpp", "Generación de SOPs con IA", "Exportación PDF/HTML/MD/DOCX"], highlightsEN: ["Screen + audio recording", "Local transcription with whisper.cpp", "SOP generation with AI", "PDF/HTML/MD/DOCX export"], highlightsPT: ["Gravação de tela + áudio", "Transcrição local com whisper.cpp", "Geração de SOPs com IA", "Exportação PDF/HTML/MD/DOCX"], highlightsFR: ["Enregistrement écran + audio", "Transcription locale avec whisper.cpp", "Génération de SOP avec IA", "Export PDF/HTML/MD/DOCX"],
-    screenshot: "images/screenscript.png",
-    screenshots: ["images/screenscript.png", "images/gallery/screenscript-detail-01.png", "images/gallery/screenscript-detail-02.png"]
-  }
+  ...desktopProjects,
 ];
 
 export const constellationMeta = {
