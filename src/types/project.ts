@@ -30,6 +30,7 @@ export interface Project {
   screenshot?: string;
   screenshots?: string[];
   downloadUrl?: string;
+  uptodownUrl?: string;
   purchaseUrl?: string;
   purchasePrice?: string;
   purchaseStore?: string;

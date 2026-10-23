@@ -39,6 +39,7 @@ const desktopKindFallback = (lang: Lang) =>
 const projectIcon = (id: string, name: string) => appIcons[id] ?? name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 
 const screenshotsLabel = (lang: Lang) => lang === "en" ? "View screenshots" : lang === "pt" ? "Ver capturas" : lang === "fr" ? "Voir captures" : "Ver capturas";
+const uptodownLabel = (lang: Lang) => lang === "en" ? "Download on Uptodown" : lang === "pt" ? "Baixar na Uptodown" : lang === "fr" ? "Télécharger sur Uptodown" : "Descargar en Uptodown";
 
 function showScreenshots(project: Project, lang: Lang) {
   const screenshots = project.screenshots ?? (project.screenshot ? [project.screenshot] : []);
@@ -100,7 +101,8 @@ export function MobileShowcase({ lang }: { lang: Lang }) {
                 <ul>{projectHighlights(p, lang)?.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul>
                 <div className="card-tech">{p.tech.map(tech => <span className="tech-tag" key={tech}>{tech}</span>)}</div>
                 <div className="feature-links">
-                  <button className="button button-primary" type="button" onClick={() => showScreenshots(p, lang)}>{screenshotsLabel(lang)}<Images size={16} /></button>
+                  {p.uptodownUrl && <a className="button button-primary" href={p.uptodownUrl} target="_blank" rel="noopener noreferrer" aria-label={`${uptodownLabel(lang)} — ${p.name}`}>{uptodownLabel(lang)}<ArrowUpRight size={16} /></a>}
+                  <button className={`button ${p.uptodownUrl ? "button-secondary" : "button-primary"}`} type="button" onClick={() => showScreenshots(p, lang)}>{screenshotsLabel(lang)}<Images size={16} /></button>
                   {p.downloadUrl && <a className="button button-secondary" href={p.downloadUrl} target="_blank" rel="noopener noreferrer">{t(lang, "mobile_releases")}<ArrowUpRight size={16} /></a>}
                   {p.url.includes("github.com") && (
                     <a className="button button-secondary" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} GitHub`}><Github size={16} />GitHub<ArrowUpRight size={15} /></a>
